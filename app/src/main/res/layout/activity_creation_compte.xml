@@ -70,13 +70,13 @@
 
     <ImageView
         android:id="@+id/id_user_photo_CC"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@id/id_pseudo_zone_CC"
         app:layout_constraintStart_toStartOf="@id/id_pseudo_zone_CC"
         app:layout_constraintTop_toTopOf="@id/id_pseudo_zone_CC"
-        app:srcCompat="@drawable/id_card" />
+        app:srcCompat="@drawable/img_user_profil" />
 
     <EditText
         android:id="@+id/id_email_zone_CC"
@@ -91,7 +91,7 @@
         android:minHeight="48dp"
         android:paddingLeft="80dp"
         android:selectAllOnFocus="true"
-        android:text="Email"
+        android:text="@string/loginEmail"
         android:textColor="#000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"

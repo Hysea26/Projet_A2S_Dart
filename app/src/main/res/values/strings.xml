@@ -1,40 +1,42 @@
 <resources>
     <string name="app_name">Dart</string>
 
+    <!-- Page Connexion -->
+    <string name="PageConnexion">Page de Connexion</string>
+    <string name="back_btn">Bouton Retour</string>
+    <string name="loginEmail">Email</string>
+    <string name="MDP">Mot de passe</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in">Connexion</string>
+    <string name="NoAccount">Pas encore de compte ?</string>
+    <string name="ForgotPassword">Mot de passe oublié</string>
+
+    <!-- Page Creation Compte -->
+    <string name="createAccountText">Création d\'un compte</string>
+    <string name="NomUtilisateur">Nom d\'utilisateur</string>
+    <string name="conditionsUtilisations">En vous inscrivant, vous acceptez les <u>Conditions d\'utilisation</u> de l\'application et la <u>Politique de confidentialité.</u></string>
+    <string name="createAccount">Créer un compte</string>
+
+    <!-- Page Forgot Pwd -->
+    <string name="typeEmail">Saisissez votre adresse email pour réinitiailiser votre mot de passe.</string>
+    <string name="sendButtonText">Envoyer</string>
+
+
     <!-- Login -->
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Connexion</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-
-    <string name="conditionsUtilisations">En vous inscrivant, vous acceptez les <u>Conditions d\'utilisation</u> de l\'application et la <u>Politique de confidentialité.</u></string>
-    <string name="typeEmail">Saisissez votre adresse email pour réinitiailiser votre mot de passe.</string>
     <string name="typeEmailCode">Saisissez le code reçu par email puis saisissez un nouveau mot de passe.</string>
-
-
-    <string name="back_btn">Bouton Retour</string>
     <string name="SeConnecter">Se connecter</string>
-    <string name="PageConnexion">Page de Connexion</string>
-    <string name="loginEmail">Email</string>
-    <string name="MDP">Mot de passe</string>
-    <string name="NoAccount">Pas encore de compte ?</string>
-    <string name="ForgotPassword">Mot de passe oublié</string>
     <string name="CodeEmail">Code reçu par email</string>
     <string name="newPWD">Nouveau mot de passe</string>
     <string name="verifyNewPWD">Confirmation du nouveau mot de passe</string>
-    <string name="sendButtonText">Envoyer</string>
-
-    <string name="NomUtilisateur">Nom d\'utilisateur</string>
-    <string name="PoleRoboCup">Pôle RoboCup</string>
-    <string name="createAccount">Créer un compte</string>
-    <string name="createAccountText">Création d\'un compte</string>
     <string name="resetEmail">
         Etes-vous sûr d\'envoyer un mail de réinitialisation de mot de passe à cette adresse email ?
         \n\nSi cette email ne se trouve pas dans la base de données alors vous ne recevrez rien.
