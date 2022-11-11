@@ -31,4 +31,20 @@
     <string name="verifyNewPWD">Confirmation du nouveau mot de passe</string>
     <string name="sendButtonText">Envoyer</string>
 
+    <string name="NomUtilisateur">Nom d\'utilisateur</string>
+    <string name="PoleRoboCup">Pôle RoboCup</string>
+    <string name="createAccount">Créer un compte</string>
+    <string name="createAccountText">Création d\'un compte</string>
+    <string name="resetEmail">
+        Etes-vous sûr d\'envoyer un mail de réinitialisation de mot de passe à cette adresse email ?
+        \n\nSi cette email ne se trouve pas dans la base de données alors vous ne recevrez rien.
+        \n\nP.S N\'oublier pas de vérifier vos spams ! </string>
+    <string name="changer_d_quipe">Changer d\'équipe</string>
+    <string name="changer_d_equipe">changer d\'equipe</string>
+    <string name="ajouter_un_robot">Ajouter un Robot</string>
+    <string name="d_connection">déconnection</string>
+    <string name="nom">Nom</string>
+    <string name="d_connexion">Déconnexion</string>
+    <string name="supprimer_le_compte">Supprimer le compte</string>
+
 </resources>

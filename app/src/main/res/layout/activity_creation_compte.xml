@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreationCompte">
+
+
+    <TextView
+        android:id="@+id/id_title_pageCC"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/createAccountText"
+        android:textColor="#2ABF12"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/id_backButton_CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/id_backButton_CC" />
+
+    <ImageButton
+        android:id="@+id/id_backButton_CC"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_gravity="left"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="0px"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/id_dart_logo_CC"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_title_pageCC"
+        app:srcCompat="@drawable/logo_dart" />
+
+    <EditText
+        android:id="@+id/id_pseudo_zone_CC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:text="@string/NomUtilisateur"
+        android:textColor="#000"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_dart_logo_CC" />
+
+    <ImageView
+        android:id="@+id/id_user_photo_CC"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/id_pseudo_zone_CC"
+        app:layout_constraintStart_toStartOf="@id/id_pseudo_zone_CC"
+        app:layout_constraintTop_toTopOf="@id/id_pseudo_zone_CC"
+        app:srcCompat="@drawable/id_card" />
+
+    <EditText
+        android:id="@+id/id_email_zone_CC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:text="Email"
+        android:textColor="#000"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_pseudo_zone_CC" />
+
+    <ImageView
+        android:id="@+id/id_email_photo_CC"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/id_email_zone_CC"
+        app:layout_constraintStart_toStartOf="@id/id_email_zone_CC"
+        app:layout_constraintTop_toTopOf="@id/id_email_zone_CC"
+        app:srcCompat="@drawable/id_card" />
+
+    <EditText
+        android:id="@+id/id_pwd_zone_CC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:hint="@string/MDP"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:textColorHint="#000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_email_zone_CC" />
+    <!-- android:inputType="textPassword" -->
+
+    <ImageView
+        android:id="@+id/id_pwd_CC"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/id_pwd_zone_CC"
+        app:layout_constraintStart_toStartOf="@id/id_pwd_zone_CC"
+        app:layout_constraintTop_toTopOf="@id/id_pwd_zone_CC"
+        app:srcCompat="@drawable/lock" />
+
+    <TextView
+        android:id="@+id/id_condition_utilisation_CC"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:selectAllOnFocus="true"
+        android:text="@string/conditionsUtilisations"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/id_btn_CC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_pwd_zone_CC" />
+
+    <Button
+        android:id="@+id/id_btn_CC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/sign_in_button"
+        android:enabled="true"
+        android:text="@string/createAccount"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_pwd_zone_CC"
+        app:layout_constraintVertical_bias="0.524" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

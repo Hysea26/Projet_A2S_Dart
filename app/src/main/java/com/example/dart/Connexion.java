@@ -52,7 +52,7 @@ public class Connexion extends AppCompatActivity {
         btn_newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent launchActivity = new Intent(Connexion.this, Connexion.class);
+                Intent launchActivity = new Intent(Connexion.this, CreationCompte.class);
                 startActivity(launchActivity);
                 finish();
             }
