@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Connexion">
+
+    <TextView
+        android:id="@+id/id_title_page_connexion"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/PageConnexion"
+        android:textColor="#2ABF12"
+        android:textSize="75px"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/id_backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/id_backButton" />
+
+    <ImageButton
+        android:id="@+id/id_backButton"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_gravity="left"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/back_btn"
+        android:padding="0px"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+
+    <ImageView
+        android:id="@+id/id_dart_logo"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_title_page_connexion"
+        app:srcCompat="@drawable/logo_dart" />
+
+    <EditText
+        android:id="@+id/id_email_zone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:text="@string/loginEmail"
+        android:textColor="#000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/id_dart_logo" />
+
+    <ImageView
+        android:id="@+id/id_user_photo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/id_email_zone"
+        app:layout_constraintStart_toStartOf="@id/id_email_zone"
+        app:layout_constraintTop_toTopOf="@id/id_email_zone"
+        app:layout_constraintVertical_bias="0.444"
+        app:srcCompat="@drawable/id_card" />
+
+    <EditText
+        android:id="@+id/id_pwd_zone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:hint="@string/MDP"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:textColorHint="#000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_email_zone" />
+    <!-- android:inputType="textPassword" -->
+
+    <ImageView
+        android:id="@+id/id_pwd_photo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/id_pwd_zone"
+        app:layout_constraintStart_toStartOf="@id/id_pwd_zone"
+        app:layout_constraintTop_toTopOf="@id/id_pwd_zone"
+        app:srcCompat="@drawable/lock" />
+
+    <Button
+        android:id="@+id/id_btn_connexion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/sign_in_button"
+        android:enabled="true"
+        android:text="@string/action_sign_in"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_pwd_zone"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/id_btn_newAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="84dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif"
+        android:text="@string/NoAccount"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_btn_connexion" />
+
+    <Button
+        android:id="@+id/id_btn_forgotPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif"
+        android:minHeight="48dp"
+        android:text="@string/ForgotPassword"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_btn_newAccount" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
