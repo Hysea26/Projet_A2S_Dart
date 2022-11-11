@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForgotPwd">
+
+
+    <TextView
+        android:id="@+id/id_title_ForgotPwd"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="75px"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ForgotPassword"
+        android:textColor="#5643CC"
+        app:layout_constraintBottom_toBottomOf="@id/id_backButton_FP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/id_backButton_FP"/>
+
+    <ImageButton
+        android:id="@+id/id_backButton_FP"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_gravity="left"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="0px"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/id_dart_logo_FP"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/logo_dart"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_title_ForgotPwd"/>
+
+    <TextView
+        android:id="@+id/id_text_FP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif"
+        android:selectAllOnFocus="true"
+        android:textColor="#000"
+        android:layout_marginTop="30dp"
+        android:text="@string/typeEmail"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_dart_logo_FP"/>
+
+    <EditText
+        android:id="@+id/id_email_zone_FP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_text_area"
+        android:fontFamily="sans-serif"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="80dp"
+        android:selectAllOnFocus="true"
+        android:text="Email"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_text_FP" />
+
+    <ImageView
+        android:id="@+id/id_user_photo_FP"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/id_email_zone_FP"
+        app:layout_constraintStart_toStartOf="@id/id_email_zone_FP"
+        app:layout_constraintTop_toTopOf="@id/id_email_zone_FP"
+        app:srcCompat="@drawable/id_card" />
+
+    <Button
+        android:id="@+id/id_btn_send_FP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/sign_in_button"
+        android:enabled="true"
+        android:text="@string/sendButtonText"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        app:layout_constraintTop_toBottomOf="@id/id_email_zone_FP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,7 @@ public class Connexion extends AppCompatActivity {
         btn_forgotPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent launchActivity = new Intent(Connexion.this, Connexion.class);
+                Intent launchActivity = new Intent(Connexion.this, ForgotPwd.class);
                 startActivity(launchActivity);
                 finish();
             }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dart">
         <activity
+            android:name=".ForgotPwd"
+            android:exported="false" />
+        <activity
             android:name=".CreationCompte"
             android:exported="false" />
         <activity
