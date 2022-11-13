@@ -7,7 +7,7 @@
     tools:context=".Connexion">
 
     <TextView
-        android:id="@+id/id_title_page_connexion"
+        android:id="@+id/id_title_compte"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -46,7 +46,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_title_page_connexion"
+        app:layout_constraintTop_toBottomOf="@id/id_title_compte"
         app:srcCompat="@drawable/logo_dart" />
 
     <EditText

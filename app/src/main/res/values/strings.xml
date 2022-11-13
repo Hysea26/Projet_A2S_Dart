@@ -21,6 +21,10 @@
     <string name="typeEmail">Saisissez votre adresse email pour réinitiailiser votre mot de passe.</string>
     <string name="sendButtonText">Envoyer</string>
 
+    <!-- Page Compte -->
+    <string name="titreCompte">Mon Compte</string>
+
+
 
     <!-- Login -->
     <string name="hello_first_fragment">Hello first fragment</string>
@@ -48,5 +52,9 @@
     <string name="nom">Nom</string>
     <string name="d_connexion">Déconnexion</string>
     <string name="supprimer_le_compte">Supprimer le compte</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dart">
         <activity
+            android:name=".Menu"
+            android:exported="false"
+            android:label="@string/title_activity_menu" />
+        <activity
             android:name=".ForgotPwd"
             android:exported="false" />
         <activity

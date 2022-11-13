@@ -37,7 +37,7 @@ public class Connexion extends AppCompatActivity {
         btn_connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // ligne en dessous à commenter/decommenter pr se passer de l'authentification (pour tests)
-                Intent launchActivity = new Intent(Connexion.this, Connexion.class);
+                Intent launchActivity = new Intent(Connexion.this, Menu.class);
                 startActivity(launchActivity);
                 try {
                     //signIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
