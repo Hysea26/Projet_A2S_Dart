@@ -9,6 +9,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+//////////////////// Selyan /////////////////////
+
 public class Parametres extends AppCompatActivity {
 
     @Override
