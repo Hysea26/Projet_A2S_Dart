@@ -23,7 +23,9 @@
 
     <!-- Page Compte -->
     <string name="titreCompte">Mon Compte</string>
-
+    <string name="Deconnexion">Déconnexion</string>
+    <string name="SupprCompte">Supprimer le compte</string>
+    <string name="Statistiques">Statistiques</string>
 
 
     <!-- Login -->

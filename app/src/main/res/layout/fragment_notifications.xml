@@ -37,9 +37,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/id_img_user"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="28dp"
         android:gravity="center"
         android:src="@drawable/img_user_profil"
@@ -47,32 +47,103 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_title_compte" />
 
+    <ImageView
+        android:id="@+id/id_img_stylo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="150dp"
+        android:src="@drawable/img_stylo"
+        app:layout_constraintBottom_toBottomOf="@+id/id_img_user"
+        app:layout_constraintStart_toStartOf="@+id/id_img_user" />
+
     <TextView
-        android:id="@+id/id_textView"
+        android:id="@+id/id_txt_pseudo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Pseudo"
         android:textColor="#000000"
         android:textSize="60px"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/id_img_user" />
 
     <TextView
-        android:id="@+id/id_textView2"
+        android:id="@+id/id_txt_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="Pseudo"
+        android:layout_marginTop="30dp"
+        android:text="Adresse mail"
         android:textColor="#000000"
         android:textSize="60px"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_pseudo" />
+
+    <Button
+        android:id="@+id/id_btn_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/sign_in_button"
+        android:enabled="true"
+        android:text="@string/Statistiques"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_email"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/id_btn_decoAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif"
+        android:text="@string/Deconnexion"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="50px"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/id_btn_delAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_btn_stats" />
+
+    <Button
+        android:id="@+id/id_btn_delAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="70dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="sans-serif"
+        android:text="@string/SupprCompte"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="40px"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_btn_stats" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
