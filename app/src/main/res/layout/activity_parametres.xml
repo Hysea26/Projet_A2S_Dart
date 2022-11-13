@@ -4,27 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".Parametres">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/id_title_compte"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/titreCompte"
@@ -84,32 +71,11 @@
         app:layout_constraintTop_toBottomOf="@+id/id_txt_pseudo" />
 
     <Button
-        android:id="@+id/id_btn_stats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/sign_in_button"
-        android:enabled="true"
-        android:text="@string/Statistiques"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_txt_email"
-        app:layout_constraintVertical_bias="0" />
-
-    <Button
         android:id="@+id/id_btn_decoAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="140dp"
         android:layout_marginBottom="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
@@ -122,14 +88,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_btn_stats" />
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_email" />
 
     <Button
         android:id="@+id/id_btn_delAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="150dp"
         android:layout_marginBottom="70dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
@@ -141,9 +107,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_btn_stats" />
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_email" />
 
 
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/vert_bottom_bar"
+        app:labelVisibilityMode="selected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

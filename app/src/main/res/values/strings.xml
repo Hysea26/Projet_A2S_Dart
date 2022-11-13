@@ -23,7 +23,7 @@
 
     <!-- Page Compte -->
     <string name="titreCompte">Mon Compte</string>
-    <string name="Deconnexion">Déconnexion</string>
+    <string name="Deconnexion">Deconnexion</string>
     <string name="SupprCompte">Supprimer le compte</string>
     <string name="Statistiques">Statistiques</string>
 
@@ -58,5 +58,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
 </resources>

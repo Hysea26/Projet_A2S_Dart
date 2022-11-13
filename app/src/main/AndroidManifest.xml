@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dart">
         <activity
+            android:name=".Parametres"
+            android:exported="false" />
+        <activity
+            android:name=".Statistiques"
+            android:exported="false" />
+        <activity
+            android:name=".Historique"
+            android:exported="false" />
+        <activity
             android:name=".Menu"
-            android:exported="false"
-            android:label="@string/title_activity_menu" />
+            android:exported="false" />
         <activity
             android:name=".ForgotPwd"
             android:exported="false" />

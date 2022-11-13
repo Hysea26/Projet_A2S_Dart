@@ -9,42 +9,41 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-public class Menu extends AppCompatActivity {
+public class Historique extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_historique);
 
 
         //Initialisation:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //On met Conversion en selectionne par défaut:
-        bottomNavigationView.setSelectedItemId(R.id.nav_menu);
+        bottomNavigationView.setSelectedItemId(R.id.nav_historique);
 
         //Mise en place du Listenner:
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch(menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.nav_menu:
                         startActivity(new Intent(getApplicationContext(), Menu.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.nav_historique:
-                        startActivity(new Intent(getApplicationContext(), Historique.class));
-                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.nav_statistiques:
+                        startActivity(new Intent(getApplicationContext(), Statistiques.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.nav_parametres:
                         startActivity(new Intent(getApplicationContext(), Parametres.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                 }
