@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/id_title_compte"
+        android:id="@+id/id_title_compte_P"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -16,7 +16,7 @@
         android:gravity="center"
         android:text="@string/titreCompte"
         android:textColor="#2ABF12"
-        android:textSize="75px"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/id_img_user"
+        android:id="@+id/id_img_user_P"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="28dp"
@@ -32,84 +32,97 @@
         android:src="@drawable/img_user_profil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_title_compte" />
+        app:layout_constraintTop_toBottomOf="@+id/id_title_compte_P"
+        android:contentDescription="@string/descUser" />
 
-    <ImageView
-        android:id="@+id/id_img_stylo"
+    <ImageButton
+        android:id="@+id/id_img_stylo_P"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="150dp"
+        android:contentDescription="@string/descStylo"
         android:src="@drawable/img_stylo"
-        app:layout_constraintBottom_toBottomOf="@+id/id_img_user"
-        app:layout_constraintStart_toStartOf="@+id/id_img_user" />
+        app:layout_constraintBottom_toBottomOf="@+id/id_img_user_P"
+        app:layout_constraintStart_toStartOf="@+id/id_img_user_P"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/id_txt_pseudo"
+        android:id="@+id/id_txt_pseudo_P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Pseudo"
+        android:text="@string/Pseudo"
         android:textColor="#000000"
-        android:textSize="60px"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_img_user" />
+        app:layout_constraintTop_toBottomOf="@+id/id_img_user_P" />
 
     <TextView
-        android:id="@+id/id_txt_email"
+        android:id="@+id/id_txt_email_P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Adresse mail"
+        android:text="@string/Email"
         android:textColor="#000000"
-        android:textSize="60px"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_txt_pseudo" />
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_pseudo_P" />
+
+    <ImageView
+        android:id="@+id/id_dart_logo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:contentDescription="@string/descLogoDart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_txt_email_P"
+        app:srcCompat="@drawable/logo_dart3" />
 
     <Button
-        android:id="@+id/id_btn_decoAccount"
+        android:id="@+id/id_btn_decoAccount_P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
         android:text="@string/Deconnexion"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="50px"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/id_btn_delAccount"
+        app:layout_constraintBottom_toTopOf="@+id/id_btn_delAccount_P"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_txt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/id_dart_logo" />
 
     <Button
-        android:id="@+id/id_btn_delAccount"
+        android:id="@+id/id_btn_delAccount_P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="sans-serif"
         android:text="@string/SupprCompte"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="40px"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_txt_email" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/id_dart_logo" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -117,13 +130,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
         android:background="@color/vert_bottom_bar"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        tools:layout_editor_absoluteX="0dp">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,11 +11,12 @@
         android:id="@+id/id_title_pageCC"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/createAccountText"
         android:textColor="#2ABF12"
-        android:textSize="25dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/id_backButton_CC"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,12 +31,13 @@
         android:layout_gravity="left"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/back_btn"
         android:padding="0px"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,RtlHardcoded,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/id_dart_logo_CC"
@@ -46,7 +48,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_title_pageCC"
-        app:srcCompat="@drawable/logo_dart" />
+        app:srcCompat="@drawable/logo_dart3"
+        android:contentDescription="@string/descLogoDart" />
 
     <EditText
         android:id="@+id/id_pseudo_zone_CC"
@@ -59,14 +62,16 @@
         android:fontFamily="sans-serif"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:text="@string/NomUtilisateur"
         android:textColor="#000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_dart_logo_CC" />
+        app:layout_constraintTop_toBottomOf="@id/id_dart_logo_CC"
+        android:autofillHints=""
+        tools:ignore="LabelFor,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/id_user_photo_CC"
@@ -76,7 +81,8 @@
         app:layout_constraintBottom_toBottomOf="@id/id_pseudo_zone_CC"
         app:layout_constraintStart_toStartOf="@id/id_pseudo_zone_CC"
         app:layout_constraintTop_toTopOf="@id/id_pseudo_zone_CC"
-        app:srcCompat="@drawable/img_user_profil" />
+        app:srcCompat="@drawable/img_user_profil"
+        android:contentDescription="@string/descUser" />
 
     <EditText
         android:id="@+id/id_email_zone_CC"
@@ -89,14 +95,16 @@
         android:fontFamily="sans-serif"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:text="@string/loginEmail"
         android:textColor="#000"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_pseudo_zone_CC" />
+        app:layout_constraintTop_toBottomOf="@id/id_pseudo_zone_CC"
+        android:autofillHints=""
+        tools:ignore="LabelFor,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/id_email_photo_CC"
@@ -106,7 +114,8 @@
         app:layout_constraintBottom_toBottomOf="@id/id_email_zone_CC"
         app:layout_constraintStart_toStartOf="@id/id_email_zone_CC"
         app:layout_constraintTop_toTopOf="@id/id_email_zone_CC"
-        app:srcCompat="@drawable/id_card" />
+        app:srcCompat="@drawable/img_email"
+        android:contentDescription="@string/descEmail" />
 
     <EditText
         android:id="@+id/id_pwd_zone_CC"
@@ -122,12 +131,14 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:textColorHint="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_email_zone_CC" />
+        app:layout_constraintTop_toBottomOf="@+id/id_email_zone_CC"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
     <!-- android:inputType="textPassword" -->
 
     <ImageView
@@ -138,7 +149,8 @@
         app:layout_constraintBottom_toBottomOf="@id/id_pwd_zone_CC"
         app:layout_constraintStart_toStartOf="@id/id_pwd_zone_CC"
         app:layout_constraintTop_toTopOf="@id/id_pwd_zone_CC"
-        app:srcCompat="@drawable/lock" />
+        app:srcCompat="@drawable/img_lock"
+        android:contentDescription="@string/descLock" />
 
     <TextView
         android:id="@+id/id_condition_utilisation_CC"
@@ -167,7 +179,7 @@
         android:text="@string/createAccount"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

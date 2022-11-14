@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ForgotPwd">
 
-
     <TextView
         android:id="@+id/id_title_ForgotPwd"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="75px"
-        android:textStyle="bold"
+        android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text="@string/ForgotPassword"
-        android:textColor="#5643CC"
+        android:textColor="#2ABF12"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/id_backButton_FP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/id_backButton_FP"/>
+        app:layout_constraintTop_toTopOf="@id/id_backButton_FP" />
 
     <ImageButton
         android:id="@+id/id_backButton_FP"
@@ -35,25 +35,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,RtlHardcoded"
+        android:contentDescription="@string/back_btn" />
 
     <ImageView
         android:id="@+id/id_dart_logo_FP"
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/logo_dart"
+        app:srcCompat="@drawable/logo_dart3"
         android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_title_ForgotPwd"/>
+        app:layout_constraintTop_toBottomOf="@id/id_title_ForgotPwd"
+        android:contentDescription="@string/descLogoDart" />
 
     <TextView
         android:id="@+id/id_text_FP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:fontFamily="sans-serif"
         android:selectAllOnFocus="true"
@@ -76,13 +78,15 @@
         android:fontFamily="sans-serif"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:text="@string/loginEmail"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_text_FP" />
+        app:layout_constraintTop_toBottomOf="@id/id_text_FP"
+        android:autofillHints=""
+        tools:ignore="LabelFor,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/id_user_photo_FP"
@@ -92,7 +96,8 @@
         app:layout_constraintBottom_toBottomOf="@id/id_email_zone_FP"
         app:layout_constraintStart_toStartOf="@id/id_email_zone_FP"
         app:layout_constraintTop_toTopOf="@id/id_email_zone_FP"
-        app:srcCompat="@drawable/id_card" />
+        app:srcCompat="@drawable/img_email"
+        android:contentDescription="@string/descEmail" />
 
     <Button
         android:id="@+id/id_btn_send_FP"
@@ -106,7 +111,7 @@
         android:text="@string/sendButtonText"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/id_email_zone_FP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

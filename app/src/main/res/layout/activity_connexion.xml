@@ -7,14 +7,15 @@
     tools:context=".Connexion">
 
     <TextView
-        android:id="@+id/id_title_compte"
+        android:id="@+id/id_title_compte_P"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/PageConnexion"
         android:textColor="#2ABF12"
-        android:textSize="75px"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/id_backButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+        tools:ignore="MissingConstraints,RtlHardcoded,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/id_dart_logo"
@@ -44,10 +45,11 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/descLogoDart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_title_compte"
-        app:srcCompat="@drawable/logo_dart" />
+        app:layout_constraintTop_toBottomOf="@id/id_title_compte_P"
+        app:srcCompat="@drawable/logo_dart3" />
 
     <EditText
         android:id="@+id/id_email_zone"
@@ -60,14 +62,16 @@
         android:fontFamily="sans-serif"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:text="@string/loginEmail"
         android:textColor="#000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/id_dart_logo" />
+        app:layout_constraintTop_toTopOf="@id/id_dart_logo"
+        android:autofillHints=""
+        tools:ignore="LabelFor,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/id_user_photo"
@@ -78,7 +82,8 @@
         app:layout_constraintStart_toStartOf="@id/id_email_zone"
         app:layout_constraintTop_toTopOf="@id/id_email_zone"
         app:layout_constraintVertical_bias="0.444"
-        app:srcCompat="@drawable/id_card" />
+        app:srcCompat="@drawable/img_email"
+        android:contentDescription="@string/descEmail" />
 
     <EditText
         android:id="@+id/id_pwd_zone"
@@ -94,13 +99,15 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:paddingLeft="80dp"
+        android:paddingStart="80dp"
         android:selectAllOnFocus="true"
         android:textColorHint="#000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_email_zone" />
+        app:layout_constraintTop_toBottomOf="@+id/id_email_zone"
+        android:autofillHints=""
+        tools:ignore="RtlSymmetry" />
     <!-- android:inputType="textPassword" -->
 
     <ImageView
@@ -111,7 +118,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/id_pwd_zone"
         app:layout_constraintStart_toStartOf="@id/id_pwd_zone"
         app:layout_constraintTop_toTopOf="@id/id_pwd_zone"
-        app:srcCompat="@drawable/lock" />
+        app:srcCompat="@drawable/img_lock"
+        android:contentDescription="@string/descLock" />
 
     <Button
         android:id="@+id/id_btn_connexion"
@@ -124,7 +132,7 @@
         android:text="@string/action_sign_in"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="14dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +169,8 @@
         android:textAllCaps="false"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_btn_newAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/id_btn_newAccount"
+        tools:ignore="RtlHardcoded" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

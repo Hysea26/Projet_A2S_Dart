@@ -10,6 +10,9 @@
     <string name="action_sign_in">Connexion</string>
     <string name="NoAccount">Pas encore de compte ?</string>
     <string name="ForgotPassword">Mot de passe oublié</string>
+    <string name="descLogoDart">Image logo Dart</string>
+    <string name="descEmail">Image mail</string>
+    <string name="descLock">Image cadenas</string>
 
     <!-- Page Creation Compte -->
     <string name="createAccountText">Création d\'un compte</string>
@@ -21,11 +24,22 @@
     <string name="typeEmail">Saisissez votre adresse email pour réinitiailiser votre mot de passe.</string>
     <string name="sendButtonText">Envoyer</string>
 
-    <!-- Page Compte -->
+    <!-- Page Compte (Parametres) -->
     <string name="titreCompte">Mon Compte</string>
     <string name="Deconnexion">Deconnexion</string>
     <string name="SupprCompte">Supprimer le compte</string>
+    <string name="Email">Adresse mail</string>
+    <string name="Pseudo">Pseudo</string>
+    <string name="descStylo">Image de stylo</string>
+    <string name="descUser">Image de profil</string>
+
+    <!-- Activite bottom_menu (gestion de la bottom bar) -->
+    <string name="Menu">Menu</string>
+    <string name="Historique">Historique</string>
     <string name="Statistiques">Statistiques</string>
+    <string name="Parametres">Parametres</string>
+
+
 
 
     <!-- Login -->
