@@ -33,7 +33,7 @@ public class ForgotPwd extends AppCompatActivity {
         // Affectation ImageButton
         Imbtn_back = (ImageButton) findViewById(R.id.id_backButton_FP);
 
-        // Envoie code par email puis passe à la procédure de réinitialisation de mot de passe //
+        // Envoie code par email puis passe à la procedure de reinitialisation de mot de passe
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
