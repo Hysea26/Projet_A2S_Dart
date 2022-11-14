@@ -10,6 +10,7 @@
         android:id="@+id/id_title_compte_P"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/PageConnexion"
@@ -44,11 +45,11 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
+        android:contentDescription="@string/descLogoDart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_title_compte_P"
-        app:srcCompat="@drawable/logo_dart"
-        android:contentDescription="@string/descLogoDart" />
+        app:srcCompat="@drawable/logo_dart3" />
 
     <EditText
         android:id="@+id/id_email_zone"

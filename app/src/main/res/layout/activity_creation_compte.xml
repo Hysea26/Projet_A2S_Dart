@@ -11,6 +11,7 @@
         android:id="@+id/id_title_pageCC"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="@string/createAccountText"
@@ -30,13 +31,13 @@
         android:layout_gravity="left"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/back_btn"
         android:padding="0px"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button"
-        tools:ignore="MissingConstraints,RtlHardcoded"
-        android:contentDescription="@string/back_btn" />
+        tools:ignore="MissingConstraints,RtlHardcoded,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/id_dart_logo_CC"
@@ -47,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/id_title_pageCC"
-        app:srcCompat="@drawable/logo_dart"
+        app:srcCompat="@drawable/logo_dart3"
         android:contentDescription="@string/descLogoDart" />
 
     <EditText

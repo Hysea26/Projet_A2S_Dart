@@ -10,16 +10,17 @@
         android:id="@+id/id_title_ForgotPwd"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_marginStart="20dp"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text="@string/ForgotPassword"
         android:textColor="#2ABF12"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/id_backButton_FP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/id_backButton_FP"/>
+        app:layout_constraintTop_toTopOf="@id/id_backButton_FP" />
 
     <ImageButton
         android:id="@+id/id_backButton_FP"
@@ -42,7 +43,7 @@
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/logo_dart"
+        app:srcCompat="@drawable/logo_dart3"
         android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

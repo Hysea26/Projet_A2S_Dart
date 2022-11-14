@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="vert_bottom_bar">#2ABF12</color>
+    <color name="vert_fonce">#196B0B</color>
 
 </resources>
