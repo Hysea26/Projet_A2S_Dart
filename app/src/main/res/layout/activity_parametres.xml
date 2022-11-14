@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_title_compte_P"
-        android:contentDescription="@string/imgUser" />
+        android:contentDescription="@string/descUser" />
 
     <ImageButton
         android:id="@+id/id_img_stylo_P"
@@ -43,7 +43,7 @@
         android:src="@drawable/img_stylo"
         app:layout_constraintBottom_toBottomOf="@+id/id_img_user_P"
         app:layout_constraintStart_toStartOf="@+id/id_img_user_P"
-        android:contentDescription="@string/descriptionStylo" />
+        android:contentDescription="@string/descStylo" />
 
     <TextView
         android:id="@+id/id_txt_pseudo_P"

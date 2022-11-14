@@ -30,8 +30,8 @@
     <string name="SupprCompte">Supprimer le compte</string>
     <string name="Email">Adresse mail</string>
     <string name="Pseudo">Pseudo</string>
-    <string name="descriptionStylo">Image de stylo</string>
-    <string name="imgUser">Image de profil</string>
+    <string name="descStylo">Image de stylo</string>
+    <string name="descUser">Image de profil</string>
 
     <!-- Activite bottom_menu (gestion de la bottom bar) -->
     <string name="Menu">Menu</string>

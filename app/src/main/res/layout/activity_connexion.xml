@@ -81,7 +81,7 @@
         app:layout_constraintStart_toStartOf="@id/id_email_zone"
         app:layout_constraintTop_toTopOf="@id/id_email_zone"
         app:layout_constraintVertical_bias="0.444"
-        app:srcCompat="@drawable/id_card"
+        app:srcCompat="@drawable/img_email"
         android:contentDescription="@string/descEmail" />
 
     <EditText
@@ -117,7 +117,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/id_pwd_zone"
         app:layout_constraintStart_toStartOf="@id/id_pwd_zone"
         app:layout_constraintTop_toTopOf="@id/id_pwd_zone"
-        app:srcCompat="@drawable/lock"
+        app:srcCompat="@drawable/img_lock"
         android:contentDescription="@string/descLock" />
 
     <Button
