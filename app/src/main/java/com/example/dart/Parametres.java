@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class Parametres extends AppCompatActivity {
 
     Button btn_deconnexion, btn_supprCompte;
     ImageButton Imbtn_stylo;
+    TextView TV_pseudo_P, TV_email_P;
 
     private String idUser;
 
@@ -50,10 +52,16 @@ public class Parametres extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-
+        // Affectation des boutons
         Imbtn_stylo = (ImageButton) findViewById(R.id.id_img_stylo_P);
         btn_deconnexion = (Button) findViewById(R.id.id_btn_decoAccount_P);
         btn_supprCompte = (Button) findViewById(R.id.id_btn_delAccount_P);
+
+        //Affectation des textview
+        TV_pseudo_P = (TextView)findViewById(R.id.id_txt_pseudo_P);
+        TV_email_P = (TextView)findViewById(R.id.id_txt_email_P);
+
+        RecupUser();
 
         // Bouton modif profil (icone stylo) : changement icone
         Imbtn_stylo.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +140,29 @@ public class Parametres extends AppCompatActivity {
 
     }
 //////////////////////////////////// fin onCreate ///////////////////////////////////
+
+    public void RecupUser(){ // recup des informations de l'utilisateur pour affichage de son compte dans parametres
+        FirebaseUser user = mAuth.getCurrentUser();
+        db.collection("Users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null) {
+                                List<Users> downloadInfoList = task.getResult().toObjects(Users.class);
+                                for (int i=0; i<downloadInfoList.size(); i++) {
+                                    if(user.getEmail().equals(downloadInfoList.get(i).getEmail())){
+                                        TV_email_P.setText(downloadInfoList.get(i).getEmail());
+                                        TV_pseudo_P.setText(downloadInfoList.get(i).getUsername());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+    }
 
     public void DeleteUser(){ // Fonction supprimant un utilisateur
 
