@@ -3,14 +3,10 @@
 
     <item
         android:drawable="@drawable/background_animation_1"
-        android:duration="5000" />
+        android:duration="2500" />
 
     <item
         android:drawable="@drawable/background_animation_2"
-        android:duration="5000" />
-
-    <item
-        android:drawable="@drawable/background_animation_3"
-        android:duration="5000" />
+        android:duration="2500" />
 
 </animation-list>
