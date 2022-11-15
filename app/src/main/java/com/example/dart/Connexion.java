@@ -49,10 +49,10 @@ public class Connexion extends AppCompatActivity {
         // Bouton connexion : ouverture du menu
         btn_connexion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { // ligne en dessous à commenter/decommenter pr se passer de l'authentification (pour tests)
+            public void onClick(View v) {
 
                 try {
-                    signIn(EdT_email.getText().toString(), EdT_password.getText().toString());
+                    signIn(EdT_email.getText().toString(), EdT_password.getText().toString());// ligne à commenter pr se passer de l'authentification (pour tests)
                     //Intent launchActivity = new Intent(Connexion.this, Menu.class);
                     //startActivity(launchActivity);
                 }
