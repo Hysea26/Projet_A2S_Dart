@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Parametres extends AppCompatActivity {
 
@@ -38,23 +39,19 @@ public class Parametres extends AppCompatActivity {
             }
         });
 
-        // Bouton deconnexion : deconnexion puis redirection page de connexion
+        // Bouton deconnexion compte : deconnexion puis redirection vers page de connexion
         btn_deconnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent launchActivity = new Intent(Parametres.this, Connexion.class);
                 startActivity(launchActivity);
+                finish();
             }
         });
 
-        // Bouton suppression compte : suppression puis redirection vers page de connexion
-        btn_deconnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent launchActivity = new Intent(Parametres.this, Connexion.class);
-                startActivity(launchActivity);
-            }
-        });
+
+
 
 
         // Initialisation bottom navigation :
@@ -90,6 +87,9 @@ public class Parametres extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
     }
 
 
