@@ -8,6 +8,7 @@ public class Users {
     // variables for storing our data.
     private String username, email, id;
 
+
     public Users() {
         // empty constructor
         // required for Firebase.
