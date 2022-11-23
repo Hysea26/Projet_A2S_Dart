@@ -9,7 +9,7 @@
     android:id="@+id/mainLayout_1">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/id_TV_Leg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="L'application qui te permet de compter \n tes points aux fléchettes avec tes amis"
