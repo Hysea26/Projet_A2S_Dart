@@ -57,7 +57,9 @@
         android:layout_height="30dp"
         android:entries="@array/NumLeg"
         app:layout_constraintTop_toTopOf="@+id/spinner"
-        tools:layout_editor_absoluteX="38dp" />
+        tools:layout_editor_absoluteX="38dp"
+
+        />
 
     <Spinner
         android:id="@+id/spinner3"
