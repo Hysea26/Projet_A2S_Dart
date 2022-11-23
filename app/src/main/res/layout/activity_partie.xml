@@ -82,7 +82,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/recyclerViewPartie"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@color/purple_200"
