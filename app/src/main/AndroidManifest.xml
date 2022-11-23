@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dart">
         <activity
+            android:name=".RowItemJoueur"
+            android:exported="false" />
+        <activity
             android:name=".Partie"
             android:exported="false">
             <meta-data

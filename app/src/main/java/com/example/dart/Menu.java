@@ -2,6 +2,7 @@ package com.example.dart;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +11,25 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
-//////////////////// Aurelien /////////////////////
+import java.util.ArrayList;
+
 
 public class Menu extends AppCompatActivity {
+
     private Button NouvellePartieBtn;
+
+    // Declaration variables Recycler view
+    private ArrayList<RowItemJoueur> mExampleList;
+    private RecyclerView mrvArticles;
+    private MyAdapterJoueur mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    ArrayList<String> strTtlArticles = new ArrayList<String>();
+    ArrayList<String> strSumArticles = new ArrayList<String>();
+    ArrayList<String> strPartieRobotArticles = new ArrayList<String>();
+    ArrayList<String> strIdArticles = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +37,14 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         NouvellePartieBtn = (Button) findViewById(R.id.NouvellePartieBtn);
+
         NouvellePartieBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPartie();
+                Intent intent = new Intent(Menu.this, Partie.class);
+                startActivity(intent);
             }
         });
-    }
-
-    public void openPartie() {
-        Intent intent = new Intent(this, Partie.class);
-        startActivity(intent);
-
 
         //Initialisationrtjth:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -68,6 +79,17 @@ public class Menu extends AppCompatActivity {
                 return false;
             }
         });
+
+    }
+
+    public void insertItem(int position) {
+        mExampleList.add(position, new RowItemJoueur(R.drawable.img_user_profil, "Ajout" + position, "This is Line 2"));
+        mAdapter.notifyItemInserted(position);
+    }
+
+    public void changeItem(int position, String text) {
+        mExampleList.get(position).changeNbParties(text);
+        mAdapter.notifyItemChanged(position);
     }
 
 }
