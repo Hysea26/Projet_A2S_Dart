@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "739629772283",
+    "project_id": "dart-a3dba",
+    "storage_bucket": "dart-a3dba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739629772283:android:a82613cc43b49c58526f5e",
+        "android_client_info": {
+          "package_name": "com.example.dart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739629772283-4t5jj2v7rgelknk17ccve8njn0v9looe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdHXegAkvG77WgLR5ejt-kDkAxKvFfok0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739629772283-4t5jj2v7rgelknk17ccve8njn0v9looe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
