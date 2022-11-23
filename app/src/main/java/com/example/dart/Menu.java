@@ -35,7 +35,7 @@ public class Menu extends AppCompatActivity {
         startActivity(intent);
 
 
-        //Initialisation:
+        //Initialisationrtjth:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //On met Conversion en selectionne par défaut:
