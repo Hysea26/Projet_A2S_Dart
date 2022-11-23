@@ -20,6 +20,7 @@ public class Statistiques extends AppCompatActivity {
         setContentView(R.layout.activity_statistiques);
 
 
+
         //Initialisation:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
