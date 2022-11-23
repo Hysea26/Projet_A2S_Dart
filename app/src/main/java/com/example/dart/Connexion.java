@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class Connexion extends AppCompatActivity {
 
     private static final String TAG = "Connexion"; // Pour des tags d'erreurs / verifs
