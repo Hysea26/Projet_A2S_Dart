@@ -1,6 +1,8 @@
 package com.example.dart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Partie extends AppCompatActivity {
     private Button backbtn;
     private EditText lance1;
@@ -19,11 +23,29 @@ public class Partie extends AppCompatActivity {
     private TextView resultat;
     private Button buttonDouble;
     private Button buttonTriple;
+    // Declaration variables Recycler view
+    private ArrayList<PartieItem> mExampleList;
+    private RecyclerView mrvPartie;
+    private MyAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
+    ArrayList<String> strTtlArticles = new ArrayList<String>();
+    ArrayList<String> strSumArticles = new ArrayList<String>();
+    ArrayList<String> strPartieRobotArticles = new ArrayList<String>();
+    ArrayList<String> strIdArticles = new ArrayList<String>();
+
+    int images[] = {R.drawable.ImageJoueur1, R.drawable.ImageJoueur2};
+    int JoueurSet[], JoueurLeg[], JoueurPoint[]
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partie);
+
+
+
+
 
         backbtn = (Button) findViewById(R.id.backbtn);
         lance1 = findViewById(R.id.edittext_lance_1);
@@ -78,6 +100,35 @@ public class Partie extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+
+    public void buildRecyclerView() {
+        mrvPartie = findViewById(R.id.recyclerViewPartie);
+
+        mAdapter = new MyAdapter(mExampleList); // cree avec mExampleList, a changer
+        mrvArticles.setAdapter(mAdapter);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mrvArticles.setLayoutManager(mLayoutManager);
+
+        mrvArticles.setHasFixedSize(true);
+
+        mAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) { // si img couleur clique, change texte
+                //changeItem(position, "Clicked");
+
+                Intent launchActivity = new Intent(Menu.this, Afficher_article.class);
+                launchActivity.putExtra("position", position);   // transmet la valeur de position à Afficher_article
+                launchActivity.putExtra("liste", "non résolu");
+                startActivity(launchActivity);
+            }
+
+            @Override
+            public void onDeleteClick(int position) { // si item noir clique, supprime
+                removeItem(position);
+            }
+        });
     }
 
 
