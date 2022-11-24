@@ -2,6 +2,7 @@ package com.example.dart;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class Partie extends AppCompatActivity {
     // Declaration variables Recycler view
     private ArrayList<PartieItem> mExampleList;
     private RecyclerView mrvPartie;
-    private MyAdapter mAdapter;
+    //private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -35,8 +36,8 @@ public class Partie extends AppCompatActivity {
     ArrayList<String> strPartieRobotArticles = new ArrayList<String>();
     ArrayList<String> strIdArticles = new ArrayList<String>();
 
-    int images[] = {R.drawable.ImageJoueur1, R.drawable.ImageJoueur2};
-    int JoueurSet[], JoueurLeg[], JoueurPoint[]
+    int images[] = {R.drawable.img_user_profil, R.drawable.img_user_profil};
+    int JoueurSet[], JoueurLeg[], JoueurPoint[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +102,7 @@ public class Partie extends AppCompatActivity {
 
 
     }
-
+/*
     public void buildRecyclerView() {
         mrvPartie = findViewById(R.id.recyclerViewPartie);
 
@@ -126,11 +127,11 @@ public class Partie extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(int position) { // si item noir clique, supprime
-                removeItem(position);
+                //removeItem(position);
             }
         });
     }
-
+*/
 
 
 

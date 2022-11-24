@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ImageJoueur1">
+        android:background="@drawable/img_user_profil">
 
 
         <ImageView
@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ImageJoueur2" />
+            app:srcCompat="@drawable/img_user_profil" />
 
         <TextView
             android:id="@+id/nomJoueur"

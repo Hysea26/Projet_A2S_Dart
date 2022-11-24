@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
+/*
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<PartieItem> mExampleList;
@@ -24,3 +24,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
+}*/

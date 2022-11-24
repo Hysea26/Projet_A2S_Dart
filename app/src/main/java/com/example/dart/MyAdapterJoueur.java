@@ -36,7 +36,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
             mImgUserView = itemView.findViewById(R.id.id_ImgUser_RIJ);
             mPseudoView = itemView.findViewById(R.id.id_pseudo_RIJ);
             mNbPartiesView = itemView.findViewById(R.id.id_NbParties_RIJ);
-            mSelectView = itemView.findViewById(R.id.id_Img_select);
+            //mSelectView = itemView.findViewById(R.id.id_Img_select);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -49,7 +49,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                     }
                 }
             });
-
+/*
             mSelectView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,6 +61,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                     }
                 }
             });
+            */
         }
     }
 

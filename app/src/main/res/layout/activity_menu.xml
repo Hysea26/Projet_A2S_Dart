@@ -116,47 +116,44 @@
 
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="349dp"
-        android:layout_height="209dp"
+        android:id="@+id/id_RV_joueurs"
+        android:layout_width="343dp"
+        android:layout_height="249dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
+        android:background="#31D82B3F"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
 
     <EditText
         android:id="@+id/id_recherche_joueurs"
         android:layout_width="287dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/RechercheJoueurs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        android:autofillHints=""
+        app:layout_constraintTop_toBottomOf="@+id/id_RV_joueurs"
         tools:ignore="LabelFor" />
 
     <ImageButton
         android:id="@+id/searchbtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="92dp"
         android:background="@drawable/loupe"
         android:contentDescription="@string/descLoupe"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/id_recherche_joueurs"
-        app:layout_constraintTop_toTopOf="@+id/id_recherche_joueurs"
+        app:layout_constraintTop_toBottomOf="@+id/id_RV_joueurs"
         tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
