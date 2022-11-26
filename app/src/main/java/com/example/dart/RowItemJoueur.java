@@ -5,11 +5,13 @@ public class RowItemJoueur {
     private int mImgUser;
     private String mPseudo;
     private String mNbParties;
+    private boolean mIsSelected;
 
-    public RowItemJoueur(int imgUser, String pseudo, String nbParties) {
+    public RowItemJoueur(int imgUser, String pseudo, String nbParties, boolean isSelected) {
         mImgUser = imgUser;
         mPseudo = pseudo;
         mNbParties = nbParties;
+        mIsSelected = isSelected;
     }
 
     public void changeNbParties(String text) {
@@ -27,4 +29,13 @@ public class RowItemJoueur {
     public String getNbParties() {
         return mNbParties;
     }
+
+    public boolean getIsSelected(){
+        return mIsSelected;
+    }
+
+    public void setIsSelected(boolean isSelected){
+        mIsSelected = isSelected;
+    }
+
 }

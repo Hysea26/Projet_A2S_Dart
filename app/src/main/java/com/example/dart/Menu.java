@@ -111,7 +111,7 @@ public class Menu extends AppCompatActivity {
     } //////////////////////////////// Fin OnCreate ///////////////////////////////////////
 
     public void insertItem(int position) {
-        mExampleList.add(position, new RowItemJoueur(R.drawable.img_user_profil, "Ajout" + position, "This is Line 2"));
+        mExampleList.add(position, new RowItemJoueur(R.drawable.img_user_profil, "Ajout" + position, "This is Line 2",false));
         mAdapter.notifyItemInserted(position);
     }
 
@@ -125,7 +125,7 @@ public class Menu extends AppCompatActivity {
         mExampleList = new ArrayList<>();
 
         for(int i=0;i<strPseudoJoueurs.size();i++) {
-            mExampleList.add(new RowItemJoueur(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(), strNbPartiesJoueurs.get(i).toString()));
+            mExampleList.add(new RowItemJoueur(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(), strNbPartiesJoueurs.get(i).toString(),false));
             Log.d("Waouh", "mExampleList :"+mExampleList);
         }
     }
@@ -179,9 +179,15 @@ public class Menu extends AppCompatActivity {
             public void onItemClick(int position) { // si img couleur clique, change texte
                 //changeItem(position, "Clicked");
 
-                Intent launchActivity = new Intent(Menu.this, Menu.class);
-                launchActivity.putExtra("position", position);   // transmet la valeur de position à Afficher_article
-                startActivity(launchActivity);
+                //Intent launchActivity = new Intent(Menu.this, Menu.class);
+                //launchActivity.putExtra("position", position);   // transmet la valeur de position à Afficher_article
+                //startActivity(launchActivity);
+
+                // pour lire si le checkbox du RoxItem est check ou pas
+                boolean isChecked = mExampleList.get(position).getIsSelected();
+                Log.d("Waouh2", "check :"+isChecked);
+                mAdapter.notifyItemChanged(position);
+
             }
 
             @Override

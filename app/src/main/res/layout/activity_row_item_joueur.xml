@@ -49,7 +49,7 @@
             app:layout_constraintStart_toEndOf="@+id/id_ImgUser_RIJ" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/id_checkBox_RIJ"
             android:layout_width="60dp"
             android:layout_height="58dp"
             android:layout_marginEnd="20dp"

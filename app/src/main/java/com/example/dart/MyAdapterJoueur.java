@@ -1,8 +1,10 @@
 package com.example.dart;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,10 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
     private ArrayList<RowItemJoueur> mExampleList;
     private OnItemClickListener mListener;
 
+    public MyAdapterJoueur(ArrayList<RowItemJoueur> exampleList) {
+        this.mExampleList = exampleList;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
 
@@ -25,11 +31,12 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
         mListener = listener;
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImgUserView;
         public TextView mPseudoView;
         public TextView mNbPartiesView;
         public ImageView mSelectView;
+        public CheckBox mCheckBox;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -37,6 +44,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
             mPseudoView = itemView.findViewById(R.id.id_pseudo_RIJ);
             mNbPartiesView = itemView.findViewById(R.id.id_NbParties_RIJ);
             //mSelectView = itemView.findViewById(R.id.id_Img_select);
+            mCheckBox = itemView.findViewById(R.id.id_checkBox_RIJ);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -62,12 +70,26 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                 }
             });
             */
+
+            mCheckBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean isChecked = ((CheckBox) v).isChecked();
+
+                    if (isChecked){
+                        mExampleList.get(getAdapterPosition()).setIsSelected(true);
+                    } else {
+                        mExampleList.get(getAdapterPosition()).setIsSelected(false);
+                    }
+                    Log.d("Waouh", "Check :"+isChecked);
+
+                }
+            });
+
         }
     }
 
-    public MyAdapterJoueur(ArrayList<RowItemJoueur> exampleList) {
-        mExampleList = exampleList;
-    }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -83,6 +105,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
         holder.mImgUserView.setImageResource(currentItem.getImgRobotPart());
         holder.mPseudoView.setText(currentItem.getPseudo());
         holder.mNbPartiesView.setText(currentItem.getNbParties());
+        holder.mCheckBox.setChecked(currentItem.getIsSelected());
     }
 
     @Override
