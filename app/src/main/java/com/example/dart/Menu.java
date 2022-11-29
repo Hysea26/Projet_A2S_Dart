@@ -47,6 +47,8 @@ public class Menu extends AppCompatActivity {
     ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
 
+    ArrayList<Joueurs> mJoueursChecked = new ArrayList<Joueurs>();
+
     // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -71,6 +73,9 @@ public class Menu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, Partie.class);
                 startActivity(intent);
+                //RecupJoueurs2();
+                //RecupJoueursCheked();
+
             }
         });
 
@@ -126,7 +131,7 @@ public class Menu extends AppCompatActivity {
 
         for(int i=0;i<strPseudoJoueurs.size();i++) {
             mExampleList.add(new RowItemJoueur(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(), strNbPartiesJoueurs.get(i).toString(),false));
-            Log.d("Waouh", "mExampleList :"+mExampleList);
+            //Log.d("Create exemple list Waouh", "mExampleList :"+strPseudoJoueurs.get(i));
         }
     }
 
@@ -162,6 +167,41 @@ public class Menu extends AppCompatActivity {
                 });
     }
 
+    public void RecupJoueurs2(){ // recup des joueurs checked
+
+        db.collection("Joueurs")
+                .orderBy("email", Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("Lecture", "Entre dans le oncomplete : ");
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null) {
+                                List<Joueurs> downloadInfoList = task.getResult().toObjects(Joueurs.class); // Va chercher dans joueurs heritant users
+
+                                for (int i=0; i<downloadInfoList.size(); i++) {
+
+                                    // Regarde si le joueur est check
+                                    boolean isChecked = mExampleList.get(i).getIsSelected();
+                                    // Si le Joueur est check, recup du joueur dans la liste JoueursChecked pour lancement partie
+                                    if (isChecked){
+                                        mJoueursChecked.add(downloadInfoList.get(i));
+                                    }
+
+                                }
+                                //Log.d("Waouh RJ2", "Pseudos :"+JoueursChecked);
+
+                            } else {
+                                Log.d("Echec", "Error getting documents: ", task.getException());
+                            }
+                            Log.d("Waouh RJ2", "Joueurs checked :"+mJoueursChecked);
+                        }
+                    }
+                });
+    }
+
 
     public void buildRecyclerView() {
         mrvArticles = findViewById(R.id.id_RV_joueurs);
@@ -183,7 +223,7 @@ public class Menu extends AppCompatActivity {
                 //launchActivity.putExtra("position", position);   // transmet la valeur de position à Afficher_article
                 //startActivity(launchActivity);
 
-                // pour lire si le checkbox du RoxItem est check ou pas
+                // pour lire si le checkbox du RowItem est check ou pas
                 boolean isChecked = mExampleList.get(position).getIsSelected();
                 Log.d("Waouh2", "check :"+isChecked);
                 mAdapter.notifyItemChanged(position);
@@ -198,41 +238,27 @@ public class Menu extends AppCompatActivity {
     }
 
 
-    public void removeItem(int position){
+    public void RecupJoueursCheked(){ // Recup des joueurs choisis pour la partie
+
+        // Recup pseudos joueurs checked :
+        ArrayList<String> p = new ArrayList<String>();
+        for (int i=0; i<mJoueursChecked.size(); i++){
+            p.add(mJoueursChecked.get(i).getPseudo());
+        }
+        Log.d("Waouh3", "p :"+p);
 
         // Pop up de confirmation
         AlertDialog.Builder alert = new AlertDialog.Builder(Menu.this);
-        alert.setTitle("Confirmation de suppression");
-        alert.setMessage("Voulez vous supprimer l'article : " + strPseudoJoueurs.get(position) + " ? ");
+        alert.setTitle("Lancement de partie");
+        alert.setMessage("Voulez vous lancer la partie avec : " + mJoueursChecked + " ? ");
 
         alert.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                // Suppression dans l'affichage
-                mExampleList.remove(position);
-                mAdapter.notifyItemRemoved(position);
-
-                // Suppression dans la base de donnees
-                db.collection("Articles").document(strIdJoueurs.get(position))
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error deleting document", e);
-                            }
-                        });
-
-                // Suppression dans les listes de valeurs des articles
-                strPseudoJoueurs.remove(position);
-                strNbPartiesJoueurs.remove(position);
-                strIdJoueurs.remove(position);
+                // Aller dans partie
+                Intent intent = new Intent(Menu.this, Partie.class);
+                startActivity(intent);
 
             }
         });

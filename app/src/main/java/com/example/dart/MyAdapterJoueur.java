@@ -81,7 +81,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                     } else {
                         mExampleList.get(getAdapterPosition()).setIsSelected(false);
                     }
-                    Log.d("Waouh", "Check :"+isChecked);
+                    Log.d("MAJ Waouh", "Check :"+isChecked);
 
                 }
             });

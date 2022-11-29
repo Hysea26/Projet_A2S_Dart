@@ -8,6 +8,7 @@ public class Joueurs {
     // Variables stockage des donnees
     private String username, nbParties, meilleurLanceFlechette, nbLegGagnes, nbSetGagnes, nbAmis, email;
     private Uri imageURI;
+    private boolean isSelected;
 
     public Joueurs() {
         // empty constructor
@@ -102,6 +103,5 @@ public class Joueurs {
     public void setnbAmis(String nbAmis) {
         this.nbAmis = nbAmis;
     }
-
 
 }
