@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -79,7 +80,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        // Initialisation :
+        // Initialisation Bottom navigation view :
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Par defaut, sur la page menu :
@@ -135,7 +136,7 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-    public void RecupJoueurs(){ // recup des joueurs deja crees
+    public void RecupJoueurs(){ // recup des joueurs deja crees pour affichage dans recycler view menu
         db.collection("Joueurs")
                 .orderBy("email", Query.Direction.DESCENDING)
                 .get()
@@ -273,6 +274,40 @@ public class Menu extends AppCompatActivity {
         alert.create().show();
     }
 
+
+
+    private void addDataToFirestore(String username, String email, String identifiant) {
+
+        // creating a collection reference
+        // for our Firebase Firetore database.
+        //CollectionReference dbCourses = db.collection("Users");
+
+        // adding our data to our users object class.
+        Parties partie = new Parties(mJoueursChecked,0,0,0);
+
+        // Ajout de la data dans firestore
+        db.collection("Parties")
+                .document("Partie1")
+                .set(partie)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // after the data addition is successful we are displaying a success toast message.
+                        Toast.makeText(Menu.this, "La partie 1" + email + " a bien ete ajoute.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // this method is called when the data addition process is failed. displaying a toast message when data addition is failed.
+                        // Log.w(TAG, "Error writing document", e);
+                        Toast.makeText(Menu.this, "Erreur dans l'ajout de la partie \n" + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+    }
 
     public void setButtons() {
         buttonInsert = findViewById(R.id.searchbtn);
