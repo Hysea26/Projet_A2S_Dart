@@ -132,7 +132,7 @@
         android:text="  Premier à X set X leg"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/scoreSet"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

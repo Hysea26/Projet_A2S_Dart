@@ -204,6 +204,8 @@ public class Menu extends AppCompatActivity {
     }
 
 
+
+
     public void buildRecyclerView() {
         mrvArticles = findViewById(R.id.id_RV_joueurs);
 
@@ -237,6 +239,8 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+
+    // fin recycler view interessant
 
 
     public void RecupJoueursCheked(){ // Recup des joueurs choisis pour la partie
