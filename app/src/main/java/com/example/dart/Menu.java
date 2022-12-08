@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -52,7 +53,8 @@ public class Menu extends AppCompatActivity {
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
 
     // Declaration liste joueurs checkes par l'utilisateur a un instant t
-    private ArrayList<Joueurs> mJoueursChecked;
+    private ArrayList<Joueurs> mJoueursChecked = new ArrayList<Joueurs>();
+    private Joueurs jCurrentUser;
 
     // Declaration des spinners
     private String choixSet, choixLeg, choixScore;
@@ -75,11 +77,11 @@ public class Menu extends AppCompatActivity {
         Spinner spinnerChoixLeg = findViewById(R.id.id_spin_Leg);
         Spinner spinnerChoixScore = findViewById(R.id.id_spin_Score);
 
-        mJoueursChecked = new ArrayList<Joueurs>();
         // Recycler view
         RecupJoueurs();
         //setButtons(); // clics du recycler
 
+        // Bouton nouvelle partie
         NouvellePartieBtn = (Button) findViewById(R.id.NouvellePartieBtn);
 
         NouvellePartieBtn.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +93,6 @@ public class Menu extends AppCompatActivity {
                 choixLeg = spinnerChoixLeg.getSelectedItem().toString();
                 choixScore = spinnerChoixScore.getSelectedItem().toString();
                 RecupJoueursChecked();
-                //RecupJoueursCheked();
 
             }
         });
@@ -154,15 +155,22 @@ public class Menu extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Log.d("Lecture RecupJoueurs", "Entre dans le oncomplete : ");
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        //Toast.makeText(Menu.this,"Connexion en tant que \n\t" + currentUser.getEmail(),Toast.LENGTH_SHORT).show();
+
                         if (task.isSuccessful()) {
                             if (task.getResult() != null) {
                                 List<Joueurs> downloadInfoList = task.getResult().toObjects(Joueurs.class); // Va chercher dans joueurs heritant users
+
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
-                                    // il faudra afficher uniquement les amis (boucle if)
+                                    if (!currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // pour ne pas afficher l'utilisateur
+                                        // il faudra afficher uniquement les amis (boucle if)
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
                                         strIdJoueurs.add(downloadInfoList.get(i).getEmail());
+                                    }
+
 
                                 }
                                 Log.d("Waouh", "Pseudos :"+strPseudoJoueurs);
@@ -227,31 +235,64 @@ public class Menu extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         //Intent launchActivity = new Intent(Menu.this, Partie.class);
                         Log.d("Lecture RecupJoueursChecked", "Entre dans le oncomplete : ");
+
                         if (task.isSuccessful()) {
                             if (task.getResult() != null) {
                                 List<Joueurs> downloadInfoList = task.getResult().toObjects(Joueurs.class); // Va chercher dans joueurs heritant users
 
+                                SuppressionCurrentUser(downloadInfoList); // Supprime le currentUser de la liste
+
                                 for (int i=0; i<downloadInfoList.size(); i++) {
-
-                                    // Regarde si le joueur est check
-                                    boolean isChecked = mExampleList.get(i).getIsSelected();
-                                    // Si le Joueur est check, recup du joueur dans la liste JoueursChecked pour lancement partie
-                                    if (isChecked){
-                                        mJoueursChecked.add(downloadInfoList.get(i));
+                                        // Regarde si le joueur est check
+                                        boolean isChecked = mExampleList.get(i).getIsSelected();
+                                        // Si le Joueur est check, recup du joueur dans la liste JoueursChecked pour lancement partie
+                                        if (isChecked) {
+                                            mJoueursChecked.add(downloadInfoList.get(i));
                                         }
-
                                 }
+
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
                         }
 
                         LancerPartie();
-                        Log.d("Waouh", "Joueurs checked :"+mJoueursChecked);
+                        //Log.d("Waouh", "Joueurs checked :"+mJoueursChecked);
                     }
                 });
     }
 
+    // Fonction supprimant le currentUser d'une listej de joueurs
+    public void SuppressionCurrentUser(List<Joueurs> listej){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        for (int i=0; i< listej.size();i++){
+            if (listej.get(i).getEmail().equals(currentUser.getEmail())){
+                jCurrentUser = listej.get(i);
+                listej.remove(i);
+            }
+        }
+    }
+
+    public void InsertionCurrentUser(){
+
+        // Copie de mJoueursChecked dans listeJ
+        ArrayList<Joueurs> listeJ = new ArrayList<Joueurs>();
+        for (int i=0; i<mJoueursChecked.size();i++){
+            listeJ.add(mJoueursChecked.get(i));
+        }
+
+        // Vidage de mJoueursChecked
+        mJoueursChecked.clear();
+
+        // Ajout du joueur associe au currentUser dans mJoueursChecked
+        mJoueursChecked.add(jCurrentUser);
+
+        // Ajout des joueurs checkes dans mJoueursChecked
+        for (int i=0; i<listeJ.size();i++){
+            mJoueursChecked.add(listeJ.get(i));
+        }
+
+    }
 
     public void LancerPartie(){ // Recup des joueurs choisis pour la partie
 
@@ -260,6 +301,7 @@ public class Menu extends AppCompatActivity {
         for (int i=0; i<mJoueursChecked.size(); i++){
             p.add(mJoueursChecked.get(i).getPseudo());
         }
+        Log.d("Waouh 3", "p :"+p);
 
         // Pop up de confirmation
         AlertDialog.Builder alert = new AlertDialog.Builder(Menu.this);
@@ -270,6 +312,9 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                // Inserer le currentUser dans la liste mJoueursChecked
+                InsertionCurrentUser();
+
                 // Creer une partie dans Firestore
                 creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>());
 
@@ -277,6 +322,12 @@ public class Menu extends AppCompatActivity {
                 Intent intent = new Intent(Menu.this, Partie.class);
                 intent.putExtra("choixScore", choixScore); // envoi du choix de score a la classe Partie
                 startActivity(intent);
+
+                // Reset des variables utilisees pour la creation de la partie
+                mJoueursChecked.clear();                        // vide la liste de joueurs checks
+                for (int j=0; j<mExampleList.size();j++){       // met les cases en false (non cochees)
+                    mExampleList.get(j).setIsSelected(false);
+                }
 
             }
         });
@@ -286,6 +337,7 @@ public class Menu extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 // Toast.makeText(Menu.this,"Clic non",Toast.LENGTH_SHORT).show();
 
+                mJoueursChecked.clear(); // vide la liste de joueurs checks
             }
         });
         alert.create().show();
