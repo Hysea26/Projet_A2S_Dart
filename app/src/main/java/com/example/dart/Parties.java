@@ -10,6 +10,7 @@ public class Parties {
     // Variables stockage des donnees
     private ArrayList<Joueurs> listeJoueursChecked;
     private ArrayList<Integer> listeSets,listeLegs,listeScores;
+    private Integer choixSet,choixLeg;
     private Uri imageURI;
     private boolean isSelected;
 
@@ -19,12 +20,14 @@ public class Parties {
     }
 
     // Constructeur pour les variables
-    public Parties(ArrayList<Joueurs> listeJoueursChecked, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores) {
+    public Parties(ArrayList<Joueurs> listeJoueursChecked, Integer choixSet, Integer choixLeg,ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores) {
 
         this.listeJoueursChecked = listeJoueursChecked;
         this.listeSets = listeSets;
         this.listeLegs = listeLegs;
         this.listeScores = listeScores;
+        this.choixSet = choixSet;
+        this.choixLeg = choixLeg;
     }
 
     // Get et Set liste joueurs
@@ -60,5 +63,13 @@ public class Parties {
     public void setScores(ArrayList<Integer> scores) {
         this.listeScores = scores;
     }
+
+    public Integer getChoixSet(){ return choixSet; }
+
+    public void setChoixSet(Integer set){ this.choixSet = set; }
+
+    public Integer getChoixLeg(){ return choixLeg; }
+
+    public void setChoixLeg(Integer leg){ this.choixLeg = leg; }
 
 }

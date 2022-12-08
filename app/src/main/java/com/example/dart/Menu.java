@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +51,11 @@ public class Menu extends AppCompatActivity {
     ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
 
+    // Declaration liste joueurs checkes par l'utilisateur a un instant t
     private ArrayList<Joueurs> mJoueursChecked;
+
+    // Declaration des spinners
+    private String choixSet, choixLeg, choixScore;
 
     // Firebase
     private FirebaseFirestore db;
@@ -65,6 +70,11 @@ public class Menu extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        // Variables Spinners
+        Spinner spinnerChoixSet = findViewById(R.id.id_spin_Set);
+        Spinner spinnerChoixLeg = findViewById(R.id.id_spin_Leg);
+        Spinner spinnerChoixScore = findViewById(R.id.id_spin_Score);
+
         mJoueursChecked = new ArrayList<Joueurs>();
         // Recycler view
         RecupJoueurs();
@@ -77,6 +87,9 @@ public class Menu extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent intent = new Intent(Menu.this, Partie.class);
                 //startActivity(intent);
+                choixSet = spinnerChoixSet.getSelectedItem().toString();
+                choixLeg = spinnerChoixLeg.getSelectedItem().toString();
+                choixScore = spinnerChoixScore.getSelectedItem().toString();
                 RecupJoueursChecked();
                 //RecupJoueursCheked();
 
@@ -262,9 +275,7 @@ public class Menu extends AppCompatActivity {
 
                 // Aller dans partie
                 Intent intent = new Intent(Menu.this, Partie.class);
-                intent.putExtra("choixSet", 1);
-                intent.putExtra("choixLeg", 1);
-                intent.putExtra("choixScore", 301);
+                intent.putExtra("choixScore", choixScore); // envoi du choix de score a la classe Partie
                 startActivity(intent);
 
             }
@@ -280,8 +291,6 @@ public class Menu extends AppCompatActivity {
         alert.create().show();
     }
 
-
-
     private void creationDocumentPartieFirestore(ArrayList<Joueurs> listeJoueurs, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs,ArrayList<Integer> listeScores) {
 
         // creating a collection reference
@@ -289,7 +298,7 @@ public class Menu extends AppCompatActivity {
         // CollectionReference dbCourses = db.collection("Users");
 
         // adding our data to our users object class.
-        Parties partie = new Parties(listeJoueurs,listeSets,listeLegs,listeScores);
+        Parties partie = new Parties(listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),listeSets,listeLegs,listeScores);
 
         String idPartie = CreationIdPartie();
 
@@ -313,9 +322,6 @@ public class Menu extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     private String CreationIdPartie (){
 
