@@ -6,6 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".Historique">
 
+    <ImageView
+        android:id="@+id/id_logo_dart_H"
+        android:layout_width="162dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/descLogoDart"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_dart3" />
+
+    <TextView
+        android:id="@+id/id_TV_partiesEnCours"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="start"
+        android:text="@string/parties_en_cours"
+        android:textColor="#43A047"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/id_logo_dart_H"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/id_RV_PEC" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/id_RV_PEC"
+        android:layout_width="338dp"
+        android:layout_height="374dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:background="#31D82B3F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_TV_partiesEnCours" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -16,7 +55,10 @@
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu"
-        tools:ignore="MissingConstraints"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        tools:ignore="MissingConstraints">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

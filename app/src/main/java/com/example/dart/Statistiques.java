@@ -13,11 +13,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 //////////////////// Selyan /////////////////////
 
 public class Statistiques extends AppCompatActivity {
+    String parametres[]={"Parties jouées", "Mètres parcourus par les fléchettes", "Dernier meilleur score", "Nombre d'amis total", "Nombre de Legs gagnés", "Nombre de sets gagnés", "Nombre de parties gagnées" };
+    int Statistiques_Images[] = {R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistiques);
+
 
 
         //Initialisation:

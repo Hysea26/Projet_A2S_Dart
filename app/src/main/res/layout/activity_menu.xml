@@ -6,18 +6,167 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="162dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/descLogoDart"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_dart3" />
 
+    <Button
+        android:id="@+id/NouvellePartieBtn"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/sign_in_button"
+        android:enabled="true"
+        android:text="@string/NouvellePartie"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="300dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NouvellePartieBtn">
+
+        <LinearLayout
+            android:id="@+id/id_LL_Set"
+            android:layout_width="100dp"
+            android:layout_height="62dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_TV_Set"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:text="@string/SET"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/id_spin_Set"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:entries="@array/NumLeg"
+                tools:ignore="MissingConstraints,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_LL_Leg"
+            android:layout_width="100dp"
+            android:layout_height="62dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_TV_Leg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/LEG"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/id_spin_Leg"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:entries="@array/NumLeg"
+                tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_LL_Score"
+            android:layout_width="100dp"
+            android:layout_height="62dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_TV_Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/SCORE"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/id_spin_Score"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:entries="@array/NumScore"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/id_RV_joueurs"
+        android:layout_width="343dp"
+        android:layout_height="249dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:background="#31D82B3F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <EditText
+        android:id="@+id/id_recherche_joueurs"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/RechercheJoueurs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_RV_joueurs"
+        tools:ignore="LabelFor" />
+
+    <ImageButton
+        android:id="@+id/searchbtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/loupe"
+        android:contentDescription="@string/descLoupe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_recherche_joueurs"
+        app:layout_constraintTop_toBottomOf="@+id/id_RV_joueurs"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/vert_bottom_bar"
-        app:labelVisibilityMode="selected"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu"
-        tools:ignore="MissingConstraints"></com.google.android.material.bottomnavigation.BottomNavigationView>
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/vert_bottom_bar"
+            app:labelVisibilityMode="selected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_menu"
+            tools:ignore="MissingConstraints">
+     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

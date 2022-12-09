@@ -99,6 +99,7 @@ public class Parametres extends AppCompatActivity {
                                 Log.d(TAG, "User account deleted.");
                             }
                         });
+                // Supprimer aussi 'joueurs'
             }
         });
 

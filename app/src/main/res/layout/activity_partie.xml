@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Partie">
+
+
+    <EditText
+        android:id="@+id/edittext_lance_1"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="420dp"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edittext_lance_2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_1"
+        app:layout_constraintStart_toEndOf="@+id/edittext_lance_1" />
+
+    <EditText
+        android:id="@+id/edittext_lance_3"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_2"
+        app:layout_constraintStart_toEndOf="@+id/edittext_lance_2" />
+
+
+    <TextView
+        android:id="@+id/resultat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/scoreLeg"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/teal_700"
+        android:gravity="center_horizontal"
+        android:text="LEG"
+        app:layout_constraintBottom_toBottomOf="@+id/scoreSet"
+        app:layout_constraintEnd_toStartOf="@+id/score" />
+
+    <TextView
+        android:id="@+id/scoreSet"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/teal_200"
+        android:gravity="center_horizontal"
+        android:text="SET"
+        app:layout_constraintBottom_toBottomOf="@+id/topScoreBoard"
+        app:layout_constraintEnd_toStartOf="@+id/scoreLeg" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPartie"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topScoreBoard"
+
+
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:background="@color/black"
+        android:gravity="center_vertical"
+        android:text="   DART."
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartie" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="SCORE"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/scoreLeg"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPartie" />
+
+    <TextView
+        android:id="@+id/topScoreBoard"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:background="@color/black"
+        android:gravity="center_vertical"
+        android:text="  Premier à X set X leg"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/scoreSet"
+        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDouble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/black"
+        android:text="DOUBLE"
+        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonTriple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="TRIPLE"
+        app:layout_constraintStart_toEndOf="@+id/buttonDouble"
+        app:layout_constraintTop_toTopOf="@+id/buttonDouble" />
+
+    <Button
+        android:id="@+id/buttonRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="Retour"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/backbtn"
+        android:layout_width="49dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/id_dart_logo"
+        android:layout_width="266dp"
+        android:layout_height="78dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/descLogoDart"
+        app:layout_constraintBottom_toTopOf="@+id/scoreSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_dart3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

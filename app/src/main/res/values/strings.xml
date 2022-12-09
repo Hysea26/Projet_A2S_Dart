@@ -39,8 +39,20 @@
     <string name="Statistiques">Statistiques</string>
     <string name="Parametres">Parametres</string>
 
+    <!-- Activite Menu -->
+    <string name="NouvellePartie">Nouvelle Partie</string>
+    <string name="descLoupe">Image loupe</string>
+    <string name="RechercheJoueurs">Recherche de joueurs</string>
+    <string name="LEG">LEG</string>
+    <string name="SET">SET</string>
+    <string name="SCORE">SCORE</string>
 
+    <!-- Activite Row Item Joueur -->
+    <string name="nbPartiesJouees">Nombre de parties jouees</string>
+    <string name="descSelectionner">Image Selectionner</string>
 
+    <!-- Activite Historique -->
+    <string name="parties_en_cours">Parties en cours :</string>
 
     <!-- Login -->
     <string name="hello_first_fragment">Hello first fragment</string>
@@ -77,5 +89,35 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+
+    <!-- Strings used for the spinner of set / Leg / Score -->
+    <string-array name="NumSet">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="NumLeg">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="NumScore">
+        <item>301</item>
+        <item>501</item>
+        <item>701</item>
+    </string-array>
+
+    <!-- Strings used for the recyclerViewof the partie -->
+    <string-array name="joueur_resultat">
+        <item>joueur1</item>
+        <item>joueur2</item>
+    </string-array>
+
+    <string-array setString="set">
+        <item>ceci est le nombre de set marqué par le joueur</item>
+        <item>ceci est le nombre de set marqué par le joueur</item>
+    </string-array>
+
 
 </resources>

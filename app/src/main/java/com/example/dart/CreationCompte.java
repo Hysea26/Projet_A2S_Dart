@@ -225,6 +225,33 @@ public class CreationCompte extends AppCompatActivity {
                         Toast.makeText(CreationCompte.this, "Erreur dans l'ajout de l'utilisateur \n" + e, Toast.LENGTH_SHORT).show();
                     }
                 });
+
+
+        // adding our data to our users object class.
+        Joueurs joueur = new Joueurs(email,username,"","","","","");
+
+        // Ajout de la data dans firestore
+        db.collection("Joueurs")
+                .document(String.valueOf(email))
+                .set(joueur)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // after the data addition is successful we are displaying a success toast message.
+                        Toast.makeText(CreationCompte.this, "Le joueur " + email + " a bien ete ajoute.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // this method is called when the data addition process is failed. displaying a toast message when data addition is failed.
+                        // Log.w(TAG, "Error writing document", e);
+                        Toast.makeText(CreationCompte.this, "Erreur dans l'ajout du joueur \n" + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
     }
 
     private void reload() {}
