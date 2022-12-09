@@ -14,11 +14,13 @@ public class RowItemJoueur {
         mIsSelected = isSelected;
     }
 
+    // Les gets et sets
+
     public void changeNbParties(String text) {
         mNbParties = text;
     }
 
-    public int getImgRobotPart() {
+    public int getImgUser() {
         return mImgUser;
     }
 

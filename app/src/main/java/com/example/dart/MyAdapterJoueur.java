@@ -101,7 +101,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RowItemJoueur currentItem = mExampleList.get(position);
 
-        holder.mImgUserView.setImageResource(currentItem.getImgRobotPart());
+        holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
         holder.mNbPartiesView.setText(currentItem.getNbParties());
         holder.mCheckBox.setChecked(currentItem.getIsSelected());

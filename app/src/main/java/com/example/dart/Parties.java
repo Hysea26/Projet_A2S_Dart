@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Parties {
 
-
     // Variables stockage des donnees
     private ArrayList<Joueurs> listeJoueursChecked;
     private ArrayList<Integer> listeSets,listeLegs,listeScores;

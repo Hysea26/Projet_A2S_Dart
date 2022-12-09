@@ -57,7 +57,7 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RowItemJoueur currentItem = mExampleList.get(position);
 
-        holder.mImgUserView.setImageResource(currentItem.getImgRobotPart());
+        holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
     }
 
