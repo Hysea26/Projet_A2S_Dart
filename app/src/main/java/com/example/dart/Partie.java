@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,18 +46,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Partie extends AppCompatActivity {
 
     private static final String TAG = "Partie";
 
-    private Button backbtn;
 
     // Declaration variables action partie
     private EditText lance1;
     private EditText lance2;
     private EditText lance3;
     private TextView PointTour;
-    private TextView PointRestant;
+    private TextView PointRestantTemporaire;
+    private TextView PointRestantRV;
     private TextView LegCompteur;
     private TextView SetCompteur;
     private Button boutonValide;
@@ -68,9 +71,10 @@ public class Partie extends AppCompatActivity {
 
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
+    ArrayList<Integer> point = new ArrayList<Integer>();
 
     // Firebase
-    private FirebaseFirestore db;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +85,8 @@ public class Partie extends AppCompatActivity {
         lance2 = findViewById(R.id.edittext_lance_2);
         lance3 = findViewById(R.id.edittext_lance_3);
         PointTour = findViewById(R.id.resultat);
-        PointRestant = findViewById(R.id.PointRestant);
+        PointRestantTemporaire = findViewById(R.id.PointRestantTemporaire);
         boutonValide = findViewById(R.id.boutonValide);
-
-
-
-        db = FirebaseFirestore.getInstance();
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -94,38 +94,43 @@ public class Partie extends AppCompatActivity {
                 int temp1 = 0;
                 int temp2 = 0;
                 int temp3 = 0;
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
-                int temp1 = Integer.parseInt(lance1.getText().toString());
-                int temp2 = Integer.parseInt(lance2.getText().toString());
-                int temp3 = Integer.parseInt(lance3.getText().toString());
-                PointTour.setText(String.valueOf(temp1 + temp2 + temp3));
-
-
-                PointRestant.setText(String.valueOf(501 - (temp1 + temp2 + temp3)));
+                    int temp1 = Integer.parseInt(lance1.getText().toString());
+                    int temp2 = Integer.parseInt(lance2.getText().toString());
+                    int temp3 = Integer.parseInt(lance3.getText().toString());
+                    PointTour.setText(String.valueOf(temp1 + temp2 + temp3));
                 }
-
-
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-
+            public void afterTextChanged(Editable editable) { }
 
         };
         lance1.addTextChangedListener(textWatcher);
         lance2.addTextChangedListener(textWatcher);
         lance3.addTextChangedListener(textWatcher);
 
+        // Clique boutton validé
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // PointRestantTemporaire = PointRestantTemporaire - PointTour
+                if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
+                    int pr = Integer.parseInt(PointRestantTemporaire.getText().toString());
+                    int pt = Integer.parseInt(PointTour.getText().toString());
+                    PointRestantTemporaire.setText(String.valueOf(pr - pt));
+                    lance1.setText(null);
+                    lance2.setText(null);
+                    lance3.setText(null);
+
+                }
+                else {
+                    Toast.makeText(Partie.this, "Il manque un lancé", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -141,8 +146,9 @@ public class Partie extends AppCompatActivity {
         mPartieList = new ArrayList<>();
 
         for (int i = 0; i < strPseudoJoueurs.size(); i++) {
-            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(),45, 13,12, true));
-            Log.d("Waouh", "mPartieList :" + mPartieList);
+            // Nombre de tours
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, strPseudoJoueurs.get(i),R.id.SetCompteur, R.id.LegCompteur, R.id.PointRestantTemporaire, true));
+            Log.d("Waouh", "strPseudoJoueurs :" + strPseudoJoueurs.get(i) + "cpt: "+ R.id.SetCompteur);
         }
     }
 

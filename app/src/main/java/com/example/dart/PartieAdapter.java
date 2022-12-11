@@ -1,11 +1,13 @@
 package com.example.dart;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,40 +22,30 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImgUserView;
-        public TextView mPseudoView;
+        public ImageView imgJoueur;
+        public TextView nomJoueur;
         public TextView SetCompteur;
         public TextView LegCompteur;
-        public TextView PointRestant;
+        public TextView PointRestantRV;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mImgUserView = itemView.findViewById(R.id.id_ImgUser_RIJ);
-            mPseudoView = itemView.findViewById(R.id.id_pseudo_RIJ);
+            imgJoueur = itemView.findViewById(R.id.imgJoueur);
+            nomJoueur = itemView.findViewById(R.id.nomJoueur);
             SetCompteur = itemView.findViewById(R.id.SetCompteur);
             LegCompteur = itemView.findViewById(R.id.LegCompteur);
-            PointRestant = itemView.findViewById(R.id.PointRestant);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+            PointRestantRV = itemView.findViewById(R.id.PointRestantRV);
         }
     }
 
-    public PartieAdapter(ArrayList<RowItemPartie> exampleList) {
-        mPartieList = exampleList;
+
+    public PartieAdapter(ArrayList<RowItemPartie> mPartieList) {
+        this.mPartieList = mPartieList;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PartieAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_item_partie, parent, false);
         MyViewHolder evh = new MyViewHolder(v, mListener);
         return evh;
@@ -62,13 +54,16 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         RowItemPartie currentItem = mPartieList.get(position);
-
-    //    holder.mImgUserView.setImageResource(currentItem.getImgUser());
-     //   holder.mPseudoView.setText(currentItem.getPseudo());
+        // holder.imgJoueur.setImageResource(currentItem.getImgUser());
+        // holder.nomJoueur.setText(currentItem.getPseudo());
+        holder.SetCompteur.setText(String.valueOf(3));
+        holder.LegCompteur.setText(String.valueOf(2));
+        holder.PointRestantRV.setText(String.valueOf(mPartieList.get(position).getPoint()));
     }
 
     @Override
     public int getItemCount() {
         return mPartieList.size();
     }
+
 }
