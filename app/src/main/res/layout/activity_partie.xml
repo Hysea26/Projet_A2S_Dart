@@ -64,8 +64,8 @@
         android:background="@color/teal_700"
         android:gravity="center_horizontal"
         android:text="LEG"
-        app:layout_constraintBottom_toBottomOf="@+id/scoreSet"
-        app:layout_constraintEnd_toStartOf="@+id/score" />
+        app:layout_constraintStart_toEndOf="@+id/scoreSet"
+        app:layout_constraintTop_toTopOf="@+id/scoreSet" />
 
     <TextView
         android:id="@+id/scoreSet"
@@ -77,22 +77,8 @@
         android:background="@color/teal_200"
         android:gravity="center_horizontal"
         android:text="SET"
-        app:layout_constraintBottom_toBottomOf="@+id/topScoreBoard"
-        app:layout_constraintEnd_toStartOf="@+id/scoreLeg" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPartie"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:background="@color/purple_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topScoreBoard"
-
-
-        />
+        app:layout_constraintStart_toEndOf="@+id/topScoreBoard"
+        app:layout_constraintTop_toTopOf="@+id/topScoreBoard" />
 
     <TextView
         android:id="@+id/title"
@@ -106,8 +92,8 @@
         android:gravity="center_vertical"
         android:text="   DART."
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartie" />
+        app:layout_constraintStart_toStartOf="@+id/PseudoT"
+        app:layout_constraintTop_toBottomOf="@+id/PseudoT" />
 
     <TextView
         android:id="@+id/score"
@@ -119,8 +105,8 @@
         android:gravity="center"
         android:text="SCORE"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/scoreLeg"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPartie" />
+        app:layout_constraintStart_toEndOf="@+id/scoreLeg"
+        app:layout_constraintTop_toTopOf="@+id/scoreLeg" />
 
     <TextView
         android:id="@+id/topScoreBoard"
@@ -128,38 +114,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="100dp"
         android:background="@color/black"
         android:gravity="center_vertical"
         android:text="  Premier à X set X leg"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/scoreSet"
-        app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/boutonValide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
         android:text="Valider"
-        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@+id/edittext_lance_3"
+        app:layout_constraintTop_toTopOf="@+id/edittext_lance_3" />
 
     <ImageView
         android:id="@+id/id_dart_logo"
         android:layout_width="266dp"
         android:layout_height="78dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/descLogoDart"
-        app:layout_constraintBottom_toTopOf="@+id/scoreSet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_dart3" />
 
     <TextView
-        android:id="@+id/PointRestantTemporaire"
+        android:id="@+id/PointRestantT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -170,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/score" />
 
     <TextView
-        android:id="@+id/LegCompteur"
+        android:id="@+id/LegT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -181,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scoreLeg" />
 
     <TextView
-        android:id="@+id/SetCompteur"
+        android:id="@+id/SetT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -190,6 +176,17 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/scoreLeg"
         app:layout_constraintTop_toBottomOf="@+id/scoreSet" />
+
+    <TextView
+        android:id="@+id/PseudoT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Nom du joueur"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/topScoreBoard"
+        app:layout_constraintTop_toBottomOf="@+id/topScoreBoard" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
