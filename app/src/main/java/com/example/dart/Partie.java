@@ -54,12 +54,14 @@ public class Partie extends AppCompatActivity {
     private EditText lance1;
     private EditText lance2;
     private EditText lance3;
-    private TextView resultat;
-    private Button buttonDouble;
-    private Button buttonTriple;
+    private TextView PointTour;
+    private TextView PointRestant;
+    private TextView LegCompteur;
+    private TextView SetCompteur;
+    private Button boutonValide;
 
     // Declaration variables Recycler view
-    private ArrayList<RowItemJoueur> mExampleList;
+    private ArrayList<RowItemPartie> mPartieList;
     private RecyclerView recyclerViewPartie;
     private PartieAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -78,8 +80,11 @@ public class Partie extends AppCompatActivity {
         lance1 = findViewById(R.id.edittext_lance_1);
         lance2 = findViewById(R.id.edittext_lance_2);
         lance3 = findViewById(R.id.edittext_lance_3);
-        resultat = findViewById(R.id.resultat);
-        buttonDouble = (Button) findViewById(R.id.buttonDouble);
+        PointTour = findViewById(R.id.resultat);
+        PointRestant = findViewById(R.id.PointRestant);
+        boutonValide = findViewById(R.id.boutonValide);
+
+
 
         db = FirebaseFirestore.getInstance();
 
@@ -90,17 +95,20 @@ public class Partie extends AppCompatActivity {
                 int temp2 = 0;
                 int temp3 = 0;
 
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
-                    int temp1 = Integer.parseInt(lance1.getText().toString());
-                    int temp2 = Integer.parseInt(lance2.getText().toString());
-                    int temp3 = Integer.parseInt(lance3.getText().toString());
-                    resultat.setText(String.valueOf(temp1 + temp2 + temp3));
+                int temp1 = Integer.parseInt(lance1.getText().toString());
+                int temp2 = Integer.parseInt(lance2.getText().toString());
+                int temp3 = Integer.parseInt(lance3.getText().toString());
+                PointTour.setText(String.valueOf(temp1 + temp2 + temp3));
+
+
+                PointRestant.setText(String.valueOf(501 - (temp1 + temp2 + temp3)));
                 }
+
 
             }
 
@@ -108,40 +116,33 @@ public class Partie extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
             }
+
+
         };
         lance1.addTextChangedListener(textWatcher);
         lance2.addTextChangedListener(textWatcher);
         lance3.addTextChangedListener(textWatcher);
 
+        boutonValide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
     RecupJoueurs();
     //setButtons(); // clics du recycler
 
-    backbtn =(Button) findViewById(R.id.backbtn);
-
-        backbtn.setOnClickListener(new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View view){
-       /* Intent intent = new Intent(Partie.this, Menu.class);
-        startActivity(intent);
-
-        */
-    }
-    });
-
 
 } //////////////////////////////// Fin OnCreate ///////////////////////////////////////
 
-     public void createExampleList() {
+     public void createPartieList() {
 
-        mExampleList = new ArrayList<>();
+        mPartieList = new ArrayList<>();
 
         for (int i = 0; i < strPseudoJoueurs.size(); i++) {
-            mExampleList.add(new RowItemJoueur(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(),"", false));
-            Log.d("Waouh", "mExampleList :" + mExampleList);
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, strPseudoJoueurs.get(i).toString(),45, 13,12, true));
+            Log.d("Waouh", "mPartieList :" + mPartieList);
         }
     }
 
@@ -169,7 +170,7 @@ public class Partie extends AppCompatActivity {
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
-                            createExampleList(); // Cree la liste de joueurs presents dans la BDD
+                            createPartieList(); // Cree la liste de joueurs presents dans la BDD
                             buildRecyclerView(); // Construit le recycler view
                         }
                     }
@@ -180,7 +181,7 @@ public class Partie extends AppCompatActivity {
     public void buildRecyclerView() {
         recyclerViewPartie = findViewById(R.id.recyclerViewPartie);
 
-        mAdapter = new PartieAdapter(mExampleList); // cree avec mExampleList, a changer
+        mAdapter = new PartieAdapter(mPartieList); // cree avec mPartieList
         recyclerViewPartie.setAdapter(mAdapter);
 
         mLayoutManager = new LinearLayoutManager(this);

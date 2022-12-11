@@ -11,7 +11,7 @@
         android:id="@+id/edittext_lance_1"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="420dp"
         android:gravity="center"
         android:inputType="number"
@@ -43,14 +43,16 @@
         android:id="@+id/resultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/edittext_lance_3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/scoreLeg"
@@ -136,44 +138,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonDouble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/black"
-        android:text="DOUBLE"
-        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_1"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonTriple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="TRIPLE"
-        app:layout_constraintStart_toEndOf="@+id/buttonDouble"
-        app:layout_constraintTop_toTopOf="@+id/buttonDouble" />
-
-    <Button
-        android:id="@+id/buttonRetour"
+        android:id="@+id/boutonValide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:text="Retour"
+        android:text="Valider"
         app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/backbtn"
-        android:layout_width="49dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/id_dart_logo"
@@ -186,5 +157,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_dart3" />
+
+    <TextView
+        android:id="@+id/PointRestant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="501"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/score"
+        app:layout_constraintTop_toBottomOf="@+id/score" />
+
+    <TextView
+        android:id="@+id/LegCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreLeg" />
+
+    <TextView
+        android:id="@+id/SetCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreSet" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

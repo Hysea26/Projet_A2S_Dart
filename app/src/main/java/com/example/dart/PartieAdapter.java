@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHolder> {
 
-    private ArrayList<RowItemJoueur> mExampleList;
+    private ArrayList<RowItemPartie> mPartieList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -22,11 +22,17 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImgUserView;
         public TextView mPseudoView;
+        public TextView SetCompteur;
+        public TextView LegCompteur;
+        public TextView PointRestant;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             mImgUserView = itemView.findViewById(R.id.id_ImgUser_RIJ);
             mPseudoView = itemView.findViewById(R.id.id_pseudo_RIJ);
+            SetCompteur = itemView.findViewById(R.id.SetCompteur);
+            LegCompteur = itemView.findViewById(R.id.LegCompteur);
+            PointRestant = itemView.findViewById(R.id.PointRestant);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -42,27 +48,27 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
         }
     }
 
-    public PartieAdapter(ArrayList<RowItemJoueur> exampleList) {
-        mExampleList = exampleList;
+    public PartieAdapter(ArrayList<RowItemPartie> exampleList) {
+        mPartieList = exampleList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_item_joueur, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_item_partie, parent, false);
         MyViewHolder evh = new MyViewHolder(v, mListener);
         return evh;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        RowItemJoueur currentItem = mExampleList.get(position);
+        RowItemPartie currentItem = mPartieList.get(position);
 
-        holder.mImgUserView.setImageResource(currentItem.getImgUser());
-        holder.mPseudoView.setText(currentItem.getPseudo());
+    //    holder.mImgUserView.setImageResource(currentItem.getImgUser());
+     //   holder.mPseudoView.setText(currentItem.getPseudo());
     }
 
     @Override
     public int getItemCount() {
-        return mExampleList.size();
+        return mPartieList.size();
     }
 }

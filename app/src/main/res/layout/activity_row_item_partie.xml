@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imgJoueur"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_user_profil" />
+
+        <TextView
+            android:id="@+id/nomJoueur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Nom joueur"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imgJoueur"
+            app:layout_constraintStart_toEndOf="@+id/imgJoueur"
+            app:layout_constraintTop_toTopOf="@+id/imgJoueur" />
+
+        <TextView
+            android:id="@+id/SetCompteur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:text="Set"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nomJoueur"
+            app:layout_constraintStart_toEndOf="@+id/imgJoueur"
+            app:layout_constraintTop_toTopOf="@+id/nomJoueur" />
+
+        <TextView
+            android:id="@+id/LegCompteur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="leg"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/SetCompteur"
+            app:layout_constraintTop_toTopOf="@+id/SetCompteur" />
+
+        <TextView
+            android:id="@+id/PointRestant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="PointRestant"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/LegCompteur"
+            app:layout_constraintTop_toTopOf="@+id/LegCompteur" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
