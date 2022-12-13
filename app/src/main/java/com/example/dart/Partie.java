@@ -171,6 +171,8 @@ public class Partie extends AppCompatActivity {
                             if (task.getResult() != null) {
                                 List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
 
+                                Log.d("Waouh", "List: "+ downloadInfoList);
+
                                 for (int i = 0; i < downloadInfoList.size(); i++) {
                                     listeParties.add(downloadInfoList.get(position));
                                 }

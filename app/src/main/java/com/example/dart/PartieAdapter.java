@@ -35,9 +35,20 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
             SetCompteur = itemView.findViewById(R.id.SetCompteur);
             LegCompteur = itemView.findViewById(R.id.LegCompteur);
             PointRestantRV = itemView.findViewById(R.id.PointRestantRV);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
-
 
     public PartieAdapter(ArrayList<RowItemPartie> mPartieList) {
         this.mPartieList = mPartieList;
@@ -57,7 +68,7 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
         // holder.imgJoueur.setImageResource(currentItem.getImgUser());
         // holder.nomJoueur.setText(currentItem.getPseudo());
         holder.SetCompteur.setText(String.valueOf(3));
-        holder.LegCompteur.setText(String.valueOf(2));
+        holder.LegCompteur.setText(currentItem.getLeg());
         holder.PointRestantRV.setText(String.valueOf(mPartieList.get(position).getPoint()));
     }
 
