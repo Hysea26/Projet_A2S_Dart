@@ -349,10 +349,10 @@ public class Menu extends AppCompatActivity {
         // for our Firebase Firetore database.
         // CollectionReference dbCourses = db.collection("Users");
 
-        // adding our data to our users object class.
-        Parties partie = new Parties(listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),listeSets,listeLegs,listeScores);
-
         String idPartie = CreationIdPartie();
+
+        // adding our data to our users object class.
+        Parties partie = new Parties(idPartie,listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),Integer.parseInt(choixScore),listeSets,listeLegs,listeScores);
 
         // Ajout de la data dans firestore
         db.collection("Parties")

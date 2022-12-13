@@ -38,6 +38,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -78,11 +79,18 @@ public class Partie extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     // Variables laetitia
+    private int ChoixScore;
     private int ChoixLeg;
     private int ChoixSet;
-    private ArrayList<Integer> listeScores;
+    private ArrayList<Joueurs> listeJoueurs;
+    private ArrayList<String> listePseudos = new ArrayList<>();
+    private ArrayList<Integer> listeScores = new ArrayList<>();
+    private ArrayList<Integer> listeLegs = new ArrayList<>();
+    private ArrayList<Integer> listeSets = new ArrayList<>();
+    private String IdPartie;
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
+    private TextView TV_ScoreBoard;
 
 
     @Override
@@ -96,6 +104,7 @@ public class Partie extends AppCompatActivity {
 
         // variables laetitia
         positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
+        TV_ScoreBoard = findViewById(R.id.topScoreBoard);
 
         RecupJoueursPartie(positionPartie);
 
@@ -170,20 +179,15 @@ public class Partie extends AppCompatActivity {
                             if (task.getResult() != null) {
                                 List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
 
-                                Log.d("Waouh", "List: "+ downloadInfoList);
-
                                 for (int i = 0; i < downloadInfoList.size(); i++) {
-                                    listeParties.add(downloadInfoList.get(position));
+                                    listeParties.add(downloadInfoList.get(i));
                                 }
 
-                                ChoixSet = listeParties.get(positionPartie).getChoixSet();
-                                ChoixLeg = listeParties.get(positionPartie).getChoixLeg();
-
-                                Log.d("Waouh", "choix set / leg "+ ChoixLeg + ", " + ChoixSet);
 
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
+                            RecupVariablesBDD();// Recup des variables de la BDD (score, leg, set...)
                             createPartieList(); // Cree la liste de joueurs presents dans la BDD
                             buildRecyclerView(); // Construit le recycler view
                         }
@@ -191,15 +195,63 @@ public class Partie extends AppCompatActivity {
                 });
     }
 
+    public void RecupVariablesBDD(){
+
+        IdPartie = listeParties.get(positionPartie).getIdPartie();
+        Log.d("Waouh", "IdPartie : "+ IdPartie);
+
+        // Recup du choix de leg et set de l'utilisateur (en combien de set / leg la partie va se jouer)
+        ChoixSet = listeParties.get(positionPartie).getChoixSet();
+        ChoixLeg = listeParties.get(positionPartie).getChoixLeg();
+        ChoixScore = listeParties.get(positionPartie).getChoixScore();
+
+        // Recup de la liste des joueurs participant et recup de leurs pseudos
+        listeJoueurs = listeParties.get(positionPartie).getJoueursChecked();
+        for (int j=0; j < listeJoueurs.size(); j++){
+            listePseudos.add(listeJoueurs.get(j).getPseudo());
+        }
+
+        // Recup des scores des joueurs, si liste vide (cas creation de partie), initialisation de la liste
+        listeScores = listeParties.get(positionPartie).getScores();
+        if (listeScores.isEmpty()){ // Si liste vide : cas de creation de partie, affectation du choixScore
+            InitialisationScore(listeScores,listeJoueurs,ChoixScore);
+            db.collection("Parties").document(IdPartie).update("scores", listeScores); // Mise à jour des donnees (score) dans la BDD
+        }
+
+        // Recup des legs gagnes des joueurs, si liste vide (cas creation de partie), initialisation de la liste
+        listeLegs = listeParties.get(positionPartie).getLegs();
+        if (listeLegs.isEmpty()){ // Si liste vide : cas de creation de partie, affectation de 0 (0 legs gagnes pr l'instant)
+            InitialisationScore(listeLegs,listeJoueurs,0);
+            db.collection("Parties").document(IdPartie).update("legs", listeLegs); // Mise à jour des donnees (legs) dans la BDD
+        }
+
+        // Recup des legs gagnes des joueurs, si liste vide (cas creation de partie), initialisation de la liste
+        listeSets = listeParties.get(positionPartie).getSets();
+        if (listeSets.isEmpty()){ // Si liste vide : cas de creation de partie, affectation de 0 (0 legs gagnes pr l'instant)
+            InitialisationScore(listeSets,listeJoueurs,0);
+            db.collection("Parties").document(IdPartie).update("sets", listeSets); // Mise à jour des donnees (sets) dans la BDD
+        }
+
+    }
+
+    public void InitialisationScore(ArrayList<Integer> listeInteger, ArrayList<Joueurs> listeSize, int choixPts){
+
+        // Ajout de choixPts aux listes integer (score, leg, set)
+        for (int i=0; i<listeSize.size(); i++){
+            listeInteger.add(choixPts);
+        }
+
+    }
 
     public void createPartieList() {
 
+        // Affichage du choixLeg et choixSet (partie en X set(s), Y legs)
+        TV_ScoreBoard.setText("En "+ChoixSet+ " Set(s), "+ChoixLeg+" Legs");
+
         mPartieList = new ArrayList<>();
 
-        Log.d("Waouh2", "choix set / leg "+ ChoixLeg + "," + ChoixSet);
-        for (int i = 0; i < 2; i++) { //strPseudoJoueurs.size()
-            Log.d("Waouh2", "choix set / leg "+ ChoixLeg + "," + ChoixSet);
-            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, "pseudo",ChoixSet, ChoixLeg, 305));
+        for (int i = 0; i < listeJoueurs.size(); i++) {
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, listePseudos.get(i),listeSets.get(i), listeLegs.get(i), listeScores.get(i)));
         }
 
         Log.d("Waouh", "mPartieList :" + mPartieList);

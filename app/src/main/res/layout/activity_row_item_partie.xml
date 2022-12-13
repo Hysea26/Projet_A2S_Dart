@@ -40,21 +40,21 @@
             android:id="@+id/SetCompteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="120dp"
             android:text="Set"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/nomJoueur"
-            app:layout_constraintEnd_toStartOf="@+id/LegCompteur"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nomJoueur" />
 
         <TextView
             android:id="@+id/LegCompteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="70dp"
             android:text="leg"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/PointRestantRV"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/SetCompteur" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="PointsRestants"
+            android:text="PtsR"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/LegCompteur" />
