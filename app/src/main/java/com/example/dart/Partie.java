@@ -66,7 +66,7 @@ public class Partie extends AppCompatActivity {
     // Declaration variables Recycler view
     private ArrayList<RowItemPartie> mPartieList;
     private RecyclerView recyclerViewPartie;
-    private PartieAdapter mAdapter;
+    private MyAdapterPartie mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
@@ -79,11 +79,10 @@ public class Partie extends AppCompatActivity {
 
     // Variables laetitia
     private int ChoixLeg;
-    private int ChoixSet;
+    private Integer ChoixSet;
     private ArrayList<Integer> listeScores;
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
-
 
 
     @Override
@@ -180,6 +179,8 @@ public class Partie extends AppCompatActivity {
                                 ChoixSet = listeParties.get(positionPartie).getChoixSet();
                                 ChoixLeg = listeParties.get(positionPartie).getChoixLeg();
 
+                                Log.d("Waouh", "choix set / leg "+ ChoixLeg + ", " + ChoixSet);
+
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
@@ -193,21 +194,21 @@ public class Partie extends AppCompatActivity {
 
     public void createPartieList() {
 
-
         mPartieList = new ArrayList<>();
 
+        Log.d("Waouh2", "choix set / leg "+ ChoixLeg + ", " + ChoixSet);
         for (int i = 0; i < 2; i++) { //strPseudoJoueurs.size()
             mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, "strPseudoJoueurs.get(i)",ChoixSet, ChoixLeg, 305));
-
         }
 
         Log.d("Waouh", "mPartieList :" + mPartieList);
     }
 
     public void buildRecyclerView() {
+
         recyclerViewPartie = findViewById(R.id.recyclerViewPartie);
 
-        mAdapter = new PartieAdapter(mPartieList); // cree avec mPartieList
+        mAdapter = new MyAdapterPartie(mPartieList); // cree avec mPartieList
         recyclerViewPartie.setAdapter(mAdapter);
 
         mLayoutManager = new LinearLayoutManager(this);

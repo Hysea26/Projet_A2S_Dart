@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.protobuf.StringValue;
+
 import java.util.ArrayList;
 
 public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHolder> {
@@ -19,6 +21,10 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(PartieAdapter.OnItemClickListener listener) {
+        mListener = listener;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -63,12 +69,12 @@ public class PartieAdapter extends RecyclerView.Adapter<PartieAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(PartieAdapter.MyViewHolder holder, int position) {
         RowItemPartie currentItem = mPartieList.get(position);
         // holder.imgJoueur.setImageResource(currentItem.getImgUser());
         // holder.nomJoueur.setText(currentItem.getPseudo());
         holder.SetCompteur.setText(String.valueOf(3));
-        holder.LegCompteur.setText(currentItem.getLeg());
+        holder.LegCompteur.setText(String.valueOf(currentItem.getLeg()));
         holder.PointRestantRV.setText(String.valueOf(mPartieList.get(position).getPoint()));
     }
 

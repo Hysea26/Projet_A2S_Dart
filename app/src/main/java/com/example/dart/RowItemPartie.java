@@ -15,18 +15,16 @@ import java.util.ArrayList;
 public class RowItemPartie extends AppCompatActivity {
     private int mImgJoueur;
     private String mNom;
-    private int mSet;
+    private Integer mSet;
     private int mLeg;
     private int mPoint;
-    private boolean mIsSelected;
 
-    public RowItemPartie(int mImgJoueur, String mNom, int mSet, int mLeg, int mPoint) {
+    public RowItemPartie(int mImgJoueur, String mNom, Integer mSet, int mLeg, int mPoint) {
         mImgJoueur = mImgJoueur;
         mNom = mNom;
         mSet = mSet;
         mLeg = mLeg;
         mPoint = mPoint;
-
     }
 
     public void changeTitre(String text) {
@@ -41,17 +39,16 @@ public class RowItemPartie extends AppCompatActivity {
         return mNom;
     }
 
-    public int getSet() {
+    public Integer getSet() {
         return mSet;
     }
 
     public int getLeg() {
-        return mSet;
+        return mLeg;
     }
+
     public int getPoint() {
         return mPoint;
     }
-    public boolean getIsSelected() {
-        return mIsSelected;
-    }
+
 }
