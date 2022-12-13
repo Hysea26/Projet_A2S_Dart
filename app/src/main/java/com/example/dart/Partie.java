@@ -79,7 +79,7 @@ public class Partie extends AppCompatActivity {
 
     // Variables laetitia
     private int ChoixLeg;
-    private Integer ChoixSet;
+    private int ChoixSet;
     private ArrayList<Integer> listeScores;
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
@@ -196,9 +196,10 @@ public class Partie extends AppCompatActivity {
 
         mPartieList = new ArrayList<>();
 
-        Log.d("Waouh2", "choix set / leg "+ ChoixLeg + ", " + ChoixSet);
+        Log.d("Waouh2", "choix set / leg "+ ChoixLeg + "," + ChoixSet);
         for (int i = 0; i < 2; i++) { //strPseudoJoueurs.size()
-            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, "strPseudoJoueurs.get(i)",ChoixSet, ChoixLeg, 305));
+            Log.d("Waouh2", "choix set / leg "+ ChoixLeg + "," + ChoixSet);
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, "pseudo",ChoixSet, ChoixLeg, 305));
         }
 
         Log.d("Waouh", "mPartieList :" + mPartieList);
@@ -219,7 +220,7 @@ public class Partie extends AppCompatActivity {
 
     }
 
-    // fin recycler view interessant
+
 
 
 }
