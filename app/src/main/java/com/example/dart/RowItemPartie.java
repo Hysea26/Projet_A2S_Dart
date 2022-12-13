@@ -20,13 +20,12 @@ public class RowItemPartie extends AppCompatActivity {
     private int mPoint;
     private boolean mIsSelected;
 
-    public RowItemPartie(int mImgJoueur, String mNom, int mSet, int mLeg, int mPoint, boolean mIsSelected) {
+    public RowItemPartie(int mImgJoueur, String mNom, int mSet, int mLeg, int mPoint) {
         mImgJoueur = mImgJoueur;
         mNom = mNom;
         mSet = mSet;
         mLeg = mLeg;
         mPoint = mPoint;
-        mIsSelected = mIsSelected;
 
     }
 

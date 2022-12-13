@@ -74,12 +74,31 @@ public class Partie extends AppCompatActivity {
     ArrayList<Integer> point = new ArrayList<Integer>();
 
     // Firebase
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+
+    // Variables laetitia
+    private int ChoixLeg;
+    private int ChoixSet;
+    private ArrayList<Integer> listeScores;
+    int positionPartie = 0;
+    ArrayList<Parties> listeParties = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partie);
+
+        // Firebase
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        // variables laetitia
+        positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
+
+        RecupJoueursPartie(positionPartie);
 
         lance1 = findViewById(R.id.edittext_lance_1);
         lance2 = findViewById(R.id.edittext_lance_2);
@@ -135,26 +154,13 @@ public class Partie extends AppCompatActivity {
             }
         });
 
-    RecupJoueurs();
-    //setButtons(); // clics du recycler
 
 
 } //////////////////////////////// Fin OnCreate ///////////////////////////////////////
 
-     public void createPartieList() {
 
-        mPartieList = new ArrayList<>();
-
-        for (int i = 0; i < strPseudoJoueurs.size(); i++) {
-            // Nombre de tours
-            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, strPseudoJoueurs.get(i),R.id.SetCompteur, R.id.LegCompteur, R.id.PointRestantTemporaire, true));
-            Log.d("Waouh", "strPseudoJoueurs :" + strPseudoJoueurs.get(i) + "cpt: "+ R.id.SetCompteur);
-        }
-    }
-
-    public void RecupJoueurs() { // recup des joueurs deja crees
-        db.collection("Joueurs")
-                .orderBy("email", Query.Direction.DESCENDING)
+    public void RecupJoueursPartie(int position) { // recup des joueurs deja crees
+        db.collection("Parties")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("SetTextI18n")
@@ -163,15 +169,14 @@ public class Partie extends AppCompatActivity {
                         Log.d("Lecture", "Entre dans le oncomplete : ");
                         if (task.isSuccessful()) {
                             if (task.getResult() != null) {
-                                List<Joueurs> downloadInfoList = task.getResult().toObjects(Joueurs.class); // Va chercher dans joueurs heritant users
+                                List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
+
                                 for (int i = 0; i < downloadInfoList.size(); i++) {
-
-                                    // il faudra afficher uniquement les amis (boucle if)
-                                    strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
-                                    strIdJoueurs.add(downloadInfoList.get(i).getEmail());
-
+                                    listeParties.add(downloadInfoList.get(position));
                                 }
-                                Log.d("Waouh", "Pseudos :" + strPseudoJoueurs);
+
+                                ChoixSet = listeParties.get(positionPartie).getChoixSet();
+                                ChoixLeg = listeParties.get(positionPartie).getChoixLeg();
 
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
@@ -183,6 +188,19 @@ public class Partie extends AppCompatActivity {
                 });
     }
 
+
+    public void createPartieList() {
+
+
+        mPartieList = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) { //strPseudoJoueurs.size()
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, "strPseudoJoueurs.get(i)",ChoixSet, ChoixLeg, 305));
+
+        }
+
+        Log.d("Waouh", "mPartieList :" + mPartieList);
+    }
 
     public void buildRecyclerView() {
         recyclerViewPartie = findViewById(R.id.recyclerViewPartie);
