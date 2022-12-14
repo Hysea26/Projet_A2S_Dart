@@ -105,6 +105,7 @@ public class Partie extends AppCompatActivity {
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
     private TextView TV_ScoreBoard;
+    private Boolean ok = true;
 
     // Variables stats
     private String IdJoueur;
@@ -268,7 +269,7 @@ public class Partie extends AppCompatActivity {
         listeBooleanPEC = listeParties.get(positionPartie).getBooleanPartieEnCours();
         if (listeBooleanPEC.isEmpty()){ // Si liste vide : cas de creation de partie, affectation de 0 (0 legs gagnes pr l'instant)
             InitialisationBoolean(listeBooleanPEC,listeJoueurs,true);
-            db.collection("Parties").document(IdPartie).update("partieEnCours", listeBooleanPEC); // Mise à jour des donnees (sets) dans la BDD
+            db.collection("Parties").document(IdPartie).update("booleanPartieEnCours", listeBooleanPEC); // Mise à jour des donnees (sets) dans la BDD
         }
 
     }
@@ -362,7 +363,6 @@ public class Partie extends AppCompatActivity {
 
                         PointTour.setText("0");
 
-
                         // Si Leg = ChoixLeg : SetT = SetT + 1
                         if (LegT.getText().toString() == String.valueOf(ChoixLeg)) {
 
@@ -381,18 +381,21 @@ public class Partie extends AppCompatActivity {
                                 // Incrementation des statistiques
                                 IncrementationStatistiques();
 
-                                //ModifBooleanFirebase(false);
+                                ok = false;
+                                ModifBooleanFirebase(false);
                                 FinPartie();
 
                             }
                         }
                     }
                 }
+            if (ok){
+                RefreshPartie();
+            }
             } else {
                 Toast.makeText(Partie.this, "Il manque au moins un lancé", Toast.LENGTH_SHORT).show();
             }
         } else {
-            RefreshPartie();
             Toast.makeText(Partie.this, "La partie est terminée", Toast.LENGTH_SHORT).show();
         }
     }
@@ -545,6 +548,10 @@ public class Partie extends AppCompatActivity {
         Intent intent = getIntent();
         finish();
         startActivity(intent);
+    }
+
+    public void Reset(){
+
     }
 
 }
