@@ -39,12 +39,11 @@ public class Statistiques extends AppCompatActivity {
     private ArrayList<String> strnbLegGagnes = new ArrayList<String>();
     private TextView TV1;
 
-    private String strPseudoJoueurs;
-    private String strNbPartiesJoueurs
-    private String strMeilleurLanceFlechette;
-    private String strnbAmis;
-    private String strnbSetGagnes;
-    private String strnbLegGagnes;
+    private String NBPJ;
+    private String MLF;
+    private String NBA;
+    private String NBSG;
+    private String NBLG;
 
 
     // Firebase
@@ -118,12 +117,20 @@ public class Statistiques extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
-                                        strPseudoJoueurs = downloadInfoList.get(i).getPseudo();
-                                        strNbPartiesJoueurs = downloadInfoList.get(i).getNbParties());
-                                        strMeilleurLanceFlechette = downloadInfoList.get(i).getMeilleurLanceFlechette());
-                                        strnbAmis = downloadInfoList.get(i).getnbAmis());
-                                        strnbLegGagnes = downloadInfoList.get(i).getnbLegGagnes());
-                                        strnbSetGagnes = downloadInfoList.get(i).getnbSetGagnes());
+                                        ps = downloadInfoList.get(i).getPseudo();
+                                        NBPJ = downloadInfoList.get(i).getPseudo();
+                                        MLF = downloadInfoList.get(i).getMeilleurLanceFlechette());
+                                        NBA = downloadInfoList.get(i).getnbAmis());
+                                        NBSG = downloadInfoList.get(i).getnbLegGagnes());
+                                        NBLG = downloadInfoList.get(i).getnbSetGagnes());
+
+                                        strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
+                                        strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
+                                        strMeilleurLanceFlechette.add(downloadInfoList.get(i).getMeilleurLanceFlechette());
+                                        strnbAmis.add(downloadInfoList.get(i).getnbAmis());
+                                        strnbLegGagnes.add(downloadInfoList.get(i).getnbLegGagnes());
+                                        strnbSetGagnes.add(downloadInfoList.get(i).getnbSetGagnes());
+
                                     }
 
                                 }
@@ -140,15 +147,15 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("\n\n\n\nMeilleur lancer : " + strMeilleurLanceFlechette + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + strnbSetGagnes + "\n\nNombre de Legs gagnés : " + strnbLegGagnes + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
+        TV1.setText("\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
     }
 
-   //public void AffichageString(ArrayList<String> listeStrings){
-   //     String s = "";
-   //     for (int i = 0; i < listeStrings.size(); i++){
-   //         s += listeStrings.get(i) + ", ";
-   //     }
-    // }
+    public void AffichageString(ArrayList<String> listeStrings){
+        String s = "";
+        for (int i = 0; i < listeStrings.size(); i++){
+            s += listeStrings.get(i) + ", ";
+        }
+    }
 
 
 
