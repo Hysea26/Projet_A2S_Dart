@@ -87,6 +87,7 @@ public class Partie extends AppCompatActivity {
     private ArrayList<Integer> listeScores = new ArrayList<>();
     private ArrayList<Integer> listeLegs = new ArrayList<>();
     private ArrayList<Integer> listeSets = new ArrayList<>();
+    private ArrayList<Integer> listeRounds = new ArrayList<>();
     private String IdPartie;
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
@@ -232,6 +233,13 @@ public class Partie extends AppCompatActivity {
             db.collection("Parties").document(IdPartie).update("sets", listeSets); // Mise à jour des donnees (sets) dans la BDD
         }
 
+        // Recup des rounds des joueurs, si liste vide (cas creation de partie), initialisation de la liste
+        listeRounds = listeParties.get(positionPartie).getRounds();
+        if (listeRounds.isEmpty()){ // Si liste vide : cas de creation de partie, affectation de 0 (0 legs gagnes pr l'instant)
+            InitialisationScore(listeRounds,listeJoueurs,0);
+            db.collection("Parties").document(IdPartie).update("rounds", listeRounds); // Mise à jour des donnees (sets) dans la BDD
+        }
+
     }
 
     public void InitialisationScore(ArrayList<Integer> listeInteger, ArrayList<Joueurs> listeSize, int choixPts){
@@ -251,7 +259,7 @@ public class Partie extends AppCompatActivity {
         mPartieList = new ArrayList<>();
 
         for (int i = 0; i < listeJoueurs.size(); i++) {
-            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, listePseudos.get(i),listeSets.get(i), listeLegs.get(i), listeScores.get(i)));
+            mPartieList.add(new RowItemPartie(R.drawable.img_user_profil, listePseudos.get(i),listeSets.get(i), listeLegs.get(i), listeScores.get(i), listeRounds.get(i)));
         }
 
         Log.d("Waouh", "mPartieList :" + mPartieList);

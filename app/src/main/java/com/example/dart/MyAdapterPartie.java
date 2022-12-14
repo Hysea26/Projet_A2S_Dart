@@ -36,6 +36,7 @@ public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyView
         public TextView mNbSetView;
         public TextView mNbLegView;
         public TextView mPointRestantView;
+        public TextView mNbRoundView;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -44,6 +45,7 @@ public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyView
             mNbSetView = itemView.findViewById(R.id.SetCompteur);
             mNbLegView = itemView.findViewById(R.id.LegCompteur);
             mPointRestantView = itemView.findViewById(R.id.PointRestantRV);
+            mNbRoundView = itemView.findViewById(R.id.RoundCompteur);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,6 +80,7 @@ public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyView
         holder.mNbLegView.setText(String.valueOf(currentItem.getLeg()));
         holder.mNbSetView.setText(String.valueOf(currentItem.getSet()));
         holder.mPointRestantView.setText(String.valueOf(currentItem.getPoint()));
+        holder.mNbRoundView.setText(String.valueOf(currentItem.getRound()));
     }
 
     @Override
