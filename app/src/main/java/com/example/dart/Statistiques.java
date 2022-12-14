@@ -109,7 +109,10 @@ public class Statistiques extends AppCompatActivity {
                                     if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
-                                        strIdJoueurs.add(downloadInfoList.get(i).getEmail());
+                                        strMeilleurLanceFlechette.add(downloadInfoList.get(i).getMeilleurLanceFlechette());
+                                        strnbAmis.add(downloadInfoList.get(i).getnbAmis());
+                                        strnbLegGagnes.add(downloadInfoList.get(i).getnbLegGagnes());
+                                        strnbSetGagnes.add(downloadInfoList.get(i).getnbSetGagnes());
                                     }
 
                                 }
@@ -125,8 +128,8 @@ public class Statistiques extends AppCompatActivity {
                 });
     }
 
-    public void Affichage_Stats(){
-        TV1.setText("Meilleur lancé : " + strPseudoJoueurs + "\nNombre d'amis : " + strNbPartiesJoueurs + "\nNombre de parties gagnées : " + strNbPartiesJoueurs + "\nNombre de sets gagnés : " + strPseudoJoueurs + "\nNombre de Legs gagnés : " + strPseudoJoueurs + "\nDernier meilleur lancé : " + strPseudoJoueurs + "\nNombre d'amis : " + strPseudoJoueurs + "\nNombre d'amis : ");
+    public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
+        TV1.setText("Meilleur lancé : " + strMeilleurLanceFlechette + "\nNombre d'amis : " + strnbAmis + "\nNombre de sets gagnés : " + strnbSetGagnes + "\nNombre de Legs gagnés : " + strnbLegGagnes + "\nDernier meilleur lancé : " + strPseudoJoueurs );
     }
 
 
