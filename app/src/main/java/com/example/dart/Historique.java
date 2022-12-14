@@ -36,8 +36,8 @@ public class Historique extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
-    ArrayList<Integer> scoresPartie = new ArrayList<>();
     ArrayList<ArrayList<Joueurs>> listeJoueursPartie = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> listeScoresPartie = new ArrayList<>();
 
     // Firebase
     private FirebaseFirestore db;
@@ -111,8 +111,7 @@ public class Historique extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     listeJoueursPartie.add(downloadInfoList.get(i).getJoueursChecked());
-
-                                    scoresPartie = downloadInfoList.get(i).getScores();
+                                    listeScoresPartie.add(downloadInfoList.get(i).getScores());
 
                                 }
 
@@ -134,12 +133,18 @@ public class Historique extends AppCompatActivity {
         ArrayList<Joueurs> listeJoueursDeLaPartie = new ArrayList<>();
         ArrayList<String> pseudosJoueursDeLaPartie = new ArrayList<>();
 
+        String sLegende = "Scores : ";
+        ArrayList<Integer> listeS = new ArrayList<>();
+
         // boucle parcourant la liste de joueurs de toutes les parties (liste de liste)
         for (int i=0; i<listeJoueursPartie.size();i++) {
             listeJoueursDeLaPartie = listeJoueursPartie.get(i); // recup des joueurs de la partie i
 
             pseudosJoueursDeLaPartie.clear();   // Vide la liste pour reutilisation
             String strPseudosJ = "";            // reset de la chaine de caractere
+
+            listeS = listeScoresPartie.get(i);
+            sLegende = "Scores : ";
 
             // boucle parcourant la liste des joueurs de la partie i
             for (int j=0; j<listeJoueursDeLaPartie.size(); j++){
@@ -152,8 +157,17 @@ public class Historique extends AppCompatActivity {
                     strPseudosJ += pseudosJoueursDeLaPartie.get(j).toString();
                 }
             }
+
+            for (int l=0; l<listeS.size(); l++){
+                if (l<listeS.size()-1){
+                    sLegende += listeS.get(l).toString() + ",";
+                } else {
+                    sLegende += listeS.get(l).toString();
+                }
+            }
+
             // Ajout de chaque partie en cours dans le recycler view
-            mExampleList.add(new RowItemPEC(R.drawable.img_user_profil,strPseudosJ,"205,501,306"));
+            mExampleList.add(new RowItemPEC(R.drawable.img_user_profil,strPseudosJ,sLegende));
         }
 
 

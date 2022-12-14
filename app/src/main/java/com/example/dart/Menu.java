@@ -335,7 +335,7 @@ public class Menu extends AppCompatActivity {
                                     if (task.getResult() != null) {
                                         List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
                                         position = downloadInfoList.size();
-                                        Log.d("AAAAAAAAAAAAAAAa", "size"+position);
+
                                     } else {
                                         Log.d("Echec", "Error getting documents: ", task.getException());
                                     }
