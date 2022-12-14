@@ -33,7 +33,10 @@ public class Statistiques extends AppCompatActivity {
     // Variables
     private ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
     private ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
-    private ArrayList<String> strIdJoueurs = new ArrayList<String>();
+    private ArrayList<String> strMeilleurLanceFlechette = new ArrayList<String>();
+    private ArrayList<String> strnbAmis = new ArrayList<String>();
+    private ArrayList<String> strnbSetGagnes = new ArrayList<String>();
+    private ArrayList<String> strnbLegGagnes = new ArrayList<String>();
     private TextView TV1;
 
     // Firebase
