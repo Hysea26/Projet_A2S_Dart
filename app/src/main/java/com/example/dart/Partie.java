@@ -358,6 +358,9 @@ public class Partie extends AppCompatActivity {
 
                         if (SetT.getText().toString() == String.valueOf(ChoixSet)) {
                             Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
+
+                            // Incrementation des statistiques
+
                             finish();
                         }
 

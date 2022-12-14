@@ -39,6 +39,8 @@ public class Statistiques extends AppCompatActivity {
     private ArrayList<String> strnbLegGagnes = new ArrayList<String>();
     private TextView TV1;
 
+    private String ps;
+
     // Firebase
     private FirebaseFirestore db; //On appelle  notre database
     private FirebaseAuth mAuth; //Pour savoir qui est connecté
@@ -110,6 +112,7 @@ public class Statistiques extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
+                                        ps = downloadInfoList.get(i).getPseudo();
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
                                         strMeilleurLanceFlechette.add(downloadInfoList.get(i).getMeilleurLanceFlechette());
@@ -132,8 +135,14 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("\n\n\n\nMeilleur lancer : " + strMeilleurLanceFlechette + "\n\nNombre d'amis : " + strnbAmis + "\n\nNombre de sets gagnés : " + strnbSetGagnes + "\n\nNombre de Legs gagnés : " + strnbLegGagnes + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
+        TV1.setText("\n\n\n\nMeilleur lancer : " + strMeilleurLanceFlechette + "\n\nNombre d'amis : " + ps + "\n\nNombre de sets gagnés : " + strnbSetGagnes + "\n\nNombre de Legs gagnés : " + strnbLegGagnes + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
     }
 
+    public void AffichageString(ArrayList<String> listeStrings){
+        String s = "";
+        for (int i = 0; i < listeStrings.size(); i++){
+            s += listeStrings.get(i) + ", ";
+        }
+    }
 
 }
