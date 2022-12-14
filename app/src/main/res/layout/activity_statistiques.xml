@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/id_TV_Txt"
+        android:id="@+id/id_TV_Stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="STATISTIQUES"
@@ -23,8 +23,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_TV_Txt"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintTop_toTopOf="@+id/id_TV_Stats"
+        app:layout_constraintVertical_bias="0.129"
+        android:text="aaaaa"/>
 
 
 

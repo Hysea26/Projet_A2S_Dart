@@ -49,7 +49,7 @@ public class Statistiques extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        TV1 = findViewById(R.id.id_TV_Txt);
+        TV1 = findViewById(R.id.id_TV_Stats);
 
         RecupJoueurs();
 
@@ -119,14 +119,14 @@ public class Statistiques extends AppCompatActivity {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
 
-                            R(); /////// fonction affichant les valeurs recup dans la page stats
+                            Affichage_Stats(); /////// fonction affichant les valeurs recup dans la page stats
                         }
                     }
                 });
     }
 
-    public void R(){
-        TV1.setText("Meilleur lancé : " + strPseudoJoueurs + "\nNomre amis : ");
+    public void Affichage_Stats(){
+        TV1.setText("Meilleur lancé : " + strPseudoJoueurs + "\nNombre d'amis : " + strNbPartiesJoueurs + "\nNombre de parties gagnées : " + strNbPartiesJoueurs + "\nNombre de sets gagnés : " + strPseudoJoueurs + "\nNombre de Legs gagnés : " + strPseudoJoueurs + "\nDernier meilleur lancé : " + strPseudoJoueurs + "\nNombre d'amis : " + strPseudoJoueurs + "\nNombre d'amis : ");
     }
 
 
