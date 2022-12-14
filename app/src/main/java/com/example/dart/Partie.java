@@ -100,6 +100,7 @@ public class Partie extends AppCompatActivity {
     private ArrayList<Integer> listeLegs = new ArrayList<>();
     private ArrayList<Integer> listeSets = new ArrayList<>();
     private ArrayList<Integer> listeRounds = new ArrayList<>();
+    private ArrayList<Boolean> listeBooleanPEC = new ArrayList<>();
     private String IdPartie;
     int positionPartie = 0;
     ArrayList<Parties> listeParties = new ArrayList<>();
@@ -263,23 +264,32 @@ public class Partie extends AppCompatActivity {
             db.collection("Parties").document(IdPartie).update("rounds", listeRounds); // Mise à jour des donnees (sets) dans la BDD
         }
 
+        // Recup du boolean des joueurs, si liste vide (cas creation de partie), initialisation de la liste
+        listeBooleanPEC = listeParties.get(positionPartie).getBooleanPartieEnCours();
+        if (listeBooleanPEC.isEmpty()){ // Si liste vide : cas de creation de partie, affectation de 0 (0 legs gagnes pr l'instant)
+            InitialisationBoolean(listeBooleanPEC,listeJoueurs,true);
+            db.collection("Parties").document(IdPartie).update("partieEnCours", listeBooleanPEC); // Mise à jour des donnees (sets) dans la BDD
+        }
+
     }
 
     public void InitialisationScore(ArrayList<Integer> listeInteger, ArrayList<Joueurs> listeSize, int choixPts){
-
         // Ajout de choixPts aux listes integer (score, leg, set)
         for (int i=0; i<listeSize.size(); i++){
             listeInteger.add(choixPts);
         }
+    }
 
+    public void InitialisationBoolean(ArrayList<Boolean> listeBoolean, ArrayList<Joueurs> listeSize, boolean bool){
+        for (int i=0; i<listeSize.size(); i++){
+            listeBoolean.add(bool);
+        }
     }
 
     public void createPartieList() {
 
         // Affichage du choixLeg et choixSet (partie en X set(s), Y legs)
         TV_ScoreBoard.setText("En "+ChoixSet+ " Set(s), "+ChoixLeg+" Legs");
-
-
 
         mPartieList = new ArrayList<>();
 
@@ -313,75 +323,82 @@ public class Partie extends AppCompatActivity {
         LegT.setText(String.valueOf(listeLegs.get(PositionJoueur)));
         SetT.setText(String.valueOf(listeSets.get(PositionJoueur)));
 
-        if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
-            int pr = Integer.parseInt(PointRestantT.getText().toString());
-            int pt = Integer.parseInt(PointTour.getText().toString());
+        if (listeBooleanPEC.get(PositionJoueur)){ // si partieEnCours = true
 
-            // Si PointTour est supérieur à PointRestant alors PointTour vaut 0
-            if (pr < pt) {
-                PointTour.setText(String.valueOf(0));
-                Toast.makeText(Partie.this, "Je crois que t'as fait trop là", Toast.LENGTH_SHORT).show();
-            }
+            if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
+                int pr = Integer.parseInt(PointRestantT.getText().toString());
+                int pt = Integer.parseInt(PointTour.getText().toString());
 
-            // Sinon PointRestantTemporaire = PointRestantTemporaire - PointTour
-            // Et lancé1,2,3 = null
-            else {
-                PointRestantT.setText(String.valueOf(pr - pt));
-                ModifScoreFirebase(pr-pt);
-                ModifRoundFirebase();
+                // Si PointTour est supérieur à PointRestant alors PointTour vaut 0
+                if (pr < pt) {
+                    PointTour.setText(String.valueOf(0));
+                    Toast.makeText(Partie.this, "Je crois que t'as fait trop là", Toast.LENGTH_SHORT).show();
+                }
 
-                lance1.setText(null);
-                lance2.setText(null);
-                lance3.setText(null);
-                PointTour.setText(String.valueOf(0));
+                // Sinon PointRestantTemporaire = PointRestantTemporaire - PointTour
+                // Et lancé1,2,3 = null
+                else {
+                    PointRestantT.setText(String.valueOf(pr - pt));
+                    ModifScoreFirebase(pr-pt);
+                    ModifRoundFirebase();
 
-
-                // Si PointRestant = 0 : LegT = LegT + 1
-                if (PointRestantT.getText().toString().equals("0")) {
-
-                    // +1 au leg
-                    int l = Integer.parseInt(LegT.getText().toString());
-                    LegT.setText(String.valueOf(l + 1));
-                    ModifLegFirebase(l+1);
-
-                    // Reset du score
-                    PointRestantT.setText(String.valueOf(ChoixScore));
-                    ModifScoreFirebase(ChoixScore);
-
-                    PointTour.setText("0");
+                    lance1.setText(null);
+                    lance2.setText(null);
+                    lance3.setText(null);
+                    PointTour.setText(String.valueOf(0));
 
 
-                    // Si Leg = ChoixLeg : SetT = SetT + 1
-                    if (LegT.getText().toString() == String.valueOf(ChoixLeg)) {
+                    // Si PointRestant = 0 : LegT = LegT + 1
+                    if (PointRestantT.getText().toString().equals("0")) {
 
-                        // +1 au set
-                        int s = Integer.parseInt(SetT.getText().toString());
-                        SetT.setText(String.valueOf(s + 1));
-                        ModifSetFirebase(s+1);
+                        // +1 au leg
+                        int l = Integer.parseInt(LegT.getText().toString());
+                        LegT.setText(String.valueOf(l + 1));
+                        ModifLegFirebase(l+1);
 
-                        // Reset du leg
-                        LegT.setText("0");
-                        ModifLegFirebase(0);
+                        // Reset du score
+                        PointRestantT.setText(String.valueOf(ChoixScore));
+                        ModifScoreFirebase(ChoixScore);
 
-                        if (SetT.getText().toString() == String.valueOf(ChoixSet)) {
-                            Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
+                        PointTour.setText("0");
 
-                            // Incrementation des statistiques
-                            IncrementationStatistiques();
 
-                            FinPartie();
+                        // Si Leg = ChoixLeg : SetT = SetT + 1
+                        if (LegT.getText().toString() == String.valueOf(ChoixLeg)) {
 
+                            // +1 au set
+                            int s = Integer.parseInt(SetT.getText().toString());
+                            SetT.setText(String.valueOf(s + 1));
+                            ModifSetFirebase(s+1);
+
+                            // Reset du leg
+                            LegT.setText("0");
+                            ModifLegFirebase(0);
+
+                            if (SetT.getText().toString() == String.valueOf(ChoixSet)) {
+                                Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
+
+                                // Incrementation des statistiques
+                                IncrementationStatistiques();
+
+                                //ModifBooleanFirebase(false);
+                                FinPartie();
+
+                            }
                         }
                     }
                 }
+            } else {
+                Toast.makeText(Partie.this, "Il manque au moins un lancé", Toast.LENGTH_SHORT).show();
             }
-            RefreshPartie();
         } else {
-            Toast.makeText(Partie.this, "Il manque au moins un lancé", Toast.LENGTH_SHORT).show();
+            RefreshPartie();
+            Toast.makeText(Partie.this, "La partie est terminée", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void FinPartie(){
+
         // Pop up de confirmation
         AlertDialog.Builder alert = new AlertDialog.Builder(Partie.this);
         alert.setTitle("Fin de partie");
@@ -515,6 +532,13 @@ public class Partie extends AppCompatActivity {
         listeNvxLegs = listeParties.get(positionPartie).getLegs();
         listeNvxLegs.set(PositionJoueur,nvxLeg);
         db.collection("Parties").document(IdPartie).update("legs", listeNvxLegs);   // Ajout du nouveau score
+    }
+
+    public void ModifBooleanFirebase(boolean etatPartie){
+        ArrayList<Boolean> listeNvxBool = new ArrayList<>();
+        listeNvxBool = listeParties.get(positionPartie).getBooleanPartieEnCours();
+        listeNvxBool.set(PositionJoueur,etatPartie);
+        db.collection("Parties").document(IdPartie).update("partieEnCours", listeNvxBool);   // Ajout du nouveau score
     }
 
     public void RefreshPartie(){

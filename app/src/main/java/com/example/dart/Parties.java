@@ -2,6 +2,7 @@ package com.example.dart;
 
 import android.net.Uri;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parties {
@@ -13,6 +14,7 @@ public class Parties {
     private Uri imageURI;
     private boolean isSelected;
     private String idPartie;
+    private ArrayList<Boolean> partieEnCours;
 
     public Parties() {
         // empty constructor
@@ -20,7 +22,7 @@ public class Parties {
     }
 
     // Constructeur pour les variables
-    public Parties(String idPartie, ArrayList<Joueurs> listeJoueursChecked, Integer choixSet, Integer choixLeg, Integer choixScore, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores, ArrayList<Integer> listeRounds) {
+    public Parties(String idPartie, ArrayList<Joueurs> listeJoueursChecked, Integer choixSet, Integer choixLeg, Integer choixScore, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores, ArrayList<Integer> listeRounds, ArrayList<Boolean> partieEnCours) {
 
         this.idPartie = idPartie;
         this.listeJoueursChecked = listeJoueursChecked;
@@ -31,6 +33,7 @@ public class Parties {
         this.choixSet = choixSet;
         this.choixLeg = choixLeg;
         this.choixScore = choixScore;
+        this.partieEnCours = partieEnCours;
     }
 
     // Get et Set liste joueurs
@@ -90,5 +93,9 @@ public class Parties {
     public String getIdPartie(){ return idPartie; }
 
     public void setIdPartie(String id){ this.idPartie = id; }
+
+    public ArrayList<Boolean> getBooleanPartieEnCours(){ return partieEnCours; }
+
+    public void setBooleanPartieEnCours(ArrayList<Boolean> partieEnCours){ this.partieEnCours = partieEnCours; }
 
 }
