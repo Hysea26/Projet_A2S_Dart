@@ -1,6 +1,7 @@
 package com.example.dart;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,11 +40,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 
@@ -159,7 +164,7 @@ public class Partie extends AppCompatActivity {
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalculOnClick();
+                ModifFirebase();
 
             }
         });
@@ -257,6 +262,11 @@ public class Partie extends AppCompatActivity {
         // Affichage du choixLeg et choixSet (partie en X set(s), Y legs)
         TV_ScoreBoard.setText("En "+ChoixSet+ " Set(s), "+ChoixLeg+" Legs");
 
+        // Recup des valeurs firebase pr affichage textView
+        PointRestantT.setText(String.valueOf(listeScores.get(0)));
+        LegT.setText(String.valueOf(listeLegs.get(0)));
+        SetT.setText(String.valueOf(listeSets.get(0)));
+
         mPartieList = new ArrayList<>();
 
         for (int i = 0; i < listeJoueurs.size(); i++) {
@@ -280,7 +290,10 @@ public class Partie extends AppCompatActivity {
 
     }
 
+
+
     public void CalculOnClick() {
+
         if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
             int pr = Integer.parseInt(PointRestantT.getText().toString());
             int pt = Integer.parseInt(PointTour.getText().toString());
@@ -295,6 +308,8 @@ public class Partie extends AppCompatActivity {
             // Et lancé1,2,3 = null
             else {
                 PointRestantT.setText(String.valueOf(pr - pt));
+                ModifScoreFirebase(pr-pt);
+
                 lance1.setText(null);
                 lance2.setText(null);
                 lance3.setText(null);
@@ -303,18 +318,31 @@ public class Partie extends AppCompatActivity {
 
                 // Si PointRestant = 0 : LegT = LegT + 1
                 if (PointRestantT.getText().toString().equals("0")) {
+
+                    // +1 au leg
                     int l = Integer.parseInt(LegT.getText().toString());
                     LegT.setText(String.valueOf(l + 1));
-                    PointRestantT.setText("501");
+                    ModifLegFirebase(l+1);
+
+                    // Reset du score
+                    PointRestantT.setText(String.valueOf(ChoixScore));
+                    ModifScoreFirebase(ChoixScore);
+
                     PointTour.setText("0");
 
 
                     // Si Leg = 2 : SetT = SetT + 1
                     if (LegT.getText().toString().equals("2")) {
+
+                        // +1 au set
                         int s = Integer.parseInt(SetT.getText().toString());
                         SetT.setText(String.valueOf(s + 1));
-                        PointRestantT.setText("501");
+                        ModifSetFirebase(s+1);
+
+                        // Reset du leg
+                        //PointRestantT.setText("501");
                         LegT.setText("0");
+                        ModifLegFirebase(0);
 
                         if (SetT.getText().toString().equals("2")) {
                             Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
@@ -326,5 +354,90 @@ public class Partie extends AppCompatActivity {
             }
         }
     }
+
+    public void ModifFirebase(){
+
+        db.collection("Parties")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        listeParties.clear();
+
+                        Log.d("Lecture", "Entre dans le oncomplete : ");
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null) {
+                                List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
+
+                                for (int i = 0; i < downloadInfoList.size(); i++) {
+                                    listeParties.add(downloadInfoList.get(i));
+                                }
+
+                            } else {
+                                Log.d("Echec", "Error getting documents: ", task.getException());
+                            }
+
+                            CalculOnClick();
+
+                        }
+                    }
+                });
+    }
+
+    public void ModifScoreFirebase(int nvxScore){
+        ArrayList<Integer> listeNvxScores = new ArrayList<>();
+        listeNvxScores = listeParties.get(positionPartie).getScores();
+        listeNvxScores.set(0,nvxScore);
+        db.collection("Parties").document(IdPartie).update("scores", listeNvxScores);   // Ajout du nouveau score
+
+    }
+
+    public void ModifSetFirebase(int nvxSet){
+        ArrayList<Integer> listeNvxSets = new ArrayList<>();
+        listeNvxSets = listeParties.get(positionPartie).getSets();
+        listeNvxSets.set(0,nvxSet);
+        db.collection("Parties").document(IdPartie).update("sets", listeNvxSets);   // Ajout du nouveau score
+
+    }
+/*
+    public void ModifcFirebase(){
+
+        db.collection("Parties")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        listeParties.clear();
+
+                        Log.d("Lecture", "Entre dans le oncomplete : ");
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null) {
+                                List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
+
+                                for (int i = 0; i < downloadInfoList.size(); i++) {
+                                    listeParties.add(downloadInfoList.get(i));
+                                }
+
+                            } else {
+                                Log.d("Echec", "Error getting documents: ", task.getException());
+                            }
+
+                            ModifLegFirebase(1);
+                        }
+                    }
+                });
+    }*/
+
+    public void ModifLegFirebase(int nvxLeg){
+        ArrayList<Integer> listeNvxLegs = new ArrayList<>();
+        listeNvxLegs = listeParties.get(positionPartie).getLegs();
+        listeNvxLegs.set(0,nvxLeg);
+        db.collection("Parties").document(IdPartie).update("legs", listeNvxLegs);   // Ajout du nouveau score
+    }
+
 
 }
