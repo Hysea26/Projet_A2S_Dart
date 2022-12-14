@@ -52,17 +52,21 @@ public class Partie extends AppCompatActivity {
 
     private static final String TAG = "Partie";
 
-
     // Declaration variables action partie
     private EditText lance1;
     private EditText lance2;
     private EditText lance3;
     private TextView PointTour;
+    private TextView PointRestantT;
+    private TextView LegT;
+    private TextView SetT;
+    private Button boutonValide;
+
+    // Vieilles Declaration variables action partie
     private TextView PointRestantTemporaire;
     private TextView PointRestantRV;
     private TextView LegCompteur;
     private TextView SetCompteur;
-    private Button boutonValide;
 
     // Declaration variables Recycler view
     private ArrayList<RowItemPartie> mPartieList;
@@ -106,36 +110,45 @@ public class Partie extends AppCompatActivity {
         // variables laetitia
         positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
         TV_ScoreBoard = findViewById(R.id.topScoreBoard);
-
         RecupJoueursPartie(positionPartie);
 
+        // Variables aurel
         lance1 = findViewById(R.id.edittext_lance_1);
         lance2 = findViewById(R.id.edittext_lance_2);
         lance3 = findViewById(R.id.edittext_lance_3);
         PointTour = findViewById(R.id.resultat);
-        PointRestantTemporaire = findViewById(R.id.PointRestantTemporaire);
+        PointRestantT= findViewById(R.id.PointRestantTemporaire);
+        LegT = findViewById(R.id.LegCompteur);
+        SetT = findViewById(R.id.SetCompteur);
+
         boutonValide = findViewById(R.id.boutonValide);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
+            // Valeur des scores avant d'avoir rentré les scores
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 int temp1 = 0;
                 int temp2 = 0;
                 int temp3 = 0;
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Si les 3 lancés sont rentrés
                 if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
                     int temp1 = Integer.parseInt(lance1.getText().toString());
                     int temp2 = Integer.parseInt(lance2.getText().toString());
                     int temp3 = Integer.parseInt(lance3.getText().toString());
-                    PointTour.setText(String.valueOf(temp1 + temp2 + temp3));
+
+                    //Bash si PointTour > 180
+                    if(temp1 + temp2 + temp3 > 180) {PointTour.setText(String.valueOf(0)); Toast.makeText(Partie.this, "Score au dessus de 180 ? Je pense que tu triches", Toast.LENGTH_SHORT).show();}
+
+                    // PointTour prend la valeur de lancé1 + lancé2 + lancé3
+                    else {PointTour.setText(String.valueOf(temp1 + temp2 + temp3));}
                 }
             }
-
             @Override
-            public void afterTextChanged(Editable editable) { }
+            public void afterTextChanged(Editable editable) {
+            }
 
         };
         lance1.addTextChangedListener(textWatcher);
@@ -146,19 +159,7 @@ public class Partie extends AppCompatActivity {
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // PointRestantTemporaire = PointRestantTemporaire - PointTour
-                if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
-                    int pr = Integer.parseInt(PointRestantTemporaire.getText().toString());
-                    int pt = Integer.parseInt(PointTour.getText().toString());
-                    PointRestantTemporaire.setText(String.valueOf(pr - pt));
-                    lance1.setText(null);
-                    lance2.setText(null);
-                    lance3.setText(null);
-
-                }
-                else {
-                    Toast.makeText(Partie.this, "Il manque un lancé", Toast.LENGTH_SHORT).show();
-                }
+                CalculOnClick();
 
             }
         });
@@ -277,10 +278,53 @@ public class Partie extends AppCompatActivity {
 
         recyclerViewPartie.setHasFixedSize(true);
 
-
     }
 
+    public void CalculOnClick() {
+        if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
+            int pr = Integer.parseInt(PointRestantT.getText().toString());
+            int pt = Integer.parseInt(PointTour.getText().toString());
+
+            // Si PointTour est supérieur à PointRestant alors PointTour vaut 0
+            if (pr < pt) {
+                PointTour.setText(String.valueOf(0));
+                Toast.makeText(Partie.this, "Je crois que t'as fait trop là", Toast.LENGTH_SHORT).show();
+            }
+
+            // Sinon PointRestantTemporaire = PointRestantTemporaire - PointTour
+            // Et lancé1,2,3 = null
+            else {
+                PointRestantT.setText(String.valueOf(pr - pt));
+                lance1.setText(null);
+                lance2.setText(null);
+                lance3.setText(null);
+                PointTour.setText(String.valueOf(0));
 
 
+                // Si PointRestant = 0 : LegT = LegT + 1
+                if (PointRestantT.getText().toString().equals("0")) {
+                    int l = Integer.parseInt(LegT.getText().toString());
+                    LegT.setText(String.valueOf(l + 1));
+                    PointRestantT.setText("501");
+                    PointTour.setText("0");
+
+
+                    // Si Leg = 2 : SetT = SetT + 1
+                    if (LegT.getText().toString().equals("2")) {
+                        int s = Integer.parseInt(SetT.getText().toString());
+                        SetT.setText(String.valueOf(s + 1));
+                        PointRestantT.setText("501");
+                        LegT.setText("0");
+
+                        if (SetT.getText().toString().equals("2")) {
+                            Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+
+                    }
+                }
+            }
+        }
+    }
 
 }
