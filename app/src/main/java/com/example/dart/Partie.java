@@ -66,6 +66,7 @@ public class Partie extends AppCompatActivity {
     private TextView LegT;
     private TextView SetT;
     private Button boutonValide;
+    private Button boutonReset;
 
     // Vieilles Declaration variables action partie
     private TextView PointRestantTemporaire;
@@ -127,6 +128,7 @@ public class Partie extends AppCompatActivity {
         SetT = findViewById(R.id.SetCompteur);
 
         boutonValide = findViewById(R.id.boutonValide);
+        boutonReset = findViewById(R.id.boutonReset);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -160,7 +162,17 @@ public class Partie extends AppCompatActivity {
         lance2.addTextChangedListener(textWatcher);
         lance3.addTextChangedListener(textWatcher);
 
-        // Clique boutton validé
+        // Clic bouton reset
+        boutonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
+        // Clic bouton valider
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,8 +344,8 @@ public class Partie extends AppCompatActivity {
                     PointTour.setText("0");
 
 
-                    // Si Leg = 2 : SetT = SetT + 1
-                    if (LegT.getText().toString().equals("2")) {
+                    // Si Leg = ChoixLeg : SetT = SetT + 1
+                    if (LegT.getText().toString() == String.valueOf(ChoixLeg)) {
 
                         // +1 au set
                         int s = Integer.parseInt(SetT.getText().toString());
@@ -344,7 +356,7 @@ public class Partie extends AppCompatActivity {
                         LegT.setText("0");
                         ModifLegFirebase(0);
 
-                        if (SetT.getText().toString().equals("2")) {
+                        if (SetT.getText().toString() == String.valueOf(ChoixSet)) {
                             Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
                             finish();
                         }

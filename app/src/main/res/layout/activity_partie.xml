@@ -46,11 +46,13 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <EditText
         android:id="@+id/edittext_lance_2"
@@ -77,16 +79,15 @@
         android:id="@+id/resultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_3"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/scoreLeg"
@@ -186,10 +187,12 @@
         android:id="@+id/boutonValide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:text="Valider"
-        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edittext_lance_3"
+        app:layout_constraintTop_toBottomOf="@+id/resultat" />
 
     <ImageView
         android:id="@+id/id_dart_logo"
@@ -203,5 +206,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_dart3" />
 
+    <Button
+        android:id="@+id/boutonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
