@@ -309,6 +309,7 @@ public class Partie extends AppCompatActivity {
             else {
                 PointRestantT.setText(String.valueOf(pr - pt));
                 ModifScoreFirebase(pr-pt);
+                ModifRoundFirebase();
 
                 lance1.setText(null);
                 lance2.setText(null);
@@ -340,7 +341,6 @@ public class Partie extends AppCompatActivity {
                         ModifSetFirebase(s+1);
 
                         // Reset du leg
-                        //PointRestantT.setText("501");
                         LegT.setText("0");
                         ModifLegFirebase(0);
 
@@ -386,12 +386,18 @@ public class Partie extends AppCompatActivity {
                 });
     }
 
+    public void ModifRoundFirebase(){
+        ArrayList<Integer> listeNvxRound = new ArrayList<>();
+        listeNvxRound = listeParties.get(positionPartie).getRounds();
+        listeNvxRound.set(0,listeNvxRound.get(0)+1);
+        db.collection("Parties").document(IdPartie).update("rounds", listeNvxRound);   // Ajout du nouveau round
+    }
+
     public void ModifScoreFirebase(int nvxScore){
         ArrayList<Integer> listeNvxScores = new ArrayList<>();
         listeNvxScores = listeParties.get(positionPartie).getScores();
         listeNvxScores.set(0,nvxScore);
         db.collection("Parties").document(IdPartie).update("scores", listeNvxScores);   // Ajout du nouveau score
-
     }
 
     public void ModifSetFirebase(int nvxSet){
@@ -399,38 +405,7 @@ public class Partie extends AppCompatActivity {
         listeNvxSets = listeParties.get(positionPartie).getSets();
         listeNvxSets.set(0,nvxSet);
         db.collection("Parties").document(IdPartie).update("sets", listeNvxSets);   // Ajout du nouveau score
-
     }
-/*
-    public void ModifcFirebase(){
-
-        db.collection("Parties")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        listeParties.clear();
-
-                        Log.d("Lecture", "Entre dans le oncomplete : ");
-                        if (task.isSuccessful()) {
-                            if (task.getResult() != null) {
-                                List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
-
-                                for (int i = 0; i < downloadInfoList.size(); i++) {
-                                    listeParties.add(downloadInfoList.get(i));
-                                }
-
-                            } else {
-                                Log.d("Echec", "Error getting documents: ", task.getException());
-                            }
-
-                            ModifLegFirebase(1);
-                        }
-                    }
-                });
-    }*/
 
     public void ModifLegFirebase(int nvxLeg){
         ArrayList<Integer> listeNvxLegs = new ArrayList<>();

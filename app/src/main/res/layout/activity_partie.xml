@@ -7,6 +7,40 @@
     tools:context=".Partie">
 
 
+    <TextView
+        android:id="@+id/PointRestantTemporaire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="501"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/score"
+        app:layout_constraintTop_toBottomOf="@+id/score" />
+
+    <TextView
+        android:id="@+id/LegCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreLeg" />
+
+    <TextView
+        android:id="@+id/SetCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreSet" />
+
+
     <EditText
         android:id="@+id/edittext_lance_1"
         android:layout_width="40dp"
@@ -168,39 +202,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_dart3" />
-
-    <TextView
-        android:id="@+id/PointRestantTemporaire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="501"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/score"
-        app:layout_constraintTop_toBottomOf="@+id/score" />
-
-    <TextView
-        android:id="@+id/LegCompteur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/scoreLeg"
-        app:layout_constraintTop_toBottomOf="@+id/scoreLeg" />
-
-    <TextView
-        android:id="@+id/SetCompteur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/scoreLeg"
-        app:layout_constraintTop_toBottomOf="@+id/scoreSet" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
