@@ -25,9 +25,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.AggregateQuery;
-import com.google.firebase.firestore.AggregateQuerySnapshot;
-import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -53,6 +50,7 @@ public class Menu extends AppCompatActivity {
     private MyAdapterJoueur mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    // Déclaration variables recuperant les valeurs des joueurs
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
     ArrayList<Integer> strNbPartiesJoueurs = new ArrayList<Integer>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
@@ -84,7 +82,6 @@ public class Menu extends AppCompatActivity {
 
         // Recycler view
         RecupJoueurs();
-        //setButtons(); // clics du recycler
 
         // Bouton nouvelle partie
         NouvellePartieBtn = (Button) findViewById(R.id.NouvellePartieBtn);
@@ -170,7 +167,7 @@ public class Menu extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     if (!currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // pour ne pas afficher l'utilisateur
-                                        // il faudra afficher uniquement les amis (boucle if)
+                                        // il faudra afficher uniquement les amis
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
                                         strIdJoueurs.add(downloadInfoList.get(i).getEmail());
@@ -278,6 +275,7 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+    // Fonction insérant le currentUser en position 0
     public void InsertionCurrentUser(){
 
         // Copie de mJoueursChecked dans listeJ
@@ -429,18 +427,5 @@ public class Menu extends AppCompatActivity {
         }
         return j;
     }
-
-
-    public void setButtons() {
-        buttonInsert = findViewById(R.id.searchbtn);
-
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insertItem(0);
-            }
-        });
-    }
-
 
 }

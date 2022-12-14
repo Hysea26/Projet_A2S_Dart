@@ -1,6 +1,5 @@
 package com.example.dart;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+// My adapter joueur
 
 public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyViewHolder> {
 
@@ -57,19 +58,6 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                     }
                 }
             });
-/*
-            mSelectView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onDeleteClick(position);
-                        }
-                    }
-                }
-            });
-            */
 
             mCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override

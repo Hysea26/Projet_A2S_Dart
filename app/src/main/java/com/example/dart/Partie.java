@@ -82,15 +82,11 @@ public class Partie extends AppCompatActivity {
     private MyAdapterPartie mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
-    ArrayList<String> strIdJoueurs = new ArrayList<String>();
-    ArrayList<Integer> point = new ArrayList<Integer>();
-
     // Firebase
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    // Variables laetitia
+    // Variables partie
     private int ChoixScore;
     private int ChoixLeg;
     private int ChoixSet;
@@ -107,7 +103,7 @@ public class Partie extends AppCompatActivity {
     private TextView TV_ScoreBoard;
     private Boolean ok = true;
 
-    // Variables stats
+    // Variables statistiques
     private String IdJoueur;
     private int PositionJoueur;
 
@@ -120,12 +116,12 @@ public class Partie extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // variables laetitia
+        // variables
         TV_ScoreBoard = findViewById(R.id.topScoreBoard);
         positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
         RecupJoueursPartie(positionPartie);
 
-        // Variables aurel
+        // Variables TV
         lance1 = findViewById(R.id.edittext_lance_1);
         lance2 = findViewById(R.id.edittext_lance_2);
         lance3 = findViewById(R.id.edittext_lance_3);

@@ -10,16 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ImageButton;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -35,6 +30,7 @@ public class Historique extends AppCompatActivity {
     private MyAdapterPEC mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    // Declaration variables recuperant les valeurs des parties
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
     ArrayList<ArrayList<Joueurs>> listeJoueursPartie = new ArrayList<>();
     ArrayList<ArrayList<Integer>> listeScoresPartie = new ArrayList<>();
@@ -188,6 +184,7 @@ public class Historique extends AppCompatActivity {
 
     }
 
+    // Fonction renvoyant le vainqueur selon le nombre de rounds
     public int CalculResultats(ArrayList<Integer> listeR, ArrayList<String> listeP){
         int positionVainqueur = 0;
         int roundVainqueur = listeR.get(0);
@@ -200,6 +197,7 @@ public class Historique extends AppCompatActivity {
         return positionVainqueur;
     }
 
+    // Fonction parcourant la liste de boolean FindePartie, si un joueur a fini, affiche le vainqueur
     public boolean booleanFinPartie(ArrayList<Boolean> listeB){
         for (int i=0; i<listeB.size(); i++){
             if (!listeB.get(i)){

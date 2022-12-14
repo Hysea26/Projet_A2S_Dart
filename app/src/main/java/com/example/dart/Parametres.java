@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,16 +28,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-//////////////////// Selyan /////////////////////
 
 public class Parametres extends AppCompatActivity {
 
     private static final String TAG = "Connexion"; // Pour des tags d'erreurs / verifs
 
+    // Initialisation variables
     Button btn_deconnexion, btn_supprCompte;
     ImageButton Imbtn_stylo;
     TextView TV_pseudo_P, TV_email_P;
-
     private String idUser;
 
     // Initialisation variables firebase authentification et firestore
@@ -102,9 +100,6 @@ public class Parametres extends AppCompatActivity {
                 // Supprimer aussi 'joueurs'
             }
         });
-
-
-
 
 
         // Initialisation bottom navigation :

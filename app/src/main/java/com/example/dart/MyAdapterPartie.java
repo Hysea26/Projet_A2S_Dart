@@ -1,6 +1,5 @@
 package com.example.dart;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+// my adapter Partie
 
 public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyViewHolder> {
 
@@ -74,7 +75,6 @@ public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyView
     @Override
     public void onBindViewHolder(MyAdapterPartie.MyViewHolder holder, int position) {
         RowItemPartie currentItem = mExampleList.get(position);
-
         holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
         holder.mNbLegView.setText(String.valueOf(currentItem.getLeg()));

@@ -3,13 +3,14 @@ package com.example.dart;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+// My adapter parties en cours
 
 public class MyAdapterPEC extends RecyclerView.Adapter<MyAdapterPEC.MyViewHolder> {
 
@@ -70,7 +71,6 @@ public class MyAdapterPEC extends RecyclerView.Adapter<MyAdapterPEC.MyViewHolder
     @Override
     public void onBindViewHolder(MyAdapterPEC.MyViewHolder holder, int position) {
         RowItemPEC currentItem = mExampleList.get(position);
-
         holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
         holder.mLegendeView.setText(currentItem.getLegende());

@@ -1,14 +1,10 @@
 package com.example.dart;
 
-import android.net.Uri;
-
 public class Joueurs {
 
     // Variables stockage des donnees
     private String username, email;
     private int nbParties, meilleurLanceFlechette, nbLegGagnes, nbSetGagnes, nbAmis;
-    private Uri imageURI;
-    private boolean isSelected;
 
     public Joueurs() {
         // empty constructor

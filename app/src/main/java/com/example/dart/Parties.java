@@ -11,8 +11,6 @@ public class Parties {
     private ArrayList<Joueurs> listeJoueursChecked;
     private ArrayList<Integer> listeSets,listeLegs,listeScores, listeRounds;
     private Integer choixSet,choixLeg, choixScore;
-    private Uri imageURI;
-    private boolean isSelected;
     private String idPartie;
     private ArrayList<Boolean> partieEnCours;
 

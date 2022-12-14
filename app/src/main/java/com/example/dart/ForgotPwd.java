@@ -12,19 +12,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ForgotPwd extends AppCompatActivity {
 
-    private static final String TAG = "Creation compte"; // Pour des tags d'erreurs / verifs
+    private static final String TAG = "Forgot PWD"; // Pour des tags d'erreurs / verifs
 
+    // Initialisation variables
     EditText EdT_email;
     Button btn_send;
     ImageButton Imbtn_back;
     private ForgotPwd activity;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pwd);
+
+        mAuth = FirebaseAuth.getInstance();
 
         // Affectation des EditText
         EdT_email = (EditText) findViewById(R.id.id_email_zone_FP);
@@ -39,7 +46,7 @@ public class ForgotPwd extends AppCompatActivity {
             public void onClick(View v) {
                 Intent launchActivity = new Intent(ForgotPwd.this, Connexion.class);
                 startActivity(launchActivity); // a enlever avec l'auth
-/*
+
                 AlertDialog.Builder popupEmail = new AlertDialog.Builder(activity);
                 popupEmail.setTitle("Reinitialisation du mot de passe");
                 popupEmail.setMessage(R.string.resetEmail);
@@ -58,7 +65,7 @@ public class ForgotPwd extends AppCompatActivity {
                         // User cancelled the dialog
                     }
                 });
-                popupEmail.show();*/
+                popupEmail.show();
             }
         });
 

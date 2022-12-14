@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,15 +19,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 //////////////////// Selyan /////////////////////
 
 public class Statistiques extends AppCompatActivity {
-    String parametres[]={"Parties jouées", "Mètres parcourus par les fléchettes", "Dernier meilleur score", "Nombre d'amis total", "Nombre de Legs gagnés", "Nombre de sets gagnés", "Nombre de parties gagnées" };
-    int Statistiques_Images[] = {R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques};
 
     // Variables
     private TextView TV1;
@@ -54,7 +50,8 @@ public class Statistiques extends AppCompatActivity {
 
         TV1 = findViewById(R.id.id_TV_Stats);
 
-        RecupJoueurs();
+        // Recup stats
+        RecupJoueursStats();
 
         //Initialisation:
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -92,7 +89,7 @@ public class Statistiques extends AppCompatActivity {
     }
 
 
-    public void RecupJoueurs(){ // recup des joueurs deja crees pour affichage dans recycler view menu
+    public void RecupJoueursStats(){ // recup des joueurs deja crees pour affichage dans recycler view menu
         db.collection("Joueurs")
                 .orderBy("email", Query.Direction.DESCENDING)
                 .get()
