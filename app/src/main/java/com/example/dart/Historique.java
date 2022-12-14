@@ -38,6 +38,8 @@ public class Historique extends AppCompatActivity {
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
     ArrayList<ArrayList<Joueurs>> listeJoueursPartie = new ArrayList<>();
     ArrayList<ArrayList<Integer>> listeScoresPartie = new ArrayList<>();
+    ArrayList<ArrayList<Boolean>> listeBooleanPartie = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> listeRoundsPartie = new ArrayList<>();
 
     // Firebase
     private FirebaseFirestore db;
@@ -110,7 +112,8 @@ public class Historique extends AppCompatActivity {
 
                                     listeJoueursPartie.add(downloadInfoList.get(i).getJoueursChecked());
                                     listeScoresPartie.add(downloadInfoList.get(i).getScores());
-
+                                    listeBooleanPartie.add(downloadInfoList.get(i).getBooleanPartieEnCours());
+                                    listeRoundsPartie.add(downloadInfoList.get(i).getRounds());
                                 }
 
                             } else {
@@ -131,8 +134,13 @@ public class Historique extends AppCompatActivity {
         ArrayList<Joueurs> listeJoueursDeLaPartie = new ArrayList<>();
         ArrayList<String> pseudosJoueursDeLaPartie = new ArrayList<>();
 
+        // Initialisation variables pour recup scores de la partie
         String sLegende = "Scores : ";
         ArrayList<Integer> listeS = new ArrayList<>();
+
+        // Initialisation variables pour recup boolean fin de partie
+        ArrayList<Boolean> listeBoolean = new ArrayList<>();
+        ArrayList<Integer> listeRounds = new ArrayList<>();
 
         // boucle parcourant la liste de joueurs de toutes les parties (liste de liste)
         for (int i=0; i<listeJoueursPartie.size();i++) {
@@ -143,6 +151,9 @@ public class Historique extends AppCompatActivity {
 
             listeS = listeScoresPartie.get(i);
             sLegende = "Scores : ";
+
+            listeBoolean = listeBooleanPartie.get(i);
+            listeRounds = listeRoundsPartie.get(i);
 
             // boucle parcourant la liste des joueurs de la partie i
             for (int j=0; j<listeJoueursDeLaPartie.size(); j++){
@@ -157,11 +168,17 @@ public class Historique extends AppCompatActivity {
             }
 
             for (int l=0; l<listeS.size(); l++){
-                if (l<listeS.size()-1){
-                    sLegende += listeS.get(l).toString() + ",";
-                } else {
-                    sLegende += listeS.get(l).toString();
+                if (booleanFinPartie(listeBoolean)) { // si la partie est encore en cours pour tous les joueurs
+                    if (l < listeS.size() - 1) {
+                        sLegende += listeS.get(l).toString() + ",";
+                    } else {
+                        sLegende += listeS.get(l).toString();
+                    }
+                } else { // si au moins l'un des joueurs a termine la partie
+                    int pos = CalculResultats(listeRounds,pseudosJoueursDeLaPartie);
+                    sLegende = "Partie terminee, vainqueur : " + listeJoueursDeLaPartie.get(pos).getPseudo();
                 }
+
             }
 
             // Ajout de chaque partie en cours dans le recycler view
@@ -169,11 +186,27 @@ public class Historique extends AppCompatActivity {
         }
 
 
-        /*
-        for(int i=0;i<scoresPartie.size();i++) {
-            mExampleList.add(new RowItemPEC(R.drawable.img_user_profil, "strPseudoJoueurs.get(i).toString()", scoresPartie.get(i).toString()));
-            //Log.d("Create exemple list Waouh", "mExampleList :"+scoresPartie.get(i));
-        }*/
+    }
+
+    public int CalculResultats(ArrayList<Integer> listeR, ArrayList<String> listeP){
+        int positionVainqueur = 0;
+        int roundVainqueur = listeR.get(0);
+        for (int i=1; i<listeR.size(); i++){
+            if (listeR.get(i) > roundVainqueur){
+                roundVainqueur = listeR.get(i);
+                positionVainqueur = i;
+            }
+        }
+        return positionVainqueur;
+    }
+
+    public boolean booleanFinPartie(ArrayList<Boolean> listeB){
+        for (int i=0; i<listeB.size(); i++){
+            if (!listeB.get(i)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void buildRecyclerView() {
