@@ -118,8 +118,8 @@ public class Partie extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // variables laetitia
-        positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
         TV_ScoreBoard = findViewById(R.id.topScoreBoard);
+        positionPartie = getIntent().getIntExtra("position", 0);     // recupere la valeur de la position de la partie dans firebase
         RecupJoueursPartie(positionPartie);
 
         // Variables aurel

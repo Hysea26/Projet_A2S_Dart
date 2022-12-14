@@ -25,6 +25,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.AggregateQuery;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
+import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -41,6 +44,8 @@ public class Menu extends AppCompatActivity {
 
     private Button NouvellePartieBtn;
     private ImageButton buttonInsert;
+
+    private int position = 0;
 
     // Declaration variables Recycler view
     private ArrayList<RowItemJoueur> mExampleList;
@@ -318,10 +323,27 @@ public class Menu extends AppCompatActivity {
                 // Creer une partie dans Firestore
                 creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>());
 
-                // Aller dans partie
+                // Recup de la position de la partie cree
                 Intent intent = new Intent(Menu.this, Partie.class);
-                intent.putExtra("choixScore", choixScore); // envoi du choix de score a la classe Partie
-                startActivity(intent);
+                db.collection("Parties")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    if (task.getResult() != null) {
+                                        List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
+                                        position = downloadInfoList.size();
+                                        Log.d("AAAAAAAAAAAAAAAa", "size"+position);
+                                    } else {
+                                        Log.d("Echec", "Error getting documents: ", task.getException());
+                                    }
+                                }
+                                intent.putExtra("position", position-1); // envoi de la position de la partie a Partie
+                                startActivity(intent);
+                            }
+                        });
 
                 // Reset des variables utilisees pour la creation de la partie
                 mJoueursChecked.clear();                        // vide la liste de joueurs checks
