@@ -39,6 +39,7 @@ public class Statistiques extends AppCompatActivity {
     private ArrayList<String> strnbLegGagnes = new ArrayList<String>();
     private TextView TV1;
 
+    private String ps;
     private String NBPJ;
     private String MLF;
     private String NBA;
@@ -119,10 +120,10 @@ public class Statistiques extends AppCompatActivity {
                                     if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
                                         ps = downloadInfoList.get(i).getPseudo();
                                         NBPJ = downloadInfoList.get(i).getPseudo();
-                                        MLF = downloadInfoList.get(i).getMeilleurLanceFlechette());
-                                        NBA = downloadInfoList.get(i).getnbAmis());
-                                        NBSG = downloadInfoList.get(i).getnbLegGagnes());
-                                        NBLG = downloadInfoList.get(i).getnbSetGagnes());
+                                        MLF = downloadInfoList.get(i).getMeilleurLanceFlechette();
+                                        NBA = downloadInfoList.get(i).getnbAmis();
+                                        NBSG = downloadInfoList.get(i).getnbLegGagnes();
+                                        NBLG = downloadInfoList.get(i).getnbSetGagnes();
 
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
@@ -147,7 +148,7 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
+        TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG);
     }
 
     public void AffichageString(ArrayList<String> listeStrings){
