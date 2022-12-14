@@ -40,8 +40,8 @@ public class Statistiques extends AppCompatActivity {
     private TextView TV1;
 
     // Firebase
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+    private FirebaseFirestore db; //On appelle  notre database
+    private FirebaseAuth mAuth; //Pour savoir qui est connecté
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +132,7 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("Meilleur lancé : " + strMeilleurLanceFlechette + "\n\nNombre d'amis : " + strnbAmis + "\n\nNombre de sets gagnés : " + strnbSetGagnes + "\n\nNombre de Legs gagnés : " + strnbLegGagnes + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
+        TV1.setText("\n\n\nMeilleur lancer : " + strMeilleurLanceFlechette + "\n\nNombre d'amis : " + strnbAmis + "\n\nNombre de sets gagnés : " + strnbSetGagnes + "\n\nNombre de Legs gagnés : " + strnbLegGagnes + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
     }
 
 
