@@ -147,7 +147,7 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
+        TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG + "\n\nDernier meilleur lancé : " + strPseudoJoueurs );
     }
 
     public void AffichageString(ArrayList<String> listeStrings){
