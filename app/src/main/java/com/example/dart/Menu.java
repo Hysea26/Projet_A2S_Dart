@@ -316,7 +316,7 @@ public class Menu extends AppCompatActivity {
                 InsertionCurrentUser();
 
                 // Creer une partie dans Firestore
-                creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>());
+                creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>());
 
                 // Aller dans partie
                 Intent intent = new Intent(Menu.this, Partie.class);
@@ -343,7 +343,7 @@ public class Menu extends AppCompatActivity {
         alert.create().show();
     }
 
-    private void creationDocumentPartieFirestore(ArrayList<Joueurs> listeJoueurs, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs,ArrayList<Integer> listeScores) {
+    private void creationDocumentPartieFirestore(ArrayList<Joueurs> listeJoueurs, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs,ArrayList<Integer> listeScores, ArrayList<Integer> listeRounds) {
 
         // creating a collection reference
         // for our Firebase Firetore database.
@@ -352,7 +352,7 @@ public class Menu extends AppCompatActivity {
         String idPartie = CreationIdPartie();
 
         // adding our data to our users object class.
-        Parties partie = new Parties(idPartie,listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),Integer.parseInt(choixScore),listeSets,listeLegs,listeScores);
+        Parties partie = new Parties(idPartie,listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),Integer.parseInt(choixScore),listeSets,listeLegs,listeScores,listeRounds);
 
         // Ajout de la data dans firestore
         db.collection("Parties")

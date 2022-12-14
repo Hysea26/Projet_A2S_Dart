@@ -8,7 +8,7 @@ public class Parties {
 
     // Variables stockage des donnees
     private ArrayList<Joueurs> listeJoueursChecked;
-    private ArrayList<Integer> listeSets,listeLegs,listeScores;
+    private ArrayList<Integer> listeSets,listeLegs,listeScores, listeRounds;
     private Integer choixSet,choixLeg, choixScore;
     private Uri imageURI;
     private boolean isSelected;
@@ -20,13 +20,14 @@ public class Parties {
     }
 
     // Constructeur pour les variables
-    public Parties(String idPartie, ArrayList<Joueurs> listeJoueursChecked, Integer choixSet, Integer choixLeg, Integer choixScore, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores) {
+    public Parties(String idPartie, ArrayList<Joueurs> listeJoueursChecked, Integer choixSet, Integer choixLeg, Integer choixScore, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs, ArrayList<Integer> listeScores, ArrayList<Integer> listeRounds) {
 
         this.idPartie = idPartie;
         this.listeJoueursChecked = listeJoueursChecked;
         this.listeSets = listeSets;
         this.listeLegs = listeLegs;
         this.listeScores = listeScores;
+        this.listeRounds = listeRounds;
         this.choixSet = choixSet;
         this.choixLeg = choixLeg;
         this.choixScore = choixScore;
@@ -64,6 +65,14 @@ public class Parties {
 
     public void setScores(ArrayList<Integer> scores) {
         this.listeScores = scores;
+    }
+
+    public ArrayList<Integer> getRounds() {
+        return listeRounds;
+    }
+
+    public void setRounds(ArrayList<Integer> rounds) {
+        this.listeRounds = rounds;
     }
 
     public Integer getChoixSet(){ return choixSet; }
