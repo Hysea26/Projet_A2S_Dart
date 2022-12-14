@@ -112,7 +112,7 @@ public class Statistiques extends AppCompatActivity {
                                         MLF = downloadInfoList.get(i).getMeilleurLanceFlechette();
                                         NBA = downloadInfoList.get(i).getnbAmis();
                                         NBSG = downloadInfoList.get(i).getnbLegGagnes();
-                                        NBLG = downloadInfoList.get(i).getnbSetGagnes();b
+                                        NBLG = downloadInfoList.get(i).getnbSetGagnes();
 
                                     }
 
