@@ -383,6 +383,7 @@ public class Partie extends AppCompatActivity {
 
                                 ok = false;
                                 ModifBooleanFirebase(false);
+
                                 FinPartie();
 
                             }
@@ -397,6 +398,7 @@ public class Partie extends AppCompatActivity {
             }
         } else {
             Toast.makeText(Partie.this, "La partie est terminée", Toast.LENGTH_SHORT).show();
+            FinPartie();
         }
     }
 
@@ -541,7 +543,7 @@ public class Partie extends AppCompatActivity {
         ArrayList<Boolean> listeNvxBool = new ArrayList<>();
         listeNvxBool = listeParties.get(positionPartie).getBooleanPartieEnCours();
         listeNvxBool.set(PositionJoueur,etatPartie);
-        db.collection("Parties").document(IdPartie).update("partieEnCours", listeNvxBool);   // Ajout du nouveau score
+        db.collection("Parties").document(IdPartie).update("booleanPartieEnCours", listeNvxBool);   // Ajout du nouveau score
     }
 
     public void RefreshPartie(){
