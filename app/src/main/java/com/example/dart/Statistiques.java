@@ -125,13 +125,6 @@ public class Statistiques extends AppCompatActivity {
                                         NBSG = downloadInfoList.get(i).getnbLegGagnes();
                                         NBLG = downloadInfoList.get(i).getnbSetGagnes();
 
-                                        strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
-                                        strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
-                                        strMeilleurLanceFlechette.add(downloadInfoList.get(i).getMeilleurLanceFlechette());
-                                        strnbAmis.add(downloadInfoList.get(i).getnbAmis());
-                                        strnbLegGagnes.add(downloadInfoList.get(i).getnbLegGagnes());
-                                        strnbSetGagnes.add(downloadInfoList.get(i).getnbSetGagnes());
-
                                     }
 
                                 }
@@ -150,14 +143,5 @@ public class Statistiques extends AppCompatActivity {
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
         TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG);
     }
-
-    public void AffichageString(ArrayList<String> listeStrings){
-        String s = "";
-        for (int i = 0; i < listeStrings.size(); i++){
-            s += listeStrings.get(i) + ", ";
-        }
-    }
-
-
 
 }
