@@ -181,7 +181,6 @@ public class Partie extends AppCompatActivity {
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ModifFirebase();
                 RecupIdJoueur();
 
             }
@@ -373,10 +372,12 @@ public class Partie extends AppCompatActivity {
                             FinPartie();
 
                         }
-
                     }
                 }
             }
+            RefreshPartie();
+        } else {
+            Toast.makeText(Partie.this, "Il manque au moins un lancé", Toast.LENGTH_SHORT).show();
         }
     }
 
