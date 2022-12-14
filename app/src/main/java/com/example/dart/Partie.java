@@ -105,11 +105,8 @@ public class Partie extends AppCompatActivity {
     private TextView TV_ScoreBoard;
 
     // Variables stats
-    private int strNbSetsGagnes;
-    private int strNbLegsGagnes;
-    private int strNbPartiesGagnes;
-    private int strMeilleurLance;
     private String IdJoueur;
+    private int PositionJoueur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +180,8 @@ public class Partie extends AppCompatActivity {
         boutonValide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModifFirebase();
+                //ModifFirebase();
+                RecupIdJoueur();
 
             }
         });
@@ -281,10 +279,7 @@ public class Partie extends AppCompatActivity {
         // Affichage du choixLeg et choixSet (partie en X set(s), Y legs)
         TV_ScoreBoard.setText("En "+ChoixSet+ " Set(s), "+ChoixLeg+" Legs");
 
-        // Recup des valeurs firebase pr affichage textView
-        PointRestantT.setText(String.valueOf(listeScores.get(0)));
-        LegT.setText(String.valueOf(listeLegs.get(0)));
-        SetT.setText(String.valueOf(listeSets.get(0)));
+
 
         mPartieList = new ArrayList<>();
 
@@ -312,6 +307,11 @@ public class Partie extends AppCompatActivity {
 
 
     public void CalculOnClick() {
+
+        // Recup des valeurs firebase pr affichage textView
+        PointRestantT.setText(String.valueOf(listeScores.get(PositionJoueur)));
+        LegT.setText(String.valueOf(listeLegs.get(PositionJoueur)));
+        SetT.setText(String.valueOf(listeSets.get(PositionJoueur)));
 
         if (!lance1.getText().toString().equals("") && !lance2.getText().toString().equals("") && !lance3.getText().toString().equals("")) {
             int pr = Integer.parseInt(PointRestantT.getText().toString());
@@ -367,7 +367,8 @@ public class Partie extends AppCompatActivity {
                             Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
 
                             // Incrementation des statistiques
-                            IncrementationStatistiquesJoueurs();
+                            IncrementationStatistiques();
+                            Log.d("Waouh 2", "Stats");
 
                             finish();
                         }
@@ -378,7 +379,7 @@ public class Partie extends AppCompatActivity {
         }
     }
 
-    public void IncrementationStatistiquesJoueurs(){
+    public void RecupIdJoueur(){
 
         db.collection("Joueurs")
                 .orderBy("email", Query.Direction.DESCENDING)
@@ -387,7 +388,7 @@ public class Partie extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d("Lecture RecupJoueurs", "Entre dans le oncomplete : ");
+                        Log.d("Lecture RecupIdJoueurs", "Entre dans le oncomplete : ");
                         FirebaseUser currentUser = mAuth.getCurrentUser(); // recup du current user
 
                         if (task.isSuccessful()) {
@@ -397,11 +398,8 @@ public class Partie extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
-                                        strNbSetsGagnes = downloadInfoList.get(i).getnbSetGagnes();
-                                        strNbLegsGagnes = downloadInfoList.get(i).getnbLegGagnes();
-                                        strNbPartiesGagnes = downloadInfoList.get(i).getNbParties();
-                                        strMeilleurLance = downloadInfoList.get(i).getMeilleurLanceFlechette();
                                         IdJoueur = downloadInfoList.get(i).getEmail();
+                                        Log.d("Waouh", "IdJoueur :" + IdJoueur);
                                     }
 
                                 }
@@ -410,15 +408,27 @@ public class Partie extends AppCompatActivity {
                                 Log.d("Echec", "Error getting documents: ", task.getException());
                             }
 
-                            // statistiques
-                            db.collection("Joueurs").document(IdJoueur).update("nbSetGagnes", FieldValue.increment(ChoixLeg*ChoixSet));   // Increment de nb sets gegnes
-                            db.collection("Joueurs").document(IdJoueur).update("nbLegGagnes", FieldValue.increment(ChoixLeg));   // Increment de nb legs gegnes
-                            db.collection("Joueurs").document(IdJoueur).update("nbParties", FieldValue.increment(1));   // Increment de nb legs gegnes
+                            for (int j=0; j<listeJoueurs.size();j++){
+                                if (listeJoueurs.get(j).getEmail().equals(IdJoueur)){
+                                    PositionJoueur = j;
+                                    Log.d("Waouh", "PositionJoueur :" + PositionJoueur);
+                                }
+                            }
 
+                            ModifFirebase();
+                            // IncrementationStatistiques();
 
                         }
                     }
                 });
+    }
+
+    public void IncrementationStatistiques(){
+        // statistiques
+        db.collection("Joueurs").document(IdJoueur).update("nbSetGagnes", FieldValue.increment(ChoixLeg*ChoixSet));   // Increment de nb sets gegnes
+        db.collection("Joueurs").document(IdJoueur).update("nbLegGagnes", FieldValue.increment(ChoixLeg));   // Increment de nb legs gegnes
+        db.collection("Joueurs").document(IdJoueur).update("nbParties", FieldValue.increment(1));   // Increment de nb legs gegnes
+
     }
 
     public void ModifFirebase(){
@@ -432,7 +442,7 @@ public class Partie extends AppCompatActivity {
 
                         listeParties.clear();
 
-                        Log.d("Lecture", "Entre dans le oncomplete : ");
+                        Log.d("Lecture Modif firebase", "Entre dans le oncomplete : ");
                         if (task.isSuccessful()) {
                             if (task.getResult() != null) {
                                 List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
@@ -455,28 +465,28 @@ public class Partie extends AppCompatActivity {
     public void ModifRoundFirebase(){
         ArrayList<Integer> listeNvxRound = new ArrayList<>();
         listeNvxRound = listeParties.get(positionPartie).getRounds();
-        listeNvxRound.set(0,listeNvxRound.get(0)+1);
+        listeNvxRound.set(PositionJoueur,listeNvxRound.get(PositionJoueur)+1);
         db.collection("Parties").document(IdPartie).update("rounds", listeNvxRound);   // Ajout du nouveau round
     }
 
     public void ModifScoreFirebase(int nvxScore){
         ArrayList<Integer> listeNvxScores = new ArrayList<>();
         listeNvxScores = listeParties.get(positionPartie).getScores();
-        listeNvxScores.set(0,nvxScore);
+        listeNvxScores.set(PositionJoueur,nvxScore);
         db.collection("Parties").document(IdPartie).update("scores", listeNvxScores);   // Ajout du nouveau score
     }
 
     public void ModifSetFirebase(int nvxSet){
         ArrayList<Integer> listeNvxSets = new ArrayList<>();
         listeNvxSets = listeParties.get(positionPartie).getSets();
-        listeNvxSets.set(0,nvxSet);
+        listeNvxSets.set(PositionJoueur,nvxSet);
         db.collection("Parties").document(IdPartie).update("sets", listeNvxSets);   // Ajout du nouveau score
     }
 
     public void ModifLegFirebase(int nvxLeg){
         ArrayList<Integer> listeNvxLegs = new ArrayList<>();
         listeNvxLegs = listeParties.get(positionPartie).getLegs();
-        listeNvxLegs.set(0,nvxLeg);
+        listeNvxLegs.set(PositionJoueur,nvxLeg);
         db.collection("Parties").document(IdPartie).update("legs", listeNvxLegs);   // Ajout du nouveau score
     }
 
