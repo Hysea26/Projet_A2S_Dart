@@ -101,8 +101,6 @@ public class Historique extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Log.d("Lecture RecupParties", "Entre dans le oncomplete : ");
-                        //FirebaseUser currentUser = mAuth.getCurrentUser();
-                        //Toast.makeText(Menu.this,"Connexion en tant que \n\t" + currentUser.getEmail(),Toast.LENGTH_SHORT).show();
 
                         if (task.isSuccessful()) {
                             if (task.getResult() != null) {

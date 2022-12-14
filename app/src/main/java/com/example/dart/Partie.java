@@ -2,6 +2,7 @@ package com.example.dart;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -368,15 +369,41 @@ public class Partie extends AppCompatActivity {
 
                             // Incrementation des statistiques
                             IncrementationStatistiques();
-                            Log.d("Waouh 2", "Stats");
 
-                            finish();
+                            FinPartie();
+
                         }
 
                     }
                 }
             }
         }
+    }
+
+    public void FinPartie(){
+        // Pop up de confirmation
+        AlertDialog.Builder alert = new AlertDialog.Builder(Partie.this);
+        alert.setTitle("Fin de partie");
+        ArrayList<Integer> listeRound = listeParties.get(positionPartie).getRounds();
+        alert.setMessage("Partie terminee en " + listeRound.get(PositionJoueur) + " rounds !");
+
+        alert.setPositiveButton("Genial !", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(Partie.this,"Partie terminee",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        alert.setNegativeButton("Revenir au menu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Partie.this, Menu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        alert.create().show();
     }
 
     public void RecupIdJoueur(){
@@ -416,7 +443,6 @@ public class Partie extends AppCompatActivity {
                             }
 
                             ModifFirebase();
-                            // IncrementationStatistiques();
 
                         }
                     }
@@ -490,5 +516,10 @@ public class Partie extends AppCompatActivity {
         db.collection("Parties").document(IdPartie).update("legs", listeNvxLegs);   // Ajout du nouveau score
     }
 
+    public void RefreshPartie(){
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
 
 }
