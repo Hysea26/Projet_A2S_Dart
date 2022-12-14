@@ -115,7 +115,7 @@ public class Statistiques extends AppCompatActivity {
                                         MLF = downloadInfoList.get(i).getMeilleurLanceFlechette();
                                         NBA = downloadInfoList.get(i).getnbAmis();
                                         NBSG = downloadInfoList.get(i).getnbLegGagnes();
-                                        NBLG = downloadInfoList.get(i).getnbSetGagnes();
+                                        NBLG = downloadInfoList.get(i).getnbSetGagnes();b
 
                                     }
 
@@ -132,7 +132,7 @@ public class Statistiques extends AppCompatActivity {
     }
 
     public void Affichage_Stats(){ //fonction qui permet de mettre nos stats de la db avec nos textes
-        TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur Lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de Legs gagnés : " + NBLG);
+        TV1.setText("\n\n\n\n\nPseudo : " + ps + "\n\nMeilleur lancer : " + MLF + "\n\nNombre d'amis : " + 3 + "\n\nNombre de sets gagnés : " + NBSG + "\n\nNombre de legs gagnés : " + NBLG);
     }
 
 }
