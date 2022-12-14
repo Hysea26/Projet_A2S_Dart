@@ -103,7 +103,7 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
 
         holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
-        holder.mNbPartiesView.setText(currentItem.getNbParties());
+        holder.mNbPartiesView.setText("Nombre de parties jouées : "+currentItem.getNbParties());
         holder.mCheckBox.setChecked(currentItem.getIsSelected());
     }
 

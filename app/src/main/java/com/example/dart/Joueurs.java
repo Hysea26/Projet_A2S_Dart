@@ -4,9 +4,9 @@ import android.net.Uri;
 
 public class Joueurs {
 
-
     // Variables stockage des donnees
-    private String username, nbParties, meilleurLanceFlechette, nbLegGagnes, nbSetGagnes, nbAmis, email;
+    private String username, email;
+    private int nbParties, meilleurLanceFlechette, nbLegGagnes, nbSetGagnes, nbAmis;
     private Uri imageURI;
     private boolean isSelected;
 
@@ -20,10 +20,7 @@ public class Joueurs {
     }
 
     // Constructeur pour les variables
-    public Joueurs(String email, String username, String nbParties, String meilleurLanceFlechette, String nbLegGagnes, String nbSetGagnes, String nbAmis) {
-        if (nbParties.trim().equals("")) {
-            nbParties = "0";
-        }
+    public Joueurs(String email, String username, int nbParties, int meilleurLanceFlechette, int nbLegGagnes, int nbSetGagnes, int nbAmis) {
 
         this.email = email;
         this.username = username;
@@ -56,51 +53,51 @@ public class Joueurs {
 
     // Get et Set Nombre de parties gagnees
 
-    public String getNbParties() {
+    public int getNbParties() {
         return nbParties;
     }
 
-    public void setNbParties(String title) {
+    public void setNbParties(int title) {
         this.nbParties = title;
     }
 
     // Get et Set Meilleur lance de flechette
 
-    public String getMeilleurLanceFlechette() {
+    public int getMeilleurLanceFlechette() {
         return meilleurLanceFlechette;
     }
 
-    public void setMeilleurLanceFlechette(String meilleurLanceFlechette) {
+    public void setMeilleurLanceFlechette(int meilleurLanceFlechette) {
         this.meilleurLanceFlechette = meilleurLanceFlechette;
     }
 
     // Get et Set Nombre de leg gagnes
 
-    public String getnbLegGagnes() {
+    public int getnbLegGagnes() {
         return nbLegGagnes;
     }
 
-    public void setnbLegGagnes(String nbLegGagnes) {
+    public void setnbLegGagnes(int nbLegGagnes) {
         this.nbLegGagnes = nbLegGagnes;
     }
 
     // Get et Set Nombre de set gagnes
 
-    public String getnbSetGagnes() {
+    public int getnbSetGagnes() {
         return nbSetGagnes;
     }
 
-    public void setnbSetGagnes(String nbSetGagnes) {
+    public void setnbSetGagnes(int nbSetGagnes) {
         this.nbSetGagnes = nbSetGagnes;
     }
 
     // Get et Set Nombre d'amis
 
-    public String getnbAmis() {
+    public int getnbAmis() {
         return nbAmis;
     }
 
-    public void setnbAmis(String nbAmis) {
+    public void setnbAmis(int nbAmis) {
         this.nbAmis = nbAmis;
     }
 

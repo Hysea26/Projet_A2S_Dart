@@ -31,21 +31,13 @@ public class Statistiques extends AppCompatActivity {
     int Statistiques_Images[] = {R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques, R.drawable.img_statistiques};
 
     // Variables
-    private ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
-    private ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
-    private ArrayList<String> strMeilleurLanceFlechette = new ArrayList<String>();
-    private ArrayList<String> strnbAmis = new ArrayList<String>();
-    private ArrayList<String> strnbSetGagnes = new ArrayList<String>();
-    private ArrayList<String> strnbLegGagnes = new ArrayList<String>();
     private TextView TV1;
-
     private String ps;
     private String NBPJ;
-    private String MLF;
-    private String NBA;
-    private String NBSG;
-    private String NBLG;
-
+    private int MLF;
+    private int NBA;
+    private int NBSG;
+    private int NBLG;
 
     // Firebase
     private FirebaseFirestore db; //On appelle  notre database
@@ -128,7 +120,6 @@ public class Statistiques extends AppCompatActivity {
                                     }
 
                                 }
-                                Log.d("Waouh", "Pseudos :"+strPseudoJoueurs);
 
                             } else {
                                 Log.d("Echec", "Error getting documents: ", task.getException());

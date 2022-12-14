@@ -228,7 +228,7 @@ public class CreationCompte extends AppCompatActivity {
 
 
         // adding our data to our users object class.
-        Joueurs joueur = new Joueurs(email,username,"","","","","");
+        Joueurs joueur = new Joueurs(email,username,0,0,0,0,0);
 
         // Ajout de la data dans firestore
         db.collection("Joueurs")

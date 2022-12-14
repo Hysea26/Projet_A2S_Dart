@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -103,6 +104,12 @@ public class Partie extends AppCompatActivity {
     ArrayList<Parties> listeParties = new ArrayList<>();
     private TextView TV_ScoreBoard;
 
+    // Variables stats
+    private int strNbSetsGagnes;
+    private int strNbLegsGagnes;
+    private int strNbPartiesGagnes;
+    private int strMeilleurLance;
+    private String IdJoueur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -360,6 +367,7 @@ public class Partie extends AppCompatActivity {
                             Toast.makeText(Partie.this, "ON A GAGNEEEEEEE", Toast.LENGTH_SHORT).show();
 
                             // Incrementation des statistiques
+                            IncrementationStatistiquesJoueurs();
 
                             finish();
                         }
@@ -368,6 +376,49 @@ public class Partie extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void IncrementationStatistiquesJoueurs(){
+
+        db.collection("Joueurs")
+                .orderBy("email", Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("Lecture RecupJoueurs", "Entre dans le oncomplete : ");
+                        FirebaseUser currentUser = mAuth.getCurrentUser(); // recup du current user
+
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null) {
+                                List<Joueurs> downloadInfoList = task.getResult().toObjects(Joueurs.class); // Va chercher dans joueurs heritant users
+
+                                for (int i=0; i<downloadInfoList.size(); i++) {
+
+                                    if (currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // recup que l'utilisateur
+                                        strNbSetsGagnes = downloadInfoList.get(i).getnbSetGagnes();
+                                        strNbLegsGagnes = downloadInfoList.get(i).getnbLegGagnes();
+                                        strNbPartiesGagnes = downloadInfoList.get(i).getNbParties();
+                                        strMeilleurLance = downloadInfoList.get(i).getMeilleurLanceFlechette();
+                                        IdJoueur = downloadInfoList.get(i).getEmail();
+                                    }
+
+                                }
+
+                            } else {
+                                Log.d("Echec", "Error getting documents: ", task.getException());
+                            }
+
+                            // statistiques
+                            db.collection("Joueurs").document(IdJoueur).update("nbSetGagnes", FieldValue.increment(ChoixLeg*ChoixSet));   // Increment de nb sets gegnes
+                            db.collection("Joueurs").document(IdJoueur).update("nbLegGagnes", FieldValue.increment(ChoixLeg));   // Increment de nb legs gegnes
+                            db.collection("Joueurs").document(IdJoueur).update("nbParties", FieldValue.increment(1));   // Increment de nb legs gegnes
+
+
+                        }
+                    }
+                });
     }
 
     public void ModifFirebase(){

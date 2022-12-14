@@ -49,7 +49,7 @@ public class Menu extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
-    ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
+    ArrayList<Integer> strNbPartiesJoueurs = new ArrayList<Integer>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
 
     // Declaration liste joueurs checkes par l'utilisateur a un instant t
