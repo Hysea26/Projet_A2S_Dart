@@ -7,16 +7,52 @@
     tools:context=".Partie">
 
 
+    <TextView
+        android:id="@+id/PointRestantTemporaire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="501"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/score"
+        app:layout_constraintTop_toBottomOf="@+id/score" />
+
+    <TextView
+        android:id="@+id/LegCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreLeg" />
+
+    <TextView
+        android:id="@+id/SetCompteur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/scoreLeg"
+        app:layout_constraintTop_toBottomOf="@+id/scoreSet" />
+
+
     <EditText
         android:id="@+id/edittext_lance_1"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <EditText
         android:id="@+id/edittext_lance_2"
@@ -43,14 +79,15 @@
         android:id="@+id/resultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
         android:id="@+id/scoreLeg"
@@ -65,8 +102,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/scoreSet"
         app:layout_constraintEnd_toStartOf="@+id/score" />
 
+
     <TextView
         android:id="@+id/scoreSet"
+        android:layout_width="50dp"
+        android:layout_height="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/teal_200"
+        android:gravity="center_horizontal"
+        android:text="Round"
+        app:layout_constraintBottom_toBottomOf="@+id/topScoreBoard"
+        app:layout_constraintEnd_toStartOf="@+id/scoreSet2" />
+
+    <TextView
+        android:id="@+id/scoreSet2"
         android:layout_width="50dp"
         android:layout_height="19dp"
         android:layout_alignParentStart="true"
@@ -78,24 +129,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/topScoreBoard"
         app:layout_constraintEnd_toStartOf="@+id/scoreLeg" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPartie"
-        android:layout_width="300dp"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:background="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topScoreBoard"
-
-
         />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="300dp"
-        android:layout_height="0dp"
+        android:layout_width="371dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -104,6 +152,7 @@
         android:gravity="center_vertical"
         android:text="   DART."
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPartie"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewPartie" />
 
@@ -122,8 +171,8 @@
 
     <TextView
         android:id="@+id/topScoreBoard"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
@@ -131,49 +180,19 @@
         android:gravity="center_vertical"
         android:text="  Premier à X set X leg"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/scoreSet"
         app:layout_constraintStart_toStartOf="@+id/recyclerViewPartie"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonDouble"
+        android:id="@+id/boutonValide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/black"
-        android:text="DOUBLE"
-        app:layout_constraintBottom_toTopOf="@+id/edittext_lance_1"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonTriple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="TRIPLE"
-        app:layout_constraintStart_toEndOf="@+id/buttonDouble"
-        app:layout_constraintTop_toTopOf="@+id/buttonDouble" />
-
-    <Button
-        android:id="@+id/buttonRetour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:text="Retour"
-        app:layout_constraintBottom_toBottomOf="@+id/edittext_lance_3"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/backbtn"
-        android:layout_width="49dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="Valider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edittext_lance_3"
+        app:layout_constraintTop_toBottomOf="@+id/resultat" />
 
     <ImageView
         android:id="@+id/id_dart_logo"
@@ -186,5 +205,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_dart3" />
+
+    <Button
+        android:id="@+id/boutonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

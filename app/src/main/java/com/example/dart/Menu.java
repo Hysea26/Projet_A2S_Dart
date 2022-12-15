@@ -42,14 +42,17 @@ public class Menu extends AppCompatActivity {
     private Button NouvellePartieBtn;
     private ImageButton buttonInsert;
 
+    private int position = 0;
+
     // Declaration variables Recycler view
     private ArrayList<RowItemJoueur> mExampleList;
     private RecyclerView mrvArticles;
     private MyAdapterJoueur mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    // Déclaration variables recuperant les valeurs des joueurs
     ArrayList<String> strPseudoJoueurs = new ArrayList<String>();
-    ArrayList<String> strNbPartiesJoueurs = new ArrayList<String>();
+    ArrayList<Integer> strNbPartiesJoueurs = new ArrayList<Integer>();
     ArrayList<String> strIdJoueurs = new ArrayList<String>();
 
     // Declaration liste joueurs checkes par l'utilisateur a un instant t
@@ -79,7 +82,6 @@ public class Menu extends AppCompatActivity {
 
         // Recycler view
         RecupJoueurs();
-        //setButtons(); // clics du recycler
 
         // Bouton nouvelle partie
         NouvellePartieBtn = (Button) findViewById(R.id.NouvellePartieBtn);
@@ -165,7 +167,7 @@ public class Menu extends AppCompatActivity {
                                 for (int i=0; i<downloadInfoList.size(); i++) {
 
                                     if (!currentUser.getEmail().equals(downloadInfoList.get(i).getEmail())){ // pour ne pas afficher l'utilisateur
-                                        // il faudra afficher uniquement les amis (boucle if)
+                                        // il faudra afficher uniquement les amis
                                         strPseudoJoueurs.add(downloadInfoList.get(i).getPseudo());
                                         strNbPartiesJoueurs.add(downloadInfoList.get(i).getNbParties());
                                         strIdJoueurs.add(downloadInfoList.get(i).getEmail());
@@ -273,6 +275,7 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+    // Fonction insérant le currentUser en position 0
     public void InsertionCurrentUser(){
 
         // Copie de mJoueursChecked dans listeJ
@@ -316,12 +319,29 @@ public class Menu extends AppCompatActivity {
                 InsertionCurrentUser();
 
                 // Creer une partie dans Firestore
-                creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>());
+                creationDocumentPartieFirestore(mJoueursChecked,new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Integer>(),new ArrayList<Boolean>());
 
-                // Aller dans partie
+                // Recup de la position de la partie cree
                 Intent intent = new Intent(Menu.this, Partie.class);
-                intent.putExtra("choixScore", choixScore); // envoi du choix de score a la classe Partie
-                startActivity(intent);
+                db.collection("Parties")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    if (task.getResult() != null) {
+                                        List<Parties> downloadInfoList = task.getResult().toObjects(Parties.class); // Va chercher dans joueurs heritant users
+                                        position = downloadInfoList.size();
+
+                                    } else {
+                                        Log.d("Echec", "Error getting documents: ", task.getException());
+                                    }
+                                }
+                                intent.putExtra("position", position-1); // envoi de la position de la partie a Partie
+                                startActivity(intent);
+                            }
+                        });
 
                 // Reset des variables utilisees pour la creation de la partie
                 mJoueursChecked.clear();                        // vide la liste de joueurs checks
@@ -343,16 +363,16 @@ public class Menu extends AppCompatActivity {
         alert.create().show();
     }
 
-    private void creationDocumentPartieFirestore(ArrayList<Joueurs> listeJoueurs, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs,ArrayList<Integer> listeScores) {
+    private void creationDocumentPartieFirestore(ArrayList<Joueurs> listeJoueurs, ArrayList<Integer> listeSets, ArrayList<Integer> listeLegs,ArrayList<Integer> listeScores, ArrayList<Integer> listeRounds, ArrayList<Boolean> listeBooleanPEC) {
 
         // creating a collection reference
         // for our Firebase Firetore database.
         // CollectionReference dbCourses = db.collection("Users");
 
-        // adding our data to our users object class.
-        Parties partie = new Parties(listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),listeSets,listeLegs,listeScores);
-
         String idPartie = CreationIdPartie();
+
+        // adding our data to our users object class.
+        Parties partie = new Parties(idPartie,listeJoueurs,Integer.parseInt(choixSet),Integer.parseInt(choixLeg),Integer.parseInt(choixScore),listeSets,listeLegs,listeScores,listeRounds,listeBooleanPEC);
 
         // Ajout de la data dans firestore
         db.collection("Parties")
@@ -407,18 +427,5 @@ public class Menu extends AppCompatActivity {
         }
         return j;
     }
-
-
-    public void setButtons() {
-        buttonInsert = findViewById(R.id.searchbtn);
-
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insertItem(0);
-            }
-        });
-    }
-
 
 }

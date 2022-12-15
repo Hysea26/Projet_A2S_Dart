@@ -2,8 +2,6 @@ package com.example.dart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
 public class RowItemPEC extends AppCompatActivity {
 
     private int mImgUser;

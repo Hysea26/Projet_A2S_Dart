@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
+    android:layout_marginBottom="1dp"
     app:cardCornerRadius="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/img_user_profil">
-
-
+        android:layout_height="match_parent">
+        
         <ImageView
             android:id="@+id/imgJoueur"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
@@ -29,45 +27,56 @@
             android:id="@+id/nomJoueur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="bonjour"
+            android:layout_marginLeft="10dp"
+            android:text="Nom joueur"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imgJoueur"
             app:layout_constraintStart_toEndOf="@+id/imgJoueur"
             app:layout_constraintTop_toTopOf="@+id/imgJoueur" />
 
         <TextView
-            android:id="@+id/nbrSet"
+            android:id="@+id/RoundCompteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:text="bonjour2"
+            android:layout_marginEnd="170dp"
+            android:text="Round"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/nomJoueur"
-            app:layout_constraintStart_toEndOf="@+id/imgJoueur"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nomJoueur" />
 
         <TextView
-            android:id="@+id/nbrLeg"
+            android:id="@+id/SetCompteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="bonjour2"
+            android:layout_marginEnd="120dp"
+            android:text="Set"
             android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/nbrSet"
-            app:layout_constraintTop_toTopOf="@+id/nbrSet" />
+            app:layout_constraintBottom_toBottomOf="@+id/nomJoueur"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nomJoueur" />
 
         <TextView
-            android:id="@+id/nbrPoint"
+            android:id="@+id/LegCompteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="bonjour2"
+            android:layout_marginEnd="70dp"
+            android:text="leg"
             android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/nbrLeg"
-            app:layout_constraintTop_toTopOf="@+id/nbrLeg" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/SetCompteur" />
+
+        <TextView
+            android:id="@+id/PointRestantRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="PtsR"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/LegCompteur" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

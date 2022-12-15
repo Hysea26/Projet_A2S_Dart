@@ -3,7 +3,6 @@ package com.example.dart;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-// My adapter joueur
+// my adapter Partie
 
-public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyViewHolder> {
+public class MyAdapterPartie extends RecyclerView.Adapter<MyAdapterPartie.MyViewHolder> {
 
-    private ArrayList<RowItemJoueur> mExampleList;
+    private ArrayList<RowItemPartie> mExampleList;
     private OnItemClickListener mListener;
 
-    public MyAdapterJoueur(ArrayList<RowItemJoueur> exampleList) {
+    public MyAdapterPartie(ArrayList<RowItemPartie> exampleList) {
         this.mExampleList = exampleList;
     }
 
@@ -35,17 +34,19 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImgUserView;
         public TextView mPseudoView;
-        public TextView mNbPartiesView;
-        public ImageView mSelectView;
-        public CheckBox mCheckBox;
+        public TextView mNbSetView;
+        public TextView mNbLegView;
+        public TextView mPointRestantView;
+        public TextView mNbRoundView;
 
         public MyViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mImgUserView = itemView.findViewById(R.id.id_ImgUser_RIJ);
-            mPseudoView = itemView.findViewById(R.id.id_pseudo_RIJ);
-            mNbPartiesView = itemView.findViewById(R.id.id_NbParties_RIJ);
-            //mSelectView = itemView.findViewById(R.id.id_Img_select);
-            mCheckBox = itemView.findViewById(R.id.id_checkBox_RIJ);
+            mImgUserView = itemView.findViewById(R.id.imgJoueur);
+            mPseudoView = itemView.findViewById(R.id.nomJoueur);
+            mNbSetView = itemView.findViewById(R.id.SetCompteur);
+            mNbLegView = itemView.findViewById(R.id.LegCompteur);
+            mPointRestantView = itemView.findViewById(R.id.PointRestantRV);
+            mNbRoundView = itemView.findViewById(R.id.RoundCompteur);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,20 +60,6 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
                 }
             });
 
-            mCheckBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean isChecked = ((CheckBox) v).isChecked();
-
-                    if (isChecked){
-                        mExampleList.get(getAdapterPosition()).setIsSelected(true);
-                    } else {
-                        mExampleList.get(getAdapterPosition()).setIsSelected(false);
-                    }
-
-                }
-            });
-
         }
     }
 
@@ -80,19 +67,20 @@ public class MyAdapterJoueur extends RecyclerView.Adapter<MyAdapterJoueur.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_item_joueur, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_item_partie, parent, false);
         MyViewHolder evh = new MyViewHolder(v, mListener);
         return evh;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        RowItemJoueur currentItem = mExampleList.get(position);
-
+    public void onBindViewHolder(MyAdapterPartie.MyViewHolder holder, int position) {
+        RowItemPartie currentItem = mExampleList.get(position);
         holder.mImgUserView.setImageResource(currentItem.getImgUser());
         holder.mPseudoView.setText(currentItem.getPseudo());
-        holder.mNbPartiesView.setText("Nombre de parties jouées : "+currentItem.getNbParties());
-        holder.mCheckBox.setChecked(currentItem.getIsSelected());
+        holder.mNbLegView.setText(String.valueOf(currentItem.getLeg()));
+        holder.mNbSetView.setText(String.valueOf(currentItem.getSet()));
+        holder.mPointRestantView.setText(String.valueOf(currentItem.getPoint()));
+        holder.mNbRoundView.setText(String.valueOf(currentItem.getRound()));
     }
 
     @Override

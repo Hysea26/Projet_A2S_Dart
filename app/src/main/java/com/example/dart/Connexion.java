@@ -22,10 +22,12 @@ public class Connexion extends AppCompatActivity {
 
     private static final String TAG = "Connexion"; // Pour des tags d'erreurs / verifs
 
+    // Initialisation variables
     EditText EdT_email, EdT_password;
     Button btn_newAccount, btn_forgotPwd, btn_connexion;
     ImageButton Imbtn_back;
 
+    // Initialisation variables firebase
     private FirebaseAuth mAuth;
 
     @Override
@@ -53,8 +55,7 @@ public class Connexion extends AppCompatActivity {
 
                 try {
                     signIn(EdT_email.getText().toString(), EdT_password.getText().toString());// ligne à commenter pr se passer de l'authentification (pour tests)
-                    //Intent launchActivity = new Intent(Connexion.this, Menu.class);
-                    //startActivity(launchActivity);
+
                 }
                 catch (Exception e){
                     reload();
@@ -103,6 +104,7 @@ public class Connexion extends AppCompatActivity {
         }
     }
 
+    // Connexion
     private void signIn(String email, String password) {
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -134,6 +136,7 @@ public class Connexion extends AppCompatActivity {
     private void reload() {
     }
 
+    // Envoi de l'email de verification
     private void sendEmailVerification() {
         // Send verification email
         // [START send_email_verification]

@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -31,16 +30,14 @@ public class CreationCompte extends AppCompatActivity {
 
     private static final String TAG = "Creation compte"; // Pour des tags d'erreurs / verifs
 
+    // Initialisation variables
     EditText Edt_pseudo, EdT_email, EdT_password;
     Button btn_newAccount;
     ImageButton Imbtn_back;
-
-    // creating a strings for storing our values from editText fields //
     private String username, email, idCompte;
 
-    // firebase authentification
+    // Initialisation variables Firebase
     private FirebaseAuth mAuth;
-    // creating a variable for firebasefirestore
     private FirebaseFirestore db;
 
     @Override
@@ -48,9 +45,8 @@ public class CreationCompte extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_compte);
 
-        // Initialize Firebase Auth
+        // Initialize Firebase Auth, firestore
         mAuth = FirebaseAuth.getInstance();
-        // Getting our instance from Firebase Firestore //
         db = FirebaseFirestore.getInstance();
 
         // Affectation des EditText
@@ -228,7 +224,7 @@ public class CreationCompte extends AppCompatActivity {
 
 
         // adding our data to our users object class.
-        Joueurs joueur = new Joueurs(email,username,"","","","","");
+        Joueurs joueur = new Joueurs(email,username,0,0,0,0,0);
 
         // Ajout de la data dans firestore
         db.collection("Joueurs")
